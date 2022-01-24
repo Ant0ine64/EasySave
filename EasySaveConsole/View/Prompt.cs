@@ -9,19 +9,36 @@ public class Prompt
 {
     private string sourcePath;
     private string destinationPath;
+    private string name;
 
     private MainViewModel mvm = new MainViewModel();
     public void Start()
     {
+        // Ask for create a job or start a new one
+
+        promptJobCreation();
+
+        promptJobSelection();
+    }
+
+    private void promptJobCreation()
+    {
+        // Create saving job
+        // Ask name
         // Ask paths 
         Console.WriteLine("Enter save source path:");
         sourcePath = Console.ReadLine();
         Console.WriteLine("Enter save destination path:");
         destinationPath = Console.ReadLine();
-        
+        // Ask if run the job now
+
         // Call ViewModel
-        mvm.StartSavingJob(sourcePath, destinationPath);
+        mvm.CreateSavingJob(name, sourcePath, destinationPath);
+    }
+
+    private void promptJobSelection()
+    {
+        // Run existing job(s) by asking their names
         
-        // Optional : Display live status
     }
 }
