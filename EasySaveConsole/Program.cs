@@ -1,3 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using EasySaveConsole.View;
 
-Console.WriteLine("Hello, World!");
+namespace EasySaveConsole;
+
+internal class Program
+{
+    static void Main(string[] agrs)
+    {
+        Prompt prompt = new Prompt();
+        prompt.Start();
+    }
+}
