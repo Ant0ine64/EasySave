@@ -46,7 +46,7 @@ jobs:
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     needs: 
-      - build
+      - build-and-publish
         
     steps:
       - name: checkout
