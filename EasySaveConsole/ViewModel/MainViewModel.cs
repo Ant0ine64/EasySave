@@ -1,20 +1,21 @@
-using EasySaveConsole.Service;
+using EasySaveConsole.Model;
 
 namespace EasySaveConsole.ViewModel;
 
 public class MainViewModel
 {
     private Save save = new Save();
+    private Job job = new Job();
 
-    public void StartSavingJob(string name)
+    public void StartSavingJob(string jobName)
     {
         
+        // write log file
     }
     public void CreateSavingJob(string name, string source, string destination)
     {
         //Save
         //Write state file 
         
-        // at the end : write log file
     }
 }
