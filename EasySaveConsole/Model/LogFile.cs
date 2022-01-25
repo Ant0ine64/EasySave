@@ -1,6 +1,8 @@
-namespace EasySaveConsole.Model;
-
-public class LogFile
+namespace EasySaveConsole.Model
 {
-    
+
+    public class LogFile
+    {
+
+    }
 }
