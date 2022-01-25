@@ -1,12 +1,14 @@
 ﻿using EasySaveConsole.View;
 
-namespace EasySaveConsole;
-
-internal class Program
+namespace EasySaveConsole
 {
-    static void Main(string[] agrs)
+    internal class Program
     {
-        Prompt prompt = new Prompt();
-        prompt.Start();
+        static void Main(string[] agrs)
+        {
+            Prompt prompt = new Prompt();
+            prompt.Start();
+        }
     }
 }
+

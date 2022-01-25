@@ -1,6 +1,8 @@
-namespace EasySaveConsole.Model;
-
-public class Job
+namespace EasySaveConsole.Model
 {
-    
+
+    public class Job
+    {
+
+    }
 }

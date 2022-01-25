@@ -1,44 +1,47 @@
+using System;
 using EasySaveConsole.ViewModel;
 
-namespace EasySaveConsole.View;
-
-/**
- * Display to user prompt to choose save filepath (input and output) and status when running
- */
-public class Prompt
+namespace EasySaveConsole.View
 {
-    private string sourcePath;
-    private string destinationPath;
-    private string name;
 
-    private MainViewModel mvm = new MainViewModel();
-    public void Start()
+    /**
+     * Display to user prompt to choose save filepath (input and output) and status when running
+     */
+    public class Prompt
     {
-        // Ask for create a job or start a new one
+        private string sourcePath;
+        private string destinationPath;
+        private string name;
 
-        promptJobCreation();
+        private MainViewModel mvm = new MainViewModel();
+        public void Start()
+        {
+            // Ask for create a job or start a new one
 
-        promptJobSelection();
-    }
+            promptJobCreation();
 
-    private void promptJobCreation()
-    {
-        // Create saving job
-        // Ask name
-        // Ask paths 
-        Console.WriteLine("Enter save source path:");
-        sourcePath = Console.ReadLine();
-        Console.WriteLine("Enter save destination path:");
-        destinationPath = Console.ReadLine();
-        // Ask if run the job now
+            promptJobSelection();
+        }
 
-        // Call ViewModel
-        mvm.CreateSavingJob(name, sourcePath, destinationPath);
-    }
+        private void promptJobCreation()
+        {
+            // Create saving job
+            // Ask name
+            // Ask paths 
+            Console.WriteLine("Enter save source path:");
+            sourcePath = Console.ReadLine();
+            Console.WriteLine("Enter save destination path:");
+            destinationPath = Console.ReadLine();
+            // Ask if run the job now
 
-    private void promptJobSelection()
-    {
-        // Run existing job(s) by asking their names
-        
+            // Call ViewModel
+            mvm.CreateSavingJob(name, sourcePath, destinationPath);
+        }
+
+        private void promptJobSelection()
+        {
+            // Run existing job(s) by asking their names
+            
+        }
     }
 }

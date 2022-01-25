@@ -1,5 +1,7 @@
-namespace EasySaveConsole.Model;
-
-public class Save
+namespace EasySaveConsole.Model
 {
+
+    public class Save
+    {
+    }
 }
