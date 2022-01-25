@@ -14,11 +14,13 @@ namespace EasySaveConsole.ViewModel
             // write log file
         }
 
-        public void CreateSavingJob(string name, string source, string destination)
+        public void CreateSavingJob(string name, string source, string destination, string status="TODO")
         {
-            //Save
-            //Write state file 
-
+            job.Name = name;
+            job.SourcePath = source;
+            job.DestinationPath = destination;
+            job.Status = status;
+            Job.Add(job);
         }
     }
 }
