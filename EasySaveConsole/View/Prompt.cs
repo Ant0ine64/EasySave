@@ -18,7 +18,6 @@ namespace EasySaveConsole.View
         public void Start()
 
         {
-           
             promptJobCreation();
 
             promptJobSelection();

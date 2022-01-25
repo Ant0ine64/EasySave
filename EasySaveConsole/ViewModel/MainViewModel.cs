@@ -11,7 +11,7 @@ namespace EasySaveConsole.ViewModel
 
         public void StartSavingJob(string jobName)
         {
-            save.copyFiles(job.source, job.destination);
+            save.copyFiles(job.SourcePath, job.DestinationPath);
 
             // write log file
         }
