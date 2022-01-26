@@ -94,5 +94,23 @@ namespace EasySaveConsole.Model
             
             WriteToJson();
         }
+
+        /**
+         * Usage example :
+         *  Job.GetAllJobNames().ForEach(Console.WriteLine);
+         */
+        public static List<string> GetAllJobNames()
+        {
+            List<string> jobsName = new List<string>();
+            
+            GetFromJson();
+
+            foreach (Job job in jobs)
+            {
+                jobsName.Add(job.Name);
+            }
+            
+            return jobsName;
+        }
     }
 }
