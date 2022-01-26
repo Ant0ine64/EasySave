@@ -1,22 +1,63 @@
+using System;
 using System.IO;
+using System.Linq;
 
 namespace EasySaveConsole.Model
 {
 
     public class Save
     {
-        public void copyFiles(string source, string destination)
+        public void copyFilesPartialSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir)// sauvegarde partielle
         {
-            string[] files = Directory.GetFiles(source);
-
-            foreach (string f in files)
+       
+            FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
+            FileInfo[] infosSourceFiles = infosSourceDir.GetFiles();
+          
+            foreach (FileInfo infosSourceFile in infosSourceFiles)
             {
-                // Remove path from the file name.
-                string fName = f.Substring(source.Length + 1);
+                foreach (FileInfo infosDestinationFile in infosDestinationFiles)
+                {
+                  
+                    // si le fichier a été modifié (nom est le meme mais pas l'heure de modif)
+                    if (infosSourceFile.Name == infosDestinationFile.Name && infosSourceFile.LastWriteTime != infosDestinationFile.LastWriteTime)
+                    {
+                        // copie en écrasant la version existante  
+                            File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
+                            Console.WriteLine("Fichier transfèré : " + infosSourceFile.Name);                      
+                    }
+                   
 
-                // Use the Path.Combine method to safely append the file name to the path.
-                // Will overwrite if the destination file already exists.
-                File.Copy(Path.Combine(source, fName), Path.Combine(destination, fName), true);
+                }
+                // si le fichier n'existe pas dans le destination on le copie
+                if (infosDestinationFiles.Any(x => x.Name == infosSourceFile.Name)) { }
+                else
+                {
+                    
+                        File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
+                        Console.WriteLine("Fichier transfèré : " + infosSourceFile.Name);
+                    
+                }
+            }
+           
+        }
+
+        public void copyFilesEntireSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir)// Sauvegarde entière
+        {
+
+            FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
+            FileInfo[] infosSourceFiles = infosSourceDir.GetFiles();
+
+            foreach (FileInfo infosDestinationFile in infosDestinationFiles)// clean du dossier de destination
+            {
+                infosDestinationFile.Delete();
+                Console.WriteLine("Nous nettoyons le fichier de destination");
+
+            }
+
+            foreach (FileInfo infosSourceFile in infosSourceFiles)// copie de tous les fichiers du sorce vers le destination
+            {    
+                    File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
+                    Console.WriteLine("Fichier transfèré : " + infosSourceFile.Name);         
             }
         }
     }
