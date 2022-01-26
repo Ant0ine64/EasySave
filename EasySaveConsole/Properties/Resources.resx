@@ -121,9 +121,21 @@
     <value>Your application is currently in French, would you like to switch to French? (Y/N)</value>
   </data>
   <data name="enter_destination" xml:space="preserve">
-    <value>Enter the destination of the source file</value>
+    <value>Enter the path to the destination folder :</value>
+  </data>
+  <data name="enter_nameSave" xml:space="preserve">
+    <value>Enter the name of you save</value>
   </data>
   <data name="enter_source" xml:space="preserve">
-    <value>Enter the path of the source file :</value>
+    <value>Enter the path of the source folder :</value>
+  </data>
+  <data name="error_directory_path" xml:space="preserve">
+    <value>The destination or source directory doesn't exists.</value>
+  </data>
+  <data name="file_transfered" xml:space="preserve">
+    <value>File transfered : </value>
+  </data>
+  <data name="type_save_question" xml:space="preserve">
+    <value>Do you want to do an entitre save or partial ? (E/P)</value>
   </data>
 </root>

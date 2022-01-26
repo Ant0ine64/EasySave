@@ -23,7 +23,7 @@ namespace EasySaveConsole.Model
                     {
                         // copie en écrasant la version existante  
                             File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
-                            Console.WriteLine("Fichier transfèré : " + infosSourceFile.Name);                      
+                            Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);                      
                     }
                    
 
@@ -34,7 +34,7 @@ namespace EasySaveConsole.Model
                 {
                     
                         File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
-                        Console.WriteLine("Fichier transfèré : " + infosSourceFile.Name);
+                        Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);
                     
                 }
             }
@@ -49,15 +49,14 @@ namespace EasySaveConsole.Model
 
             foreach (FileInfo infosDestinationFile in infosDestinationFiles)// clean du dossier de destination
             {
-                infosDestinationFile.Delete();
-                Console.WriteLine("Nous nettoyons le fichier de destination");
+                infosDestinationFile.Delete();              
 
             }
 
             foreach (FileInfo infosSourceFile in infosSourceFiles)// copie de tous les fichiers du sorce vers le destination
             {    
                     File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
-                    Console.WriteLine("Fichier transfèré : " + infosSourceFile.Name);         
+                    Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);         
             }
         }
     }

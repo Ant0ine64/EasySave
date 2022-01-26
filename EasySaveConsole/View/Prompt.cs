@@ -53,7 +53,7 @@ namespace EasySaveConsole.View
         {
             // Create saving job
             // Ask name
-            Console.WriteLine("Enter the name of you save");
+            Console.WriteLine(Properties.Resources.enter_nameSave);
             name = Console.ReadLine();
             Console.WriteLine(Properties.Resources.enter_source);
             sourcePath = Console.ReadLine();

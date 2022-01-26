@@ -121,9 +121,21 @@
     <value>Votre application est actuellement en francais voulez vous passer en anglais ? (Y/N)</value>
   </data>
   <data name="enter_destination" xml:space="preserve">
-    <value>Entrer la destination du fichier source </value>
+    <value>Entrer le chemin du dossier de destination :</value>
+  </data>
+  <data name="enter_nameSave" xml:space="preserve">
+    <value>Entrer le nom de votre sauvegarde.</value>
   </data>
   <data name="enter_source" xml:space="preserve">
-    <value>Entrer le chemin du fichier source :</value>
+    <value>Entrer le chemin du dossier source :</value>
+  </data>
+  <data name="error_directory_path" xml:space="preserve">
+    <value>Le dossier de source ou de destination n'existe pas.</value>
+  </data>
+  <data name="file_transfered" xml:space="preserve">
+    <value>Fichier transfèré : </value>
+  </data>
+  <data name="type_save_question" xml:space="preserve">
+    <value>Voulez vous faire un sauvegarde partielle ou entière ? (P/E)</value>
   </data>
 </root>

@@ -19,7 +19,7 @@ namespace EasySaveConsole.ViewModel
 
         public void CreateSavingJob(string name, string source, string destination)
         {
-            Console.WriteLine("Your save will be partial or entire (P/E)");
+            Console.WriteLine(Properties.Resources.type_save_question);
             if(Console.ReadLine() == "P")
             {
                 try {
@@ -30,7 +30,7 @@ namespace EasySaveConsole.ViewModel
                 }
                 catch
                 {
-                    Console.WriteLine("Le dossier source ou de destination n'existe pas");
+                    Console.WriteLine(Properties.Resources.error_directory_path);
                 }
                 
                
@@ -47,7 +47,7 @@ namespace EasySaveConsole.ViewModel
                 }
                 catch
                 {
-                    Console.WriteLine("Le dossier source ou de destination n'existe pas");
+                    Console.WriteLine(Properties.Resources.error_directory_path);
                 }
             }
            
