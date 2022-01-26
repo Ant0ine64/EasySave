@@ -83,5 +83,16 @@ namespace EasySaveConsole.Model
             
             WriteToJson();
         }
+
+        public static void Delete(Job job)
+        {
+            GetFromJson();
+
+            // find corresponding job (by name) and delete it
+            int i = jobs.FindIndex(j => j.Name == job.Name);
+            jobs.RemoveAt(i);
+            
+            WriteToJson();
+        }
     }
 }
