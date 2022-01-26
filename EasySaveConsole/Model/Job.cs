@@ -72,5 +72,16 @@ namespace EasySaveConsole.Model
             TotalFilesSize = files.Sum(t => (new FileInfo(t).Length));
 
         }
+
+        public static void Update(Job job)
+        {
+            GetFromJson();
+
+            // find corresponding job (by name) and rewrite it
+            int i = jobs.FindIndex(j => j.Name == job.Name);
+            jobs[i] = job;
+            
+            WriteToJson();
+        }
     }
 }
