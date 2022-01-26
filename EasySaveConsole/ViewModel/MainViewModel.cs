@@ -10,15 +10,25 @@ namespace EasySaveConsole.ViewModel
 
         public void StartSavingJob(string jobName)
         {
-
+            job.Name = jobName;
+            // beginning of the job execution
+            job.Status = "ACTIVE";
+            Job.Update(job);
+            
+            
+            
             // write log file
+            job.Status = "END";
+            Job.Update(job);
         }
 
-        public void CreateSavingJob(string name, string source, string destination)
+        public void CreateSavingJob(string name, string source, string destination, string status="TODO")
         {
-            //Save
-            //Write state file 
-
+            job.Name = name;
+            job.SourcePath = source;
+            job.DestinationPath = destination;
+            job.Status = status;
+            Job.Add(job);
         }
     }
 }
