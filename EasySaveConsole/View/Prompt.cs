@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Globalization;
+using System.Threading;
 using EasySaveConsole.ViewModel;
 
 namespace EasySaveConsole.View
@@ -18,6 +20,30 @@ namespace EasySaveConsole.View
         public void Start()
 
         {
+       
+
+            Console.WriteLine(Properties.Resources.current_lang);
+            if (Console.ReadLine() == "Y") { 
+                if (Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "fr")
+                {
+                    CultureInfo ui_culture = new CultureInfo("en-US");
+                    CultureInfo culture = new CultureInfo("en-US");
+
+                    Thread.CurrentThread.CurrentUICulture = ui_culture;
+                    Thread.CurrentThread.CurrentCulture = culture;
+                }else
+                {
+                    CultureInfo ui_culture = new CultureInfo("fr-FR");
+                    CultureInfo culture = new CultureInfo("fr-FR");
+
+                    Thread.CurrentThread.CurrentUICulture = ui_culture;
+                    Thread.CurrentThread.CurrentCulture = culture;
+                }
+           
+            }
+            else { }
+            // Ask for create a job or start a new one
+
             promptJobCreation();
 
             promptJobSelection();
@@ -25,12 +51,13 @@ namespace EasySaveConsole.View
 
         private void promptJobCreation()
         {
-
+            // Create saving job
+            // Ask name
             Console.WriteLine("Enter the name of you save");
             name = Console.ReadLine();
-            Console.WriteLine("Enter save source path:");
+            Console.WriteLine(Properties.Resources.enter_source);
             sourcePath = Console.ReadLine();
-            Console.WriteLine("Enter save destination path:");
+            Console.WriteLine(Properties.Resources.enter_destination);
             destinationPath = Console.ReadLine();
            
 
