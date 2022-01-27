@@ -21,7 +21,7 @@ namespace EasySaveConsole.ViewModel
                 try {
                     DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
                     DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
-                    save.copyFilesPartialSave(infosSourceDir, infosDestDir);
+                    save.copyFilesPartialSave(infosSourceDir, infosDestDir, job);
                 }
                 catch
                 {

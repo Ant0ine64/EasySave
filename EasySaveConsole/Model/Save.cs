@@ -7,7 +7,7 @@ namespace EasySaveConsole.Model
 
     public class Save
     {
-        public void copyFilesPartialSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir)// sauvegarde partielle
+        public void copyFilesPartialSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)// sauvegarde partielle
         {
        
             FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
@@ -37,6 +37,7 @@ namespace EasySaveConsole.Model
                     Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);
                     
                 }
+                job.UpdateProgression();
             }
            
         }

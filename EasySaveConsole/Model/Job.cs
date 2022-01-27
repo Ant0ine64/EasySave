@@ -120,6 +120,7 @@ namespace EasySaveConsole.Model
             var destFiles = Directory.GetFiles(this.DestinationPath, "*", SearchOption.AllDirectories).Count();
             FilesLeftToDo = sourceFiles - destFiles;
             Progression = (FilesLeftToDo / sourceFiles) * 100;
+            Update(this);
         }
 
         public static Job? GetJobByName(string jobName)
