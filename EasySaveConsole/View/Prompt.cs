@@ -12,9 +12,10 @@ namespace EasySaveConsole.View
      */
     public class Prompt
     {
-        public string sourcePath;
-        public string destinationPath;
-        public string name;
+        public string SourcePath;
+        public string DestinationPath;
+        public string Name;
+        public string Type;
 
         private MainViewModel mvm = new MainViewModel();
         public void Start()
@@ -54,17 +55,18 @@ namespace EasySaveConsole.View
             // Create saving job
             // Ask name
             Console.WriteLine(Properties.Resources.enter_nameSave);
-            name = Console.ReadLine();
+            Name = Console.ReadLine();
             Console.WriteLine(Properties.Resources.enter_source);
-            sourcePath = Console.ReadLine();
+            SourcePath = Console.ReadLine();
             Console.WriteLine(Properties.Resources.enter_destination);
-            destinationPath = Console.ReadLine();
+            DestinationPath = Console.ReadLine();
            
-
+            Console.WriteLine(Properties.Resources.type_save_question);
+            Type = Console.ReadLine();
             // Ask if run the job now
             
             // Call ViewModel
-            mvm.CreateSavingJob(name, sourcePath, destinationPath);
+            mvm.CreateSavingJob(Name, SourcePath, DestinationPath, Type);
         }
 
         private void promptJobSelection()

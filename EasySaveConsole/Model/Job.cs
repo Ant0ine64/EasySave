@@ -17,6 +17,7 @@ namespace EasySaveConsole.Model
         public int FilesLeftToDo { get; set; } = 0;
         public long TotalFilesSize { get; set; }
         public int Progression { get; set; } = 0;
+        public string Type { get; set; } = "E"; // P for partial, E for entire
 
         public const string jsonStateDirectory = "/var/log/easysave/";
         public const string jsonStateFilepath = jsonStateDirectory + "jobs.json";
@@ -119,6 +120,11 @@ namespace EasySaveConsole.Model
             var destFiles = Directory.GetFiles(this.DestinationPath, "*", SearchOption.AllDirectories).Count();
             FilesLeftToDo = sourceFiles - destFiles;
             Progression = (FilesLeftToDo / sourceFiles) * 100;
+        }
+
+        public static Job? GetJobByName(string jobName)
+        {
+            return jobs.Find(j => j.Name == jobName);
         }
     }
 }
