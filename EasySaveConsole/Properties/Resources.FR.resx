@@ -117,13 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="change_lang_en" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="change_lang_fr" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="create_saving_job" xml:space="preserve">
+    <value>Créer un travail de sauvegarde</value>
+  </data>
   <data name="current_lang" xml:space="preserve">
-    <value>Votre application est actuellement en francais voulez vous passer en anglais ? (Y/N)</value>
+    <value>Changer la langue</value>
   </data>
-  <data name="enter_destination" xml:space="preserve">
-    <value>Entrer la destination du fichier source </value>
+  <data name="delete_saving_job" xml:space="preserve">
+    <value>Supprimer un travail de sauvegarde</value>
   </data>
-  <data name="enter_source" xml:space="preserve">
+  <data name="enter_destination_path" xml:space="preserve">
+    <value>Entrer la destination du fichier source :</value>
+  </data>
+  <data name="enter_job_name" xml:space="preserve">
+    <value>Entrer un nom pour le tavail de sauvegarde :</value>
+  </data>
+  <data name="enter_job_type" xml:space="preserve">
+    <value>Choisissez le type de sauvegarde :</value>
+  </data>
+  <data name="enter_source_path" xml:space="preserve">
     <value>Entrer le chemin du fichier source :</value>
+  </data>
+  <data name="execute_saving_job" xml:space="preserve">
+    <value>Executer un travail de sauvegarde</value>
+  </data>
+  <data name="leave_current_menu" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="show_info" xml:space="preserve">
+    <value>Afficher les informations sur les travaux de sauvegarde</value>
+  </data>
+  <data name="title_main_menu" xml:space="preserve">
+    <value>Menu Principal</value>
+  </data>
+  <data name="user_input_error" xml:space="preserve">
+    <value>Erreur : saisi invalide</value>
   </data>
 </root>
