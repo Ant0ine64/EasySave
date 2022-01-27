@@ -1,6 +1,8 @@
 using EasySaveConsole.Model;
+using System;
 using System.Globalization;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace EasySaveConsole.ViewModel
 {
@@ -9,12 +11,6 @@ namespace EasySaveConsole.ViewModel
     {
         private Save save = new Save();
         private Job job = new Job();
-
-        public void StartSavingJob(string jobName)
-        {
-
-            // write log file
-        }
 
         public void CreateSavingJob(string name, string source, string destination, string type)
         {
@@ -34,22 +30,27 @@ namespace EasySaveConsole.ViewModel
 
         public string[] fetchSavingJob()
         {
-            // retourne un tableau contenant le nom des travaux
-            return null;
+            string[] arrayJobsName;
+            List<string> listJobsName = new List<string>(new string[] { "Saving job 0", "Saving job 1", "Saving job 2" }); // uniquement pour tester la fonction, à supprimer avant le merge
+            // List<string> jobsName = Job.GetAllJobNames();
+            arrayJobsName = listJobsName.ToArray();
+            return arrayJobsName;
         }
 
         public void deleteSavingJob(string name)
         {
-            // supprime le travail de sauvegarde à partir du nom
+            Console.WriteLine(name + " a été supprimé avec succés");
         }
 
         public void executeSavingJob()
         {
-            //execute tous les travail de sauvegarde
+            Console.WriteLine("tous les travaux de sauvegarde sont en cours d'executions");
+            //execute tous les travaux de sauvegarde
         }
 
         public void executeSavingJob(string name)
         {
+            Console.WriteLine("Le travail " + name +  " est en cours d'execution");
             //execute le travail de sauvegarde à partir du nom 
         }
     }
