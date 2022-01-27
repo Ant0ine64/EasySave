@@ -12,45 +12,25 @@ namespace EasySaveConsole.ViewModel
 
         public void StartSavingJob(string jobName)
         {
-          
-
+            job.Name = jobName;
+            // beginning of the job execution
+            job.Status = "ACTIVE";
+            Job.Update(job);
+            
+            
+            
             // write log file
+            job.Status = "END";
+            Job.Update(job);
         }
 
-        public void CreateSavingJob(string name, string source, string destination)
+        public void CreateSavingJob(string name, string source, string destination, string status="TODO")
         {
-            Console.WriteLine(Properties.Resources.type_save_question);
-            if(Console.ReadLine() == "P")
-            {
-                try {
-                    DirectoryInfo infosDestDir = new DirectoryInfo(destination);
-                    DirectoryInfo infosSourceDir = new DirectoryInfo(source);
-                   
-                    save.copyFilesPartialSave(infosSourceDir, infosDestDir);
-                }
-                catch
-                {
-                    Console.WriteLine(Properties.Resources.error_directory_path);
-                }
-                
-               
-            }
-            else
-            {
-                
-                try
-                {
-                    DirectoryInfo infosDestDir = new DirectoryInfo(destination);
-                    DirectoryInfo infosSourceDir = new DirectoryInfo(source);
-                   
-                    save.copyFilesEntireSave(infosSourceDir, infosDestDir);
-                }
-                catch
-                {
-                    Console.WriteLine(Properties.Resources.error_directory_path);
-                }
-            }
-           
+            job.Name = name;
+            job.SourcePath = source;
+            job.DestinationPath = destination;
+            job.Status = status;
+            Job.Add(job);
         }
     }
 }
