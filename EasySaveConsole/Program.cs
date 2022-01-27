@@ -7,7 +7,7 @@ namespace EasySaveConsole
         static void Main(string[] agrs)
         {
             Prompt prompt = new Prompt();
-            prompt.Start();
+            prompt.MainMenu();
         }
     }
 }
