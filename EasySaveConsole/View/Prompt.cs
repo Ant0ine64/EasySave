@@ -2,7 +2,6 @@ using System;
 using System.Globalization;
 using System.Threading;
 using EasySaveConsole.ViewModel;
-using System;
 
 namespace EasySaveConsole.View
 {
@@ -12,100 +11,159 @@ namespace EasySaveConsole.View
      */
     public class Prompt
     {
-        public string SourcePath;
-        public string DestinationPath;
-        public string Name;
-        public string Type;
 
         private MainViewModel mvm = new MainViewModel();
 
-        private string[] arrayMainMenu = 
-        {   
-            Properties.Resources.create_saving_job, 
-            Properties.Resources.execute_saving_job, 
-            Properties.Resources.delete_saving_job, 
-            Properties.Resources.show_info, 
-            Properties.Resources.change_lang 
-        };
-        private string[] arrayMenuTraduction = 
-        { 
-            Properties.Resources.change_lang_fr,
-            Properties.Resources.change_lang_en 
-        };
+        private string[] arrayMainMenu;
+        private string[] arrayMenuTraduction;
+        private string[] arrayMenuShow;
+        private string[] arrayMenuYesNo;
+        private string[] arrayMenuExecuteSavingJob;
 
         public void MainMenu()
         {
-            //test();
-            promptMainMenu(makeMenu(arrayMainMenu));
-            /*promptTraduction(makeMenu(arrayMenuTraduction,new string[]{ "fr", "en"}));
-             promptJobCreation(); //0
-             promptExecuteSavingJob(); //1
-             promptDeleteSavingJob(); //2
-             promptShowInfo(); //3
-             promptTraduction(); //4*/
-
+            applyTrad();
+            while(promptMainMenu(makeMenu(Properties.Resources.title_main_menu, arrayMainMenu)));
         }
 
-        private void promptMainMenu(string option)
+        private bool promptMainMenu(string option)
         {
-            
+            bool keepTurning = true;
+
             switch(option)
             {
-                case "0":
-                    promptJobCreation();
+                case "0": // crï¿½er un travail de sauvegarde 
+                    promptJobCreation(mvm.fetchSavingJob());
                     break;
-                case "1":
-                    promptExecuteSavingJob(); 
+                case "1": // exï¿½cute un travail de sauvegarde
+                    while(promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))); 
                     break;
-                case "2":
-                    promptDeleteSavingJob();
+                case "2": // suprime un travail de sauvegarde
+                    while(promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job,mvm.fetchSavingJob()), mvm.fetchSavingJob()));
                     break;
-                case "3":
-                    promptShowInfo();
+                case "3": // ouvre le journal des logs 
+                    promptShowInfo(makeMenu(Properties.Resources.show_info, arrayMenuShow));
                     break;
-                case "4":
-                    promptTraduction(makeMenu(arrayMenuTraduction, new string[] { "fr", "en" }));
+                case "4": // change la langue
+                    promptTraduction(makeMenu(Properties.Resources.change_lang, arrayMenuTraduction, new string[] { "fr", "en" }));
                     break;
-                case "x":
-                    // quitte l'app
+                case "x": // quitte l'app
+                    keepTurning = false;
                     break;
+            }
+            return keepTurning;
+        }
+
+        private void promptJobCreation(string[] array)
+        {
+            int i = 0;
+            string userInput="";
+
+            string[] userInputs = 
+            {
+                "", // job name
+                "", // source path
+                "", // destination path
+                ""  // job type
+            };
+            string[] queries =
+            {
+                Properties.Resources.enter_job_name,
+                Properties.Resources.enter_source_path,
+                Properties.Resources.enter_destination_path,
+                Properties.Resources.enter_job_type
+            };
+
+
+            if (array.Length >= 5)
+            {
+                Console.WriteLine(Properties.Resources.impossible_create_saving_job);
+            }
+            else
+            {
+                Console.WriteLine(Properties.Resources.create_saving_job);
+                while (i<4 && userInput!="x")
+                {
+                    Console.WriteLine(queries[i]);
+                    Console.WriteLine(("[x]  " + Properties.Resources.leave_current_menu));
+                    userInput = Console.ReadLine();
+                    if (userInput != "x")
+                    {
+                        userInputs[i] = userInput;
+                    }
+                    i++;
+                }
+                if (userInput != "x")
+                {
+                    mvm.CreateSavingJob(userInputs[0], userInputs[1], userInputs[2], userInputs[3]);
+                }                
             }
         }
 
-        private void promptJobCreation()
+        private bool promptExecuteSavingJob(string option)
         {
-            string jobName;
-            string sourcePath;
-            string destinationPath;
-            string jobType;
+            bool keepturning = false;
 
-            Console.WriteLine(Properties.Resources.enter_job_name);
-            jobName = Console.ReadLine();
-            Console.WriteLine(Properties.Resources.enter_source_path);
-            sourcePath = Console.ReadLine();
-            Console.WriteLine(Properties.Resources.enter_destination_path);
-            destinationPath = Console.ReadLine();
-            Console.WriteLine(Properties.Resources.enter_job_type);
-            jobType = Console.ReadLine();
+            switch(option)
+            {
+                case "0":                    
+                    keepturning = promptExecuteAllSavingJob(makeMenu(Properties.Resources.confirm_execute_saving_job, arrayMenuYesNo, new string[] { "y", "n" }));
+                    break;
+                case "1":
+                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_saving_job, mvm.fetchSavingJob()), mvm.fetchSavingJob());
+                    break;
+                case "x":
+                    break;
+            }
 
-            // Call ViewModel
-            mvm.CreateSavingJob(jobName, sourcePath, destinationPath, jobType);
+            return keepturning;
         }
 
-        private void promptExecuteSavingJob()
+        private bool promptDeleteSavingJob(string option, string[] array) 
         {
-            // Run existing job(s) by asking their names           
+            bool keepTurning = false;
+            string verif;
+            string j;          
+
+            if (option != "x")
+            {
+                for(int i = 0; i < array.Length; i++)
+                {
+                    j = i.ToString();
+                    if (option == j)
+                    {
+                        verif = makeMenu(Properties.Resources.confirm_delete, arrayMenuYesNo, new string[] { "y", "n" });
+
+                        if (verif =="y")
+                        {
+                            mvm.deleteSavingJob(array[i]);
+                        }
+                        else if (verif == "n")
+                        {
+                            keepTurning = true;
+                        }
+
+                    }
+                }
+            }
+            return keepTurning;
         }
 
-        private void promptDeleteSavingJob()
+        private void promptShowInfo(string option)
         {
-            // lance la recherche des jobs 
-            // demande à l'utilisateur lequel il veut supprimer
-        }
-
-        private void promptShowInfo()
-        {
-            // demande à l'utilisateur si il veut voir les logs ou l'état de la sauvegarde
+            switch (option)
+            {
+                case "0":
+                    Console.WriteLine("afficher le journal des logs");
+                    // appeller la fonction pour afficher les logs ici !
+                    break;
+                case "1":
+                    Console.WriteLine("afficher l'etat d'avancement");
+                    // appeller la fonction pour afficher l'etat d'avancment ici !
+                    break;
+                case "x":
+                    break;
+            }
         }
 
         private void promptTraduction(string option)
@@ -114,15 +172,56 @@ namespace EasySaveConsole.View
             {
                 case "en":
                     mvm.translate("en-US");
+                    applyTrad();
                     break;
                 case "fr":
                     mvm.translate("fr-FR");
+                    applyTrad();
                     break;
                 case "x":
                     // quitte le menu traduction
                     break;
             }
-            promptMainMenu(makeMenu(Properties.Resources.title_main_menu,arrayMainMenu)); // reviens au menu principal
+            
+        }
+
+        private bool promptExecuteAllSavingJob(string option)
+        {
+            bool keepTurning = false;
+
+            if (option == "y")
+            {
+                mvm.executeSavingJob();
+            }
+            else if (option == "n")
+            {
+                keepTurning = true;
+            }
+
+            return keepTurning;
+        }
+
+        private bool promptExecuteOneSavingJob(string option,string[] array)
+        {
+            bool keepTurning = false;
+            string j;
+
+            if (option == "x")
+            {
+                keepTurning = true;
+            }
+            else
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    j = i.ToString();
+                    if (option == j)
+                    {
+                        mvm.executeSavingJob(array[i]);
+                    }
+                }
+            }
+            return keepTurning;
         }
 
         private string makeMenu(string title, string[] message)
@@ -136,7 +235,7 @@ namespace EasySaveConsole.View
 
             while (keepTurning)
             {
-                // créer le menu 
+                // crÃ©er le menu 
                 for (int i=0; i < size; i++) 
                 {
                     Console.WriteLine("[" + i + "]  " + message[i]);
@@ -146,7 +245,7 @@ namespace EasySaveConsole.View
                 
                 result = Console.ReadLine();
 
-                // vérifie le choix de l'utilisateur
+                // vÃ©rifie le choix de l'utilisateur
                 if (result == "x")
                 {
                     keepTurning = false; // quitte la boucle
@@ -164,7 +263,7 @@ namespace EasySaveConsole.View
                     }
                     if (keepTurning == true)
                     {
-                        Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
+                        Console.WriteLine(Properties.Resources.user_input_error); // redï¿½marre la boucle si la saisie est invalide 
                     }
                 }
             }
@@ -181,7 +280,7 @@ namespace EasySaveConsole.View
 
             while (keepTurning)
             {
-                // créer le menu 
+                // crï¿½er le menu 
                 for (int i = 0; i < size; i++)
                 {
                     Console.WriteLine("[" + option[i] + "]  " + message[i]);
@@ -191,7 +290,7 @@ namespace EasySaveConsole.View
                 
                 result = Console.ReadLine();
 
-                // vérifie le choix de l'utilisateur
+                // vï¿½rifie le choix de l'utilisateur
                 if (result == "x")
                 {
                     keepTurning = false; // quitte la boucle
@@ -208,22 +307,42 @@ namespace EasySaveConsole.View
                     }
                     if (keepTurning == true)
                     {
-                        Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
+                        Console.WriteLine(Properties.Resources.user_input_error); // redï¿½marre la boucle si la saisie est invalide 
                     }
                 }
             }
             return result;
         }
 
-
-        private void test()
+        private void applyTrad()
         {
-            Console.WriteLine("test");
+            arrayMainMenu = new string[] {
+                Properties.Resources.create_saving_job,
+                Properties.Resources.execute_saving_job,
+                Properties.Resources.delete_saving_job,
+                Properties.Resources.show_info,
+                Properties.Resources.change_lang
+            };
+            arrayMenuTraduction = new string[]
+            {
+                Properties.Resources.change_lang_fr,
+                Properties.Resources.change_lang_en
+            };
+            arrayMenuShow = new string[]
+            {
+                Properties.Resources.show_log ,
+                Properties.Resources.show_state
+            };
+            arrayMenuYesNo = new string[]
+            {
+                Properties.Resources.yes,
+                Properties.Resources.no
+            };
+            arrayMenuExecuteSavingJob = new string[]
+            {
+                Properties.Resources.execute_all_saving_job,
+                Properties.Resources.execute_one_saving_job
+            };
         }
-        private void test(string num)
-        {
-            Console.WriteLine("test "+ num);
-        }
-
     }
 }

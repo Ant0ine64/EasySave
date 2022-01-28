@@ -88,6 +88,24 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to delete it?.
+        /// </summary>
+        internal static string confirm_delete {
+            get {
+                return ResourceManager.GetString("confirm_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to execute all backup?.
+        /// </summary>
+        internal static string confirm_execute_saving_job {
+            get {
+                return ResourceManager.GetString("confirm_execute_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Create a saving job.
         /// </summary>
         internal static string create_saving_job {
@@ -133,11 +151,38 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enter the path of the source file:.
+        ///   Recherche une chaîne localisée semblable à Enter the name of you save.
+        /// </summary>
+        internal static string enter_nameSave {
+            get {
+                return ResourceManager.GetString("enter_nameSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enter the path of the source folder :.
         /// </summary>
         internal static string enter_source_path {
             get {
                 return ResourceManager.GetString("enter_source_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execute all saving job.
+        /// </summary>
+        internal static string execute_all_saving_job {
+            get {
+                return ResourceManager.GetString("execute_all_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execute only one saving job.
+        /// </summary>
+        internal static string execute_one_saving_job {
+            get {
+                return ResourceManager.GetString("execute_one_saving_job", resourceCulture);
             }
         }
         
@@ -151,6 +196,15 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à You already have 5 existing saving jobs, you can not add more.
+        /// </summary>
+        internal static string impossible_create_saving_job {
+            get {
+                return ResourceManager.GetString("impossible_create_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Leave .
         /// </summary>
         internal static string leave_current_menu {
@@ -160,11 +214,38 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Show the informations about the saving job.
+        ///   Recherche une chaîne localisée semblable à no.
+        /// </summary>
+        internal static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Logbook.
         /// </summary>
         internal static string show_info {
             get {
                 return ResourceManager.GetString("show_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Show logs.
+        /// </summary>
+        internal static string show_log {
+            get {
+                return ResourceManager.GetString("show_log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Show backup status.
+        /// </summary>
+        internal static string show_state {
+            get {
+                return ResourceManager.GetString("show_state", resourceCulture);
             }
         }
         
@@ -194,6 +275,15 @@ namespace EasySaveConsole.Properties {
         internal static string enter_source {
             get {
                 return ResourceManager.GetString("user_input_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à yes.
+        /// </summary>
+        internal static string yes {
+            get {
+                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
         
