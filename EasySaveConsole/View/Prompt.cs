@@ -217,7 +217,7 @@ namespace EasySaveConsole.View
                     j = i.ToString();
                     if (option == j)
                     {
-                        mvm.executeSavingJob(array[i]);
+                        mvm.StartSavingJob(array[i]);
                     }
                 }
             }
