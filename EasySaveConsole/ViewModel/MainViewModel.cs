@@ -84,19 +84,13 @@ namespace EasySaveConsole.ViewModel
 
         public void deleteSavingJob(string name)
         {
-            Console.WriteLine(name + " a été supprimé avec succés");
+            Job.Delete(Job.GetJobByName(name));
         }
 
-        public void executeSavingJob()
+        public void StartAllSavingJobs()
         {
-            Console.WriteLine("tous les travaux de sauvegarde sont en cours d'executions");
-            //execute tous les travaux de sauvegarde
+            Job.GetAllJobNames().ForEach(StartSavingJob);
         }
 
-        public void executeSavingJob(string name)
-        {
-            Console.WriteLine("Le travail " + name +  " est en cours d'execution");
-            //execute le travail de sauvegarde � partir du nom 
-        }
     }
 }

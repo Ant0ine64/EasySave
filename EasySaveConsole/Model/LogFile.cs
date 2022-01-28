@@ -2,18 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using EasySaveConsole.Properties;
 
 namespace EasySaveConsole.Model
 {
 
     public class LogFile
     {
-        public const string directoryPath = "c:\\temp\\";
-        public const string filePath = directoryPath + "Log.json";
+        public static string directoryPath;
+        public static string filePath;
         private static List<Log> logs = new List<Log>();
 
         public static void CreateFile()
         {
+            directoryPath = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave");
+            string fileName = DateTime.Today.ToString("dd-MM-yyyy_")+ "log.json";
+            filePath = Path.Join(directoryPath, fileName);
             try
             {
                 // create directory temp if not exists
@@ -25,7 +29,7 @@ namespace EasySaveConsole.Model
             }
             catch
             {
-                Console.WriteLine("Erreur de permission");
+                Console.WriteLine(Resources.perm_error);
             }
         }
 

@@ -195,4 +195,7 @@
   <data name="file_transfered" xml:space="preserve">
     <value>Fichier transfèré : </value>
   </data>
+  <data name="perm_error" xml:space="preserve">
+    <value>Erreur de permissions</value>
+  </data>
 </root>
