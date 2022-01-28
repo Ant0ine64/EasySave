@@ -8,11 +8,18 @@ using System.IO;
 namespace EasySaveConsole.ViewModel
 {
 
+    /// <summary>
+    /// Main and only view model, makes the link between View (prompt) and models
+    /// </summary>
     public class MainViewModel
     {
         private Save save = new Save();
         private Job job = new Job();
 
+        /// <summary>
+        /// Start a backup job using its name
+        /// </summary>
+        /// <param name="jobName">The name of the job you want to start</param>
         public void StartSavingJob(string jobName)
         {
             job = Job.GetJobByName(jobName);
@@ -21,6 +28,7 @@ namespace EasySaveConsole.ViewModel
 
             LogFile.CreateFile();
             
+            // Chose the type: d for differential, c for complete
             if(job.Type == "d")
             {
                 try {
@@ -51,6 +59,14 @@ namespace EasySaveConsole.ViewModel
             Job.Update(job);
         }
 
+        /// <summary>
+        /// Create a saving/backuping Job
+        /// </summary>
+        /// <param name="name">Name describing the job</param>
+        /// <param name="source">Source path to save</param>
+        /// <param name="destination">Destination of where to put saved files</param>
+        /// <param name="type">Type of save: d for differential, c for complete</param>
+        /// <param name="status">optional</param>
         public void CreateSavingJob(string name, string source, string destination, string type, string status="TODO")
         {
             job.Name = name;
@@ -64,7 +80,11 @@ namespace EasySaveConsole.ViewModel
 
         }
 
-        public void translate(string lang)
+        /// <summary>
+        /// Set language
+        /// </summary>
+        /// <param name="lang">language: fr or en</param>
+        public void Translate(string lang)
         {
             CultureInfo ui_culture = new CultureInfo(lang);
             CultureInfo culture = new CultureInfo(lang);
@@ -73,20 +93,30 @@ namespace EasySaveConsole.ViewModel
             Thread.CurrentThread.CurrentCulture = culture;
         }
 
-        public string[] fetchSavingJob()
+        /// <summary>
+        /// Obtains all the jobs
+        /// </summary>
+        /// <returns>job names</returns>
+        public string[] FetchSavingJob()
         {
             string[] arrayJobsName;
-            // List<string> listJobsName = new List<string>(new string[] { "Saving job 0", "Saving job 1", "Saving job 2" }); // uniquement pour tester la fonction, � supprimer avant le merge
             List<string> listJobsName = Job.GetAllJobNames();
             arrayJobsName = listJobsName.ToArray();
             return arrayJobsName;
         }
 
-        public void deleteSavingJob(string name)
+        /// <summary>
+        /// Delete a job
+        /// </summary>
+        /// <param name="name">job name</param>
+        public void DeleteSavingJob(string name)
         {
             Job.Delete(Job.GetJobByName(name));
         }
 
+        /// <summary>
+        /// Start all saving/backuping jobs
+        /// </summary>
         public void StartAllSavingJobs()
         {
             Job.GetAllJobNames().ForEach(StartSavingJob);
