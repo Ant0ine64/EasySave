@@ -117,25 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="current_lang" xml:space="preserve">
-    <value>Your application is currently in French, would you like to switch to French? (Y/N)</value>
+  <data name="change_lang" xml:space="preserve">
+    <value>Change language</value>
   </data>
-  <data name="enter_destination" xml:space="preserve">
-    <value>Enter the path to the destination folder :</value>
+  <data name="change_lang_en" xml:space="preserve">
+    <value>English</value>
   </data>
-  <data name="enter_nameSave" xml:space="preserve">
-    <value>Enter the name of you save</value>
+  <data name="change_lang_fr" xml:space="preserve">
+    <value>Français </value>
   </data>
-  <data name="enter_source" xml:space="preserve">
-    <value>Enter the path of the source folder :</value>
+  <data name="confirm_delete" xml:space="preserve">
+    <value>Are you sure you want to delete it?</value>
   </data>
+  <data name="confirm_execute_saving_job" xml:space="preserve">
+    <value>Are you sure you want to execute all backup?</value>
+  </data>
+  <data name="create_saving_job" xml:space="preserve">
+    <value>Create a saving job</value>
+  </data>
+  <data name="delete_saving_job" xml:space="preserve">
+    <value>Delete a saving job</value>
+  </data>
+  <data name="enter_destination_path" xml:space="preserve">
+    <value>Enter the destination of the source file:</value>
+  </data>
+  <data name="enter_job_name" xml:space="preserve">
+    <value>Enter a name for the saving job:</value>
+  </data>
+  <data name="enter_job_type" xml:space="preserve">
+    <value>Choose the type of backup (c|d):</value>
+  </data>
+  <data name="enter_source_path" xml:space="preserve">
+    <value>Enter the path of the destination file:</value>
+  </data>
+  <data name="execute_all_saving_job" xml:space="preserve">
+    <value>Execute all saving job</value>
+  </data>
+  <data name="execute_one_saving_job" xml:space="preserve">
+    <value>Execute only one saving job</value>
+  </data>
+  <data name="execute_saving_job" xml:space="preserve">
+    <value>Execute a saving job</value>
+  </data>
+  <data name="impossible_create_saving_job" xml:space="preserve">
+    <value>You already have 5 existing saving jobs, you can not add more</value>
+  </data>
+  <data name="leave_current_menu" xml:space="preserve">
+    <value>Leave </value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="show_info" xml:space="preserve">
+    <value>Logbook</value>
+  </data>
+  <data name="show_log" xml:space="preserve">
+    <value>Show logs</value>
+  </data>
+  <data name="show_state" xml:space="preserve">
+    <value>Show backup status</value>
+  </data>
+  <data name="title_main_menu" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="user_input_error" xml:space="preserve">
+    <value>Error : invalid input</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>yes</value>
+  </data> 
   <data name="error_directory_path" xml:space="preserve">
     <value>The destination or source directory doesn't exists.</value>
   </data>
   <data name="file_transfered" xml:space="preserve">
     <value>File transfered : </value>
-  </data>
-  <data name="type_save_question" xml:space="preserve">
-    <value>Do you want to do an entitre save or partial ? (E/P)</value>
   </data>
 </root>

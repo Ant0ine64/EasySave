@@ -61,20 +61,92 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Your application is currently in French, would you like to switch to French? (Y/N).
+        ///   Recherche une chaîne localisée semblable à Change language.
         /// </summary>
-        internal static string current_lang {
+        internal static string change_lang {
             get {
-                return ResourceManager.GetString("current_lang", resourceCulture);
+                return ResourceManager.GetString("change_lang", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enter the path to the destination folder :.
+        ///   Recherche une chaîne localisée semblable à English.
         /// </summary>
-        internal static string enter_destination {
+        internal static string change_lang_en {
             get {
-                return ResourceManager.GetString("enter_destination", resourceCulture);
+                return ResourceManager.GetString("change_lang_en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Français .
+        /// </summary>
+        internal static string change_lang_fr {
+            get {
+                return ResourceManager.GetString("change_lang_fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to delete it?.
+        /// </summary>
+        internal static string confirm_delete {
+            get {
+                return ResourceManager.GetString("confirm_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to execute all backup?.
+        /// </summary>
+        internal static string confirm_execute_saving_job {
+            get {
+                return ResourceManager.GetString("confirm_execute_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create a saving job.
+        /// </summary>
+        internal static string create_saving_job {
+            get {
+                return ResourceManager.GetString("create_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete a saving job.
+        /// </summary>
+        internal static string delete_saving_job {
+            get {
+                return ResourceManager.GetString("delete_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enter the destination of the source file:.
+        /// </summary>
+        internal static string enter_destination_path {
+            get {
+                return ResourceManager.GetString("enter_destination_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enter a name for the saving job:.
+        /// </summary>
+        internal static string enter_job_name {
+            get {
+                return ResourceManager.GetString("enter_job_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Choose the type of backup (c|d):.
+        /// </summary>
+        internal static string enter_job_type {
+            get {
+                return ResourceManager.GetString("enter_job_type", resourceCulture);
             }
         }
         
@@ -90,9 +162,117 @@ namespace EasySaveConsole.Properties {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Enter the path of the source folder :.
         /// </summary>
-        internal static string enter_source {
+        internal static string enter_source_path {
             get {
-                return ResourceManager.GetString("enter_source", resourceCulture);
+                return ResourceManager.GetString("enter_source_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execute all saving job.
+        /// </summary>
+        internal static string execute_all_saving_job {
+            get {
+                return ResourceManager.GetString("execute_all_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execute only one saving job.
+        /// </summary>
+        internal static string execute_one_saving_job {
+            get {
+                return ResourceManager.GetString("execute_one_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execute a saving job.
+        /// </summary>
+        internal static string execute_saving_job {
+            get {
+                return ResourceManager.GetString("execute_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You already have 5 existing saving jobs, you can not add more.
+        /// </summary>
+        internal static string impossible_create_saving_job {
+            get {
+                return ResourceManager.GetString("impossible_create_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Leave .
+        /// </summary>
+        internal static string leave_current_menu {
+            get {
+                return ResourceManager.GetString("leave_current_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à no.
+        /// </summary>
+        internal static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Logbook.
+        /// </summary>
+        internal static string show_info {
+            get {
+                return ResourceManager.GetString("show_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Show logs.
+        /// </summary>
+        internal static string show_log {
+            get {
+                return ResourceManager.GetString("show_log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Show backup status.
+        /// </summary>
+        internal static string show_state {
+            get {
+                return ResourceManager.GetString("show_state", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Main Menu.
+        /// </summary>
+        internal static string title_main_menu {
+            get {
+                return ResourceManager.GetString("title_main_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error : invalid input.
+        /// </summary>
+        internal static string user_input_error {
+            get {
+                return ResourceManager.GetString("user_input_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à yes.
+        /// </summary>
+        internal static string yes {
+            get {
+                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
         
