@@ -7,12 +7,18 @@ using EasySaveConsole.Properties;
 namespace EasySaveConsole.Model
 {
 
+    /// <summary>
+    /// Represents the json logfile
+    /// </summary>
     public class LogFile
     {
         public static string directoryPath;
         public static string filePath;
         private static List<Log> logs = new List<Log>();
 
+        /// <summary>
+        /// Create the date_log.json file in appdata (or .config on linux)
+        /// </summary>
         public static void CreateFile()
         {
             directoryPath = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave");
@@ -33,6 +39,13 @@ namespace EasySaveConsole.Model
             }
         }
 
+        /// <summary>
+        /// Write new entry into log file
+        /// </summary>
+        /// <param name="job"></param>
+        /// <param name="fileSource"></param>
+        /// <param name="fileTarget"></param>
+        /// <param name="fileTrafereTime">time to copy the file</param>
         public static void WriteToLog(Job job, string fileSource, string fileTarget, long fileTrafereTime)
         {
             string jsonLogs = File.ReadAllText(filePath);
