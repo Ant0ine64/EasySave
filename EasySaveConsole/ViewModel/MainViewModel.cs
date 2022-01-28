@@ -18,8 +18,10 @@ namespace EasySaveConsole.ViewModel
             job = Job.GetJobByName(jobName);
             job.Status = "ACTIVE";
             Job.Update(job);
+
+            LogFile.CreateFile();
             
-            if(job.Type == "P")
+            if(job.Type == "d")
             {
                 try {
                     DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
@@ -37,7 +39,7 @@ namespace EasySaveConsole.ViewModel
                 {
                     DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
                     DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
-                    save.copyFilesEntireSave(infosSourceDir, infosDestDir);
+                    save.copyFilesEntireSave(infosSourceDir, infosDestDir, job);
                 }
                 catch
                 {

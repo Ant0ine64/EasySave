@@ -185,7 +185,7 @@
   </data>
   <data name="yes" xml:space="preserve">
     <value>yes</value>
-  </data> 
+  </data>
   <data name="error_directory_path" xml:space="preserve">
     <value>The destination or source directory doesn't exists.</value>
   </data>
