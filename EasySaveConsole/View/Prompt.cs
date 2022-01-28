@@ -21,6 +21,7 @@ namespace EasySaveConsole.View
         public void MainMenu()
         {
             applyTrad();
+            Console.WriteLine("-----Eassy Save Console v1.0-----");
             while(promptMainMenu(makeMenu(Properties.Resources.title_main_menu, arrayMainMenu)));
         }
 
@@ -31,19 +32,27 @@ namespace EasySaveConsole.View
             switch(option)
             {
                 case "0": // créer un travail de sauvegarde 
+                    Console.Clear();
                     promptJobCreation(mvm.fetchSavingJob());
                     break;
                 case "1": // exécute un travail de sauvegarde
                     while(promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))); 
                     break;
                 case "2": // suprime un travail de sauvegarde
-                    while(promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job,mvm.fetchSavingJob()), mvm.fetchSavingJob()));
+                    Console.Clear();
+                    while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job,mvm.fetchSavingJob()), mvm.fetchSavingJob()));
                     break;
                 case "3": // ouvre le journal des logs 
+                    Console.Clear();
                     promptShowInfo(makeMenu(Properties.Resources.show_info, arrayMenuShow));
                     break;
                 case "4": // change la langue
+                    Console.Clear();
                     promptTraduction(makeMenu(Properties.Resources.change_lang, arrayMenuTraduction, new string[] { "fr", "en" }));
+                    break;
+                case "5":
+                    Console.Clear();
+                    promptShowSavingJob(mvm.fetchSavingJob());
                     break;
                 case "x": // quitte l'app
                     keepTurning = false;
@@ -57,13 +66,12 @@ namespace EasySaveConsole.View
             int i = 0;
             string userInput="";
 
-            string[] userInputs = 
-            {
-                "", // job name
-                "", // source path
-                "", // destination path
-                ""  // job type
-            };
+            string[] userInputs = new string[4];
+            // [0] job name
+            // [1] 1source path
+            // [2] destination path
+            // [3] job type
+
             string[] queries =
             {
                 Properties.Resources.enter_job_name,
@@ -96,6 +104,7 @@ namespace EasySaveConsole.View
                     mvm.CreateSavingJob(userInputs[0], userInputs[1], userInputs[2], userInputs[3]);
                 }                
             }
+            Console.Clear();
         }
 
         private bool promptExecuteSavingJob(string option)
@@ -105,10 +114,10 @@ namespace EasySaveConsole.View
             switch(option)
             {
                 case "0":                    
-                    keepturning = promptExecuteAllSavingJob(makeMenu(Properties.Resources.confirm_execute_saving_job, arrayMenuYesNo, new string[] { "y", "n" }));
+                    keepturning = promptExecuteAllSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, arrayMenuYesNo, new string[] { "y", "n" }));
                     break;
                 case "1":
-                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_saving_job, mvm.fetchSavingJob()), mvm.fetchSavingJob());
+                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, mvm.fetchSavingJob()), mvm.fetchSavingJob());
                     break;
                 case "x":
                     break;
@@ -183,6 +192,16 @@ namespace EasySaveConsole.View
             
         }
 
+        private void promptShowSavingJob(string[] arrayName)
+        {
+            Console.WriteLine(Properties.Resources.list_jobs);
+
+            for (int i=0; i < arrayName.Length; i++)
+            {
+                Console.WriteLine(i + ".  " + arrayName[i]);
+            }
+        }
+
         private bool promptExecuteAllSavingJob(string option)
         {
             bool keepTurning = false;
@@ -229,10 +248,10 @@ namespace EasySaveConsole.View
             string j;
             string result="";
 
-            Console.WriteLine(title);
-
             while (keepTurning)
             {
+                Console.WriteLine(title);
+
                 // créer le menu 
                 for (int i=0; i < size; i++) 
                 {
@@ -261,10 +280,12 @@ namespace EasySaveConsole.View
                     }
                     if (keepTurning == true)
                     {
+                        Console.Clear();
                         Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
                     }
                 }
             }
+            Console.Clear();
             return result;
         }
 
@@ -274,10 +295,10 @@ namespace EasySaveConsole.View
             int size = message.Length;
             string result = "";
 
-            Console.WriteLine(title);
-
             while (keepTurning)
             {
+                Console.WriteLine(title);
+
                 // créer le menu 
                 for (int i = 0; i < size; i++)
                 {
@@ -305,10 +326,12 @@ namespace EasySaveConsole.View
                     }
                     if (keepTurning == true)
                     {
+                        Console.Clear();
                         Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
                     }
                 }
             }
+            Console.Clear();
             return result;
         }
 
@@ -319,7 +342,8 @@ namespace EasySaveConsole.View
                 Properties.Resources.execute_saving_job,
                 Properties.Resources.delete_saving_job,
                 Properties.Resources.show_info,
-                Properties.Resources.change_lang
+                Properties.Resources.change_lang,
+                Properties.Resources.show_job
             };
             arrayMenuTraduction = new string[]
             {
@@ -341,15 +365,6 @@ namespace EasySaveConsole.View
                 Properties.Resources.execute_all_saving_job,
                 Properties.Resources.execute_one_saving_job
             };
-        }
-
-        private void test()
-        {
-            Console.WriteLine("test");
-        }
-        private void test(string num)
-        {
-            Console.WriteLine("test "+ num);
         }
 
     }

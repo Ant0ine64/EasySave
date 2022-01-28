@@ -165,11 +165,17 @@
   <data name="leave_current_menu" xml:space="preserve">
     <value>Quitter</value>
   </data>
+  <data name="list_jobs" xml:space="preserve">
+    <value>Liste des travaux de sauvegarde :</value>
+  </data>
   <data name="no" xml:space="preserve">
     <value>non</value>
   </data>
   <data name="show_info" xml:space="preserve">
     <value>Journal de bord</value>
+  </data>
+  <data name="show_job" xml:space="preserve">
+    <value>Afficher les travaux de sauvegarde</value>
   </data>
   <data name="show_log" xml:space="preserve">
     <value>Afficher les logs</value>
