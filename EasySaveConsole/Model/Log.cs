@@ -6,12 +6,12 @@ namespace EasySaveConsole.Model
 {
     public class Log
     {
-        public string Name { get; }
-        public string FileSource { get; }
-        public string FileTarget { get; }
-        public string DestPath { get; }
+        public string Name { get; set; }
+        public string FileSource { get; set; }
+        public string FileTarget { get; set; }
+        public string DestPath { get; set; }
         public long FileSize { get; set; }
-        public long FileTransfertTime { get; }
+        public long FileTransfertTime { get; set; }
         public DateTime Time { get; set; }
 
         public Log(string name, string fileSource, string fileTarget, string destPath, long fileTransfertTime)
