@@ -129,7 +129,7 @@
   <data name="confirm_delete" xml:space="preserve">
     <value>Are you sure you want to delete it?</value>
   </data>
-  <data name="confirm_execute_saving_job" xml:space="preserve">
+  <data name="confirm_execute_all_saving_job" xml:space="preserve">
     <value>Are you sure you want to execute all backup?</value>
   </data>
   <data name="create_saving_job" xml:space="preserve">
@@ -165,11 +165,17 @@
   <data name="leave_current_menu" xml:space="preserve">
     <value>Leave </value>
   </data>
+  <data name="list_jobs" xml:space="preserve">
+    <value>Saving Jobs list:</value>
+  </data>
   <data name="no" xml:space="preserve">
     <value>no</value>
   </data>
   <data name="show_info" xml:space="preserve">
     <value>Logbook</value>
+  </data>
+  <data name="show_job" xml:space="preserve">
+    <value>Show saving jobs</value>
   </data>
   <data name="show_log" xml:space="preserve">
     <value>Show logs</value>
