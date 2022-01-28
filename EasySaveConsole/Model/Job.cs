@@ -17,6 +17,7 @@ namespace EasySaveConsole.Model
         public int FilesLeftToDo { get; set; } = 0;
         public long TotalFilesSize { get; set; }
         public int Progression { get; set; } = 0;
+        public string Type { get; set; } = "E"; // P for partial, E for entire
 
         public const string jsonStateDirectory = "/var/log/easysave/";
         public const string jsonStateFilepath = jsonStateDirectory + "jobs.json";
@@ -71,6 +72,59 @@ namespace EasySaveConsole.Model
             TotalFilesToCopy = files.Count();
             TotalFilesSize = files.Sum(t => (new FileInfo(t).Length));
 
+        }
+
+        public static void Update(Job job)
+        {
+            GetFromJson();
+
+            // find corresponding job (by name) and rewrite it
+            int i = jobs.FindIndex(j => j.Name == job.Name);
+            jobs[i] = job;
+            
+            WriteToJson();
+        }
+
+        public static void Delete(Job job)
+        {
+            GetFromJson();
+
+            // find corresponding job (by name) and delete it
+            int i = jobs.FindIndex(j => j.Name == job.Name);
+            jobs.RemoveAt(i);
+            
+            WriteToJson();
+        }
+
+        /**
+         * Usage example :
+         *  Job.GetAllJobNames().ForEach(Console.WriteLine);
+         */
+        public static List<string> GetAllJobNames()
+        {
+            List<string> jobsName = new List<string>();
+            
+            GetFromJson();
+
+            foreach (Job job in jobs)
+            {
+                jobsName.Add(job.Name);
+            }
+            
+            return jobsName;
+        }
+
+        public void UpdateProgression()
+        {
+            var sourceFiles = Directory.GetFiles(this.SourcePath, "*", SearchOption.AllDirectories).Count();
+            var destFiles = Directory.GetFiles(this.DestinationPath, "*", SearchOption.AllDirectories).Count();
+            FilesLeftToDo = sourceFiles - destFiles;
+            Progression = (FilesLeftToDo / sourceFiles) * 100;
+        }
+
+        public static Job? GetJobByName(string jobName)
+        {
+            return jobs.Find(j => j.Name == jobName);
         }
     }
 }
