@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using EasySaveConsole.Properties;
 
 namespace EasySaveConsole.Model
 {
@@ -19,20 +20,30 @@ namespace EasySaveConsole.Model
         public int Progression { get; set; } = 0;
         public string Type { get; set; } = "c"; //c for complete, d for diferential
 
-        public const string jsonStateDirectory = "/var/log/easysave/";
-        public const string jsonStateFilepath = jsonStateDirectory + "jobs.json";
+        public static string jsonStateDirectory;
+        public static string jsonStateFilepath;
 
         private static string json;
         private static List<Job> jobs = new List<Job>();
 
         public Job()
         {
-            // create directory if not exists
-            if (!Directory.Exists(jsonStateDirectory))
-                Directory.CreateDirectory(jsonStateDirectory);
-            // create empty json file to start with
-            if (!File.Exists(jsonStateFilepath))
-                File.WriteAllText(jsonStateFilepath, "[]");
+            jsonStateDirectory = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave");
+            string fileName = "jobs.json";
+            jsonStateFilepath = Path.Join(jsonStateDirectory, fileName);
+            try
+            {
+                // create directory if not exists
+                if (!Directory.Exists(jsonStateDirectory))
+                    Directory.CreateDirectory(jsonStateDirectory);
+                // create empty json file to start with
+                if (!File.Exists(jsonStateFilepath))
+                    File.WriteAllText(jsonStateFilepath, "[]");
+            }
+            catch
+            {
+                Console.WriteLine(Resources.perm_error);
+            }
         }
 
         public static bool Add(Job job)
