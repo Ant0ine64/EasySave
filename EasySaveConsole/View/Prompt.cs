@@ -191,7 +191,7 @@ namespace EasySaveConsole.View
 
             if (option == "y")
             {
-                mvm.executeSavingJob();
+                mvm.StartAllSavingJobs();
             }
             else if (option == "n")
             {
