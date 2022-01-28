@@ -148,7 +148,7 @@
     <value>Choose the type of backup (c|d):</value>
   </data>
   <data name="enter_source_path" xml:space="preserve">
-    <value>Enter the path of the source file:</value>
+    <value>Enter the path of the destination file:</value>
   </data>
   <data name="execute_all_saving_job" xml:space="preserve">
     <value>Execute all saving job</value>
@@ -191,5 +191,16 @@
   </data>
   <data name="yes" xml:space="preserve">
     <value>yes</value>
+  </data>
+  <data name="error_directory_path" xml:space="preserve">
+    <value>The destination or source directory doesn't exists.</value>
+  </data>
+  <data name="file_transfered" xml:space="preserve">
+    <value>File transfered : </value>
+  </data>
+  <data name="perm_error" xml:space="preserve">
+    <value>Permsission Error
+
+</value>
   </data>
 </root>

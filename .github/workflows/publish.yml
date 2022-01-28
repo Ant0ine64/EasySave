@@ -18,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 3.1.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -28,19 +28,19 @@ jobs:
     - name: Publish linux64
       run: dotnet publish --self-contained true -r linux-x64 -p:PublishSingleFile=true -c Release
     - name: Give a diferent name to linux elf executable
-      run: mv EasySaveConsole/bin/Release/net6.0/linux-x64/publish/EasySaveConsole EasySaveConsole/bin/Release/net6.0/linux-x64/publish/EasySaveConsole.elf
+      run: mv EasySaveConsole/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveConsole EasySaveConsole/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveConsole.elf
     - name: Publish win64
       run: dotnet publish --self-contained true -r win-x64 -p:PublishSingleFile=true -c Release
     - name: Upload a Build Artifact linux
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_linux-x64
-        path: EasySaveConsole/bin/Release/net6.0/linux-x64/publish/
+        path: EasySaveConsole/bin/Release/netcoreapp3.1/linux-x64/publish/
     - name: Upload a Build Artifact windows
       uses: actions/upload-artifact@v2.3.1
       with:
         name: hello-world_win-x64
-        path: EasySaveConsole/bin/Release/net6.0/win-x64/publish/
+        path: EasySaveConsole/bin/Release/netcoreapp3.1/win-x64/publish/
           
   release:
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')

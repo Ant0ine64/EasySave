@@ -1,5 +1,7 @@
-using EasySaveConsole.ViewModel;
 using System;
+using System.Globalization;
+using System.Threading;
+using EasySaveConsole.ViewModel;
 
 namespace EasySaveConsole.View
 {
@@ -31,11 +33,11 @@ namespace EasySaveConsole.View
 
             switch(option)
             {
-                case "0": // créer un travail de sauvegarde 
+                case "0": // crÃ©er un travail de sauvegarde 
                     Console.Clear();
                     promptJobCreation(mvm.fetchSavingJob());
                     break;
-                case "1": // exécute un travail de sauvegarde
+                case "1": // exï¿½cute un travail de sauvegarde
                     while(promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))); 
                     break;
                 case "2": // suprime un travail de sauvegarde
@@ -208,7 +210,7 @@ namespace EasySaveConsole.View
 
             if (option == "y")
             {
-                mvm.executeSavingJob();
+                mvm.StartAllSavingJobs();
             }
             else if (option == "n")
             {
@@ -234,7 +236,7 @@ namespace EasySaveConsole.View
                     j = i.ToString();
                     if (option == j)
                     {
-                        mvm.executeSavingJob(array[i]);
+                        mvm.StartSavingJob(array[i]);
                     }
                 }
             }
@@ -252,7 +254,7 @@ namespace EasySaveConsole.View
             {
                 Console.WriteLine(title);
 
-                // créer le menu 
+                // crÃ©er le menu 
                 for (int i=0; i < size; i++) 
                 {
                     Console.WriteLine("[" + i + "]  " + message[i]);
@@ -262,7 +264,7 @@ namespace EasySaveConsole.View
                 
                 result = Console.ReadLine();
 
-                // vérifie le choix de l'utilisateur
+                // vÃ©rifie le choix de l'utilisateur
                 if (result == "x")
                 {
                     keepTurning = false; // quitte la boucle
@@ -281,7 +283,7 @@ namespace EasySaveConsole.View
                     if (keepTurning == true)
                     {
                         Console.Clear();
-                        Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
+                        Console.WriteLine(Properties.Resources.user_input_error); // redÃ©marre la boucle si la saisie est invalide 
                     }
                 }
             }
@@ -299,7 +301,9 @@ namespace EasySaveConsole.View
             {
                 Console.WriteLine(title);
 
-                // créer le menu 
+                // crÃ©er le menu 
+            while (keepTurning)
+            {
                 for (int i = 0; i < size; i++)
                 {
                     Console.WriteLine("[" + option[i] + "]  " + message[i]);
@@ -309,7 +313,7 @@ namespace EasySaveConsole.View
                 
                 result = Console.ReadLine();
 
-                // vérifie le choix de l'utilisateur
+                // vÃ©rifie le choix de l'utilisateur
                 if (result == "x")
                 {
                     keepTurning = false; // quitte la boucle
@@ -327,7 +331,7 @@ namespace EasySaveConsole.View
                     if (keepTurning == true)
                     {
                         Console.Clear();
-                        Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
+                        Console.WriteLine(Properties.Resources.user_input_error); // redÃ©marre la boucle si la saisie est invalide 
                     }
                 }
             }
@@ -366,6 +370,5 @@ namespace EasySaveConsole.View
                 Properties.Resources.execute_one_saving_job
             };
         }
-
     }
 }
