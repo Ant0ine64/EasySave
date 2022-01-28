@@ -10,6 +10,12 @@ namespace EasySaveConsole.Model
     {
         private Stopwatch watch = new Stopwatch();
 
+        /// <summary>
+        /// Copy files for a differential backup 
+        /// </summary>
+        /// <param name="infosSourceDir"></param>
+        /// <param name="infosDestDir"></param>
+        /// <param name="job">Saving job to execute</param>
         public void copyFilesPartialSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)// sauvegarde partielle
         {
 
@@ -22,11 +28,11 @@ namespace EasySaveConsole.Model
                 foreach (FileInfo infosDestinationFile in infosDestinationFiles)
                 {
 
-                    // si le fichier a été modifié (nom est le meme mais pas l'heure de modif)
+                    // if file have been modified
                     if (infosSourceFile.Name == infosDestinationFile.Name && infosSourceFile.LastWriteTime != infosDestinationFile.LastWriteTime)
                     { 
                         watch.Start();
-                        // copie en écrasant la version existante  
+                        // replace existing file
                         File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
                         watch.Stop();
                         Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);
@@ -35,7 +41,7 @@ namespace EasySaveConsole.Model
                    
 
                 }
-                // si le fichier n'existe pas dans le destination on le copie
+                // if file doesn't exist in destination
                 if (infosDestinationFiles.Any(x => x.Name == infosSourceFile.Name)) { }
                 else
                 {
@@ -52,19 +58,27 @@ namespace EasySaveConsole.Model
            
         }
 
-        public void copyFilesEntireSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)// Sauvegarde entière
+        /// <summary>
+        /// Copy file to create a complete backup
+        /// </summary>
+        /// <param name="infosSourceDir"></param>
+        /// <param name="infosDestDir"></param>
+        /// <param name="job">Saving job to execute</param>
+        public void copyFilesEntireSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)
         {
 
             FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
             FileInfo[] infosSourceFiles = infosSourceDir.GetFiles();
 
-            foreach (FileInfo infosDestinationFile in infosDestinationFiles)// clean du dossier de destination
+            // cleaning destination folder
+            foreach (FileInfo infosDestinationFile in infosDestinationFiles)
             {
                 infosDestinationFile.Delete();              
 
             }
 
-            foreach (FileInfo infosSourceFile in infosSourceFiles)// copie de tous les fichiers du sorce vers le destination
+            //copy all files from source to destination
+            foreach (FileInfo infosSourceFile in infosSourceFiles)
             {
                 watch.Start();
                 File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);

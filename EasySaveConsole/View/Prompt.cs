@@ -5,10 +5,10 @@ using EasySaveConsole.ViewModel;
 
 namespace EasySaveConsole.View
 {
-
-    /**
-     * Display to user prompt to choose save filepath (input and output) and status when running
-     */
+    
+    /// <summary>
+    /// Display to user prompt to choose save filepath (input and output) and status when running
+    /// </summary>
     public class Prompt
     {
 
@@ -43,14 +43,14 @@ namespace EasySaveConsole.View
             {
                 case "0": // creates a saving job
                     Console.Clear();
-                    promptJobCreation(mvm.fetchSavingJob());
+                    promptJobCreation(mvm.FetchSavingJob());
                     break;
                 case "1": // runs a saving job
                     while (promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))) ;
                     break;
                 case "2": // deletes a saving job
                     Console.Clear();
-                    while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job, mvm.fetchSavingJob()), mvm.fetchSavingJob())) ;
+                    while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job, mvm.FetchSavingJob()), mvm.FetchSavingJob())) ;
                     break;
                 case "3": // opens logBook 
                     Console.Clear();
@@ -62,7 +62,7 @@ namespace EasySaveConsole.View
                     break;
                 case "5":
                     Console.Clear();
-                    promptShowSavingJob(mvm.fetchSavingJob());
+                    promptShowSavingJob(mvm.FetchSavingJob());
                     break;
                 case "x": // leaves the App
                     keepTurning = false;
@@ -115,7 +115,7 @@ namespace EasySaveConsole.View
                 }
                 if (userInput != "x")
                 {
-                    mvm.CreateSavingJob(userInputs[0], userInputs[1], userInputs[2], userInputs[3]); // create a saving jobs with the input informations  
+                    mvm.CreateSavingJob(userInputs[0], userInputs[1], userInputs[2], userInputs[3]);
                 }
             }
             Console.Clear();
@@ -136,7 +136,7 @@ namespace EasySaveConsole.View
                     keepturning = promptExecuteAllSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, arrayMenuYesNo, new string[] { "y", "n" }));  // ask the user if he is sure he wants to execute all saving job
                     break;
                 case "1":
-                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, mvm.fetchSavingJob()), mvm.fetchSavingJob()); // ask the user what work he wants to delete
+                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, mvm.FetchSavingJob()), mvm.FetchSavingJob()); // ask the user what work he wants to delete
                     break;
                 case "x":
                     break;
@@ -166,7 +166,7 @@ namespace EasySaveConsole.View
 
                         if (verif == "y") 
                         {
-                            mvm.deleteSavingJob(arrayJobName[i]); // delete the Saving Job [i]
+                            mvm.DeleteSavingJob(arrayJobName[i]); // delete the Saving Job [i]
                         }
                         else if (verif == "n")
                         {
@@ -209,11 +209,11 @@ namespace EasySaveConsole.View
             switch (option)
             {
                 case "en":
-                    mvm.translate("en-US");
+                    mvm.Translate("en-US");
                     applyTrad();
                     break;
                 case "fr":
-                    mvm.translate("fr-FR");
+                    mvm.Translate("fr-FR");
                     applyTrad();
                     break;
                 case "x":
