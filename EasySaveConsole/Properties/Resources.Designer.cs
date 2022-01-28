@@ -151,7 +151,16 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Enter the path of the source file:.
+        ///   Recherche une chaîne localisée semblable à Enter the name of you save.
+        /// </summary>
+        internal static string enter_nameSave {
+            get {
+                return ResourceManager.GetString("enter_nameSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enter the path of the source folder :.
         /// </summary>
         internal static string enter_source_path {
             get {
@@ -264,6 +273,33 @@ namespace EasySaveConsole.Properties {
         internal static string yes {
             get {
                 return ResourceManager.GetString("yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The destination or source directory doesn&apos;t exists..
+        /// </summary>
+        internal static string error_directory_path {
+            get {
+                return ResourceManager.GetString("error_directory_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à File transfered : .
+        /// </summary>
+        internal static string file_transfered {
+            get {
+                return ResourceManager.GetString("file_transfered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Do you want to do an entitre save or partial ? (E/P).
+        /// </summary>
+        internal static string type_save_question {
+            get {
+                return ResourceManager.GetString("type_save_question", resourceCulture);
             }
         }
     }

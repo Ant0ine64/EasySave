@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Collections.Generic;
+using System.IO;
 
 namespace EasySaveConsole.ViewModel
 {
@@ -12,8 +13,50 @@ namespace EasySaveConsole.ViewModel
         private Save save = new Save();
         private Job job = new Job();
 
-        public void CreateSavingJob(string name, string source, string destination, string type)
+        public void StartSavingJob(string jobName)
         {
+            job = Job.GetJobByName(jobName);
+            job.Status = "ACTIVE";
+            Job.Update(job);
+            
+            if(job.Type == "P")
+            {
+                try {
+                    DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
+                    DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
+                    save.copyFilesPartialSave(infosSourceDir, infosDestDir);
+                }
+                catch
+                {
+                    Console.WriteLine(Properties.Resources.error_directory_path);
+                }
+            }
+            else
+            {
+                try
+                {
+                    DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
+                    DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
+                    save.copyFilesEntireSave(infosSourceDir, infosDestDir);
+                }
+                catch
+                {
+                    Console.WriteLine(Properties.Resources.error_directory_path);
+                }
+            }
+            // write log file
+            job.Status = "END";
+            Job.Update(job);
+        }
+
+        public void CreateSavingJob(string name, string source, string destination, string type, string status="TODO")
+        {
+            job.Name = name;
+            job.SourcePath = source;
+            job.DestinationPath = destination;
+            job.Type = type;
+            job.Status = status;
+            Job.Add(job);
             //Save
             //Write state file 
 
@@ -31,15 +74,15 @@ namespace EasySaveConsole.ViewModel
         public string[] fetchSavingJob()
         {
             string[] arrayJobsName;
-            List<string> listJobsName = new List<string>(new string[] { "Saving job 0", "Saving job 1", "Saving job 2" }); // uniquement pour tester la fonction, à supprimer avant le merge
-            // List<string> jobsName = Job.GetAllJobNames();
+            // List<string> listJobsName = new List<string>(new string[] { "Saving job 0", "Saving job 1", "Saving job 2" }); // uniquement pour tester la fonction, ï¿½ supprimer avant le merge
+            List<string> listJobsName = Job.GetAllJobNames();
             arrayJobsName = listJobsName.ToArray();
             return arrayJobsName;
         }
 
         public void deleteSavingJob(string name)
         {
-            Console.WriteLine(name + " a été supprimé avec succés");
+            Console.WriteLine(name + " a Ã©tÃ© supprimÃ© avec succÃ©s");
         }
 
         public void executeSavingJob()
@@ -51,7 +94,7 @@ namespace EasySaveConsole.ViewModel
         public void executeSavingJob(string name)
         {
             Console.WriteLine("Le travail " + name +  " est en cours d'execution");
-            //execute le travail de sauvegarde à partir du nom 
+            //execute le travail de sauvegarde ï¿½ partir du nom 
         }
     }
 }

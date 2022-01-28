@@ -1,5 +1,7 @@
-using EasySaveConsole.ViewModel;
 using System;
+using System.Globalization;
+using System.Threading;
+using EasySaveConsole.ViewModel;
 
 namespace EasySaveConsole.View
 {
@@ -30,10 +32,10 @@ namespace EasySaveConsole.View
 
             switch(option)
             {
-                case "0": // créer un travail de sauvegarde 
+                case "0": // crï¿½er un travail de sauvegarde 
                     promptJobCreation(mvm.fetchSavingJob());
                     break;
-                case "1": // exécute un travail de sauvegarde
+                case "1": // exï¿½cute un travail de sauvegarde
                     while(promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))); 
                     break;
                 case "2": // suprime un travail de sauvegarde
@@ -233,7 +235,7 @@ namespace EasySaveConsole.View
 
             while (keepTurning)
             {
-                // créer le menu 
+                // crÃ©er le menu 
                 for (int i=0; i < size; i++) 
                 {
                     Console.WriteLine("[" + i + "]  " + message[i]);
@@ -243,7 +245,7 @@ namespace EasySaveConsole.View
                 
                 result = Console.ReadLine();
 
-                // vérifie le choix de l'utilisateur
+                // vÃ©rifie le choix de l'utilisateur
                 if (result == "x")
                 {
                     keepTurning = false; // quitte la boucle
@@ -261,7 +263,7 @@ namespace EasySaveConsole.View
                     }
                     if (keepTurning == true)
                     {
-                        Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
+                        Console.WriteLine(Properties.Resources.user_input_error); // redï¿½marre la boucle si la saisie est invalide 
                     }
                 }
             }
@@ -278,7 +280,7 @@ namespace EasySaveConsole.View
 
             while (keepTurning)
             {
-                // créer le menu 
+                // crï¿½er le menu 
                 for (int i = 0; i < size; i++)
                 {
                     Console.WriteLine("[" + option[i] + "]  " + message[i]);
@@ -288,7 +290,7 @@ namespace EasySaveConsole.View
                 
                 result = Console.ReadLine();
 
-                // vérifie le choix de l'utilisateur
+                // vï¿½rifie le choix de l'utilisateur
                 if (result == "x")
                 {
                     keepTurning = false; // quitte la boucle
@@ -305,7 +307,7 @@ namespace EasySaveConsole.View
                     }
                     if (keepTurning == true)
                     {
-                        Console.WriteLine(Properties.Resources.user_input_error); // redémarre la boucle si la saisie est invalide 
+                        Console.WriteLine(Properties.Resources.user_input_error); // redï¿½marre la boucle si la saisie est invalide 
                     }
                 }
             }
@@ -342,15 +344,5 @@ namespace EasySaveConsole.View
                 Properties.Resources.execute_one_saving_job
             };
         }
-
-        private void test()
-        {
-            Console.WriteLine("test");
-        }
-        private void test(string num)
-        {
-            Console.WriteLine("test "+ num);
-        }
-
     }
 }
