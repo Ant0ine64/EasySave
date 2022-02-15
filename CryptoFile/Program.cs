@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CryptoFile
+namespace CryptoSoft
 {
     class Program
     {
