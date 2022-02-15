@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security;
 using System.Collections;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -12,41 +13,75 @@ namespace CryptoFile
         
         static void Main(string[] args)
         {
+            try
+            {
+                // Define XOR key
+                string base64Key = args[2];
+                string key = SanitizeBase64(base64Key);
+                byte[] bytesKey = Convert.FromBase64String(key);
+                // File to encrypt or encrypt
+                string inputFile = args[0]; 
+                // File to decrypt or decrypt
+                string outputFile = args[1];
 
-            string key = args[2]; // définie la clé de chiffrage/déchiffrage
-            string inputFile = args[0]; // défini le chemin du fichier d'entre 
-            string outputFile = args[1]; // défni le chemin du fichier de sortie
-
-            Console.WriteLine("chiffrement/déchiffrement en cours");
-            EncryptFile(inputFile, outputFile, key);
-            Console.WriteLine("chiffrement/déchiffrement terminé");
+                // Console.WriteLine("chiffrement/déchiffrement en cours");
+                EncryptFile(inputFile, outputFile, bytesKey);
+                // Console.WriteLine("chiffrement/déchiffrement terminé");
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.Error.WriteLine($"CryptoSoft : Not enough args provided\n{e}");
+                Environment.ExitCode = 1;
+            }
         }
 
-        static void EncryptFile(string inputFile,string outputFile,string Key)
+        private static string SanitizeBase64(string input)
         {
-            FileStream FS_Input = new FileStream(inputFile, FileMode.Open, FileAccess.Read); // ouvre le fichier d'entré
-            FileStream FS_Output = new FileStream(outputFile, FileMode.Create,FileAccess.Write); // créer le fichier de sortie
+            // add padding if the string length does not comply with base64 encoding
+            input = (input.Length % 4) switch
+            {
+                // cheat beacause not a valid base 64 string so add one more to key and reprocces
+                1 => SanitizeBase64(input + "a"),
+                // add padding
+                2 => input + new string('=', 2),
+                3 => input + new string('=', 1),
+                // padding is good
+                _ => input
+            };
             
-            byte[] byteArrayKey = ASCIIEncoding.ASCII.GetBytes(Key); // créer un tableau d'octet à partir de la clé
-            byte[] byteArrayInput = new byte[FS_Input.Length]; // tableau qui va contenir tout les octet du fichier d'entre
-            FS_Input.Read(byteArrayInput, 0, byteArrayInput.Length); // remplie un tableau d'octet avec les octets du fichier d'entré 
-            byte[] byteArrayOutput = new byte[FS_Input.Length]; // créer un tableau d'octet à partir de la taille du fichier d'origine
+            // replace - by + and _ by /
+            return input.Replace('-', '+').Replace('_', '/');
+        }
+
+        private static void EncryptFile(string inputFile,string outputFile,byte[] key)
+        {
+            FileStream fsInput = new FileStream(inputFile, FileMode.Open, FileAccess.Read); // ouvre le fichier d'entré
+            FileStream fsOutput = new FileStream(outputFile, FileMode.Create,FileAccess.Write); // créer le fichier de sortie
+
+            long length = fsInput.Length;
+            
+            // Input and output bytes arrays
+            byte[] input = new byte[length]; 
+            byte[] output = new byte[length];
+            // Fill input byte array
+            fsInput.Read(input, 0, (int) length);
 
             int indexKey = 0;
-            for (int i=0 ; i < byteArrayInput.Length ; i++)
+            for (int i=0 ; i < input.Length ; i++)
             {
-                byteArrayOutput[i] = (byte)(byteArrayInput[i] ^ byteArrayKey[indexKey]); // opération Xor sur un byte de la clé et un byte du fichier d'entré 
+                output[i] = (byte)(input[i] ^ key[indexKey]); // opération Xor sur un byte de la clé et un byte du fichier d'entré 
 
-                if (indexKey == byteArrayKey.Length-1) // (40 - 43) répête la clé autant de fois que nécessaire pour chiffrer le fichier d'entre
+                if (indexKey == key.Length-1) // (40 - 43) répête la clé autant de fois que nécessaire pour chiffrer le fichier d'entre
                     indexKey = 0;
                 else
                     indexKey++;
             }
 
-            FS_Output.Write(byteArrayOutput); // écrit dans le nouveau fichier
+            // Write bytes to ouput file
+            fsOutput.Write(output);
 
-            FS_Input.Close(); // ferme le fichier d'entré
-            FS_Output.Close(); // ferme le fichier de sortie 
+            fsInput.Close(); // ferme le fichier d'entré
+            fsOutput.Close(); // ferme le fichier de sortie 
         }
     }
 }
