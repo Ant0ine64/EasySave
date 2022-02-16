@@ -15,6 +15,7 @@ namespace EasySaveConsole.ViewModel
     {
         private Save save = new Save();
         private Job job = new Job();
+        private CryptoSoft cryptoSoft = CryptoSoft.GetInstance();
 
         /// <summary>
         /// Start a backup job using its name
@@ -22,6 +23,8 @@ namespace EasySaveConsole.ViewModel
         /// <param name="jobName">The name of the job you want to start</param>
         public void StartSavingJob(string jobName)
         {
+            SetXorKey("azerty");
+            
             job = Job.GetJobByName(jobName);
             job.Status = "ACTIVE";
             Job.Update(job);
@@ -120,6 +123,12 @@ namespace EasySaveConsole.ViewModel
         public void StartAllSavingJobs()
         {
             Job.GetAllJobNames().ForEach(StartSavingJob);
+        }
+
+        public void SetXorKey(string key)
+        {
+            cryptoSoft.Key = key;
+            cryptoSoft.CryptoSoftPath = "/home/antoine/repos/cesi/EasySave-A3/CryptoFile/bin/Debug/netcoreapp3.1/CryptoSoft";
         }
 
     }
