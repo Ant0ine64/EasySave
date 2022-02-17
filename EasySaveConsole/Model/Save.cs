@@ -9,7 +9,7 @@ namespace EasySaveConsole.Model
     public class Save
     {
         private Stopwatch watch = new Stopwatch();
-        public bool cipher = true;
+        public bool Cipher = true;
 
         /// <summary>
         /// Copy files for a differential backup 
@@ -82,12 +82,18 @@ namespace EasySaveConsole.Model
             }
         }
 
+        /// <summary>
+        /// Choose whether to do a normal save of user xor cipher from cryptosoft
+        /// </summary>
+        /// <param name="infosSourceDir"></param>
+        /// <param name="infosDestDir"></param>
+        /// <param name="infosSourceFile"></param>
         private void ExecuteSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, FileInfo infosSourceFile)
         {
             string source = Path.Combine(infosSourceDir.FullName, infosSourceFile.Name);
             string dest = Path.Combine(infosDestDir.FullName, infosSourceFile.Name);
             
-            if (!cipher)
+            if (!Cipher)
                 File.Copy(source, dest, true);
             else
                 CryptoSoft.GetInstance().XorCypher(source, dest);

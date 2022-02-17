@@ -26,6 +26,12 @@ namespace EasySaveConsole.ViewModel
             SetXorKey("azerty");
             
             job = Job.GetJobByName(jobName);
+
+            if (job.Cipher)
+            {
+                save.Cipher = job.Cipher;
+            }
+            
             job.Status = "ACTIVE";
             Job.Update(job);
 

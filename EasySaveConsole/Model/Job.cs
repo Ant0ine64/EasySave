@@ -22,6 +22,8 @@ namespace EasySaveConsole.Model
         public long TotalFilesSize { get; set; }
         public int Progression { get; set; } = 0;
         public string Type { get; set; } = "c"; //c for complete, d for diferential
+        /// true if you want tu use cryptosoft
+        public bool Cipher { get; set; } = false;
 
         public static string jsonStateDirectory;
         public static string jsonStateFilepath;
