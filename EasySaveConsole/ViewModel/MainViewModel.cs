@@ -49,9 +49,10 @@ namespace EasySaveConsole.ViewModel
                     DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
                     save.copyFilesEntireSave(infosSourceDir, infosDestDir, job);
                 }
-                catch
+                catch(Exception e)
                 {
-                    Console.WriteLine(Properties.Resources.error_directory_path);
+                    Console.WriteLine(e + "\n" + Properties.Resources.error_directory_path);
+
                 }
             }
             // write log file
@@ -124,7 +125,7 @@ namespace EasySaveConsole.ViewModel
 
         public void SelectLogFormat(string LogFormat)
         {
-
+            LogFile.selectLogFormat = logFormat;
         }
 
         /// <summary>
