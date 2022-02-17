@@ -125,7 +125,7 @@ namespace EasySaveConsole.ViewModel
 
         public void SelectLogFormat(string LogFormat)
         {
-            LogFile.selectLogFormat = logFormat;
+            LogFile.selectLogFormat = LogFormat;
         }
 
         /// <summary>
