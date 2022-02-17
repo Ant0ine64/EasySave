@@ -122,5 +122,20 @@ namespace EasySaveConsole.ViewModel
             Job.GetAllJobNames().ForEach(StartSavingJob);
         }
 
+        public void SelectLogFormat(string LogFormat)
+        {
+
+        }
+
+        /// <summary>
+        /// returns the path of daily log file
+        /// </summary>
+        /// <returns>log file path</returns>
+        public string returnLogFilePath(string logFormat)
+        {
+            string FilePath = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave") + DateTime.Today.ToString("dd-MM-yyyy_") + "log." + logFormat;
+            return FilePath;
+        }
+
     }
 }
