@@ -123,5 +123,10 @@ namespace EasySaveConsole.ViewModel
             Job.GetAllJobNames().ForEach(StartSavingJob);
         }
 
+        public void SelectLogFormat(string logFormat)
+        {
+            LogFile.selectLogFormat = logFormat;
+        }
+
     }
 }
