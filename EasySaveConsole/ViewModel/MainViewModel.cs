@@ -65,9 +65,10 @@ namespace EasySaveConsole.ViewModel
                     DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
                     save.copyFilesEntireSave(infosSourceDir, infosDestDir, job);
                 }
-                catch
+                catch(Exception e)
                 {
-                    Console.WriteLine(Properties.Resources.error_directory_path);
+                    Console.WriteLine(e + Environment.NewLine + Properties.Resources.error_directory_path);
+
                 }
             }
             // write log file
@@ -148,6 +149,21 @@ namespace EasySaveConsole.ViewModel
                 Console.Error.WriteLine($"Please set your CryptoSoft executable in {Settings.SettingsFile}");
                 throw new FileNotFoundException();
             }
+        }
+
+        public void SelectLogFormat(string LogFormat)
+        {
+            LogFile.selectLogFormat = LogFormat;
+        }
+
+        /// <summary>
+        /// returns the path of daily log file
+        /// </summary>
+        /// <returns>log file path</returns>
+        public string returnLogFilePath(string logFormat)
+        {
+            string FilePath = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave") + DateTime.Today.ToString("dd-MM-yyyy_") + "log." + logFormat;
+            return FilePath;
         }
 
     }

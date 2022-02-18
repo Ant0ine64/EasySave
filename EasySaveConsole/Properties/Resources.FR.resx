@@ -174,17 +174,17 @@
   <data name="no" xml:space="preserve">
     <value>non</value>
   </data>
-  <data name="show_info" xml:space="preserve">
-    <value>Journal de bord</value>
+  <data name="change_log_format" xml:space="preserve">
+    <value>changer le format des fichiers log</value>
   </data>
-  <data name="show_job" xml:space="preserve">
+  <data name="json_log_format" xml:space="preserve">
+    <value>fichiers logs en .json</value>
+  </data>
+  <data name="xml_log_format" xml:space="preserve">
+    <value>fichiers logs en .xml</value>
+  </data>
+  <data name="show_saving_jobs" xml:space="preserve">
     <value>Afficher les travaux de sauvegarde</value>
-  </data>
-  <data name="show_log" xml:space="preserve">
-    <value>Afficher les logs</value>
-  </data>
-  <data name="show_state" xml:space="preserve">
-    <value>Afficher l'état des sauvegardes</value>
   </data>
   <data name="title_main_menu" xml:space="preserve">
     <value>Menu Principal</value>
@@ -203,5 +203,11 @@
   </data>
   <data name="perm_error" xml:space="preserve">
     <value>Erreur de permissions</value>
+  </data>
+  <data name="log_file_path" xml:space="preserve">
+    <value>le fichier log a été créé dans </value>
+  </data>
+  <data name="no_saving_job" xml:space="preserve">
+    <value>il n'y a pas de travaux de sauvegarde</value>
   </data>
 </root>
