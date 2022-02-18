@@ -15,6 +15,14 @@ namespace EasySaveConsole.ViewModel
     {
         private Save save = new Save();
         private Job job = new Job();
+        private CryptoSoft cryptoSoft = CryptoSoft.GetInstance();
+        private Settings settings = new Settings(true);
+
+        public MainViewModel()
+        {
+            // init settings 
+            settings.ReadSettings();
+        }
 
         /// <summary>
         /// Start a backup job using its name
@@ -22,7 +30,15 @@ namespace EasySaveConsole.ViewModel
         /// <param name="jobName">The name of the job you want to start</param>
         public void StartSavingJob(string jobName)
         {
+            SetXorKey("azerty");
+            
             job = Job.GetJobByName(jobName);
+
+            if (job.Cipher)
+            {
+                save.Cipher = job.Cipher;
+            }
+            
             job.Status = "ACTIVE";
             Job.Update(job);
 
@@ -51,7 +67,7 @@ namespace EasySaveConsole.ViewModel
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine(e + "\n" + Properties.Resources.error_directory_path);
+                    Console.WriteLine(e + Environment.NewLine + Properties.Resources.error_directory_path);
 
                 }
             }
@@ -121,6 +137,18 @@ namespace EasySaveConsole.ViewModel
         public void StartAllSavingJobs()
         {
             Job.GetAllJobNames().ForEach(StartSavingJob);
+        }
+
+        public void SetXorKey(string key)
+        {
+            cryptoSoft.Key = key;
+            if (settings.CryptoSoftPath != "")
+                cryptoSoft.CryptoSoftPath = settings.CryptoSoftPath;
+            else
+            {
+                Console.Error.WriteLine($"Please set your CryptoSoft executable in {Settings.SettingsFile}");
+                throw new FileNotFoundException();
+            }
         }
 
         public void SelectLogFormat(string LogFormat)
