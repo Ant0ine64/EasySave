@@ -1,10 +1,12 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using EasySaveUI.ViewModels;
+using EasySaveUI.Views;
 
-namespace EasySaveGUI
+namespace EasySaveUI
 {
-    public partial class App : Application
+    public class App : Application
     {
         public override void Initialize()
         {
@@ -15,7 +17,10 @@ namespace EasySaveGUI
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow();
+                desktop.MainWindow = new MainWindow
+                {
+                    DataContext = new MainWindowViewModel(),
+                };
             }
 
             base.OnFrameworkInitializationCompleted();

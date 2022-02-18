@@ -1,14 +1,19 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using EasySaveUI.ViewModels;
 
-namespace EasySaveGUI
+namespace EasySaveUI.Views
 {
-    public partial class MainWindow : Window
+   
+    public partial class CreatePage : Window
     {
-        public MainWindow()
+        public static CreatePage Instance { get; private set; }
+        public CreatePage()
         {
+            Instance = this;
             InitializeComponent();
+            DataContext = new CreatePageViewModel();
 #if DEBUG
             this.AttachDevTools();
 #endif

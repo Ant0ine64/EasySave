@@ -1,9 +1,8 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia;
+using Avalonia.ReactiveUI;
 using System;
 
-namespace EasySaveGUI
+namespace EasySaveUI
 {
     class Program
     {
@@ -18,6 +17,7 @@ namespace EasySaveGUI
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .LogToTrace();
+                .LogToTrace()
+                .UseReactiveUI();
     }
 }

@@ -1,0 +1,133 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EasySaveUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="EasySaveUI.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="EasySaveUI">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="200"/>
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Border BorderBrush="Black" BorderThickness="0 0 6 0"> 
+		<Grid Background="#0F0F2D"
+			  Grid.ColumnSpan="1">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+
+
+			<Button Width="100"
+					Grid.Row="1"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Create"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					Command="{Binding OnClickCreated}"
+					/>
+			<Button Width="100"
+					Grid.Row="2"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Delete"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					/>
+			<Button Width="100"
+					Grid.Row="3"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Start"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					/>
+			<Button Width="100"
+					Grid.Row="4"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Decrypt"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					/>
+			
+			<Button Width="100"
+					Grid.Row="7"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Logs"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					/>
+			<Button Width="100"
+					Grid.Row="8"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Settings"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					/>
+		</Grid>
+		</Border>
+		<Grid 
+			  Grid.ColumnSpan="2"
+			  Margin="150,0,0,0">
+			<Grid
+			  Grid.ColumnSpan="1">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>	
+				</Grid.RowDefinitions>
+
+				<Grid Grid.Row="5" Background="#0F0F2D" >
+				<Button FontSize="20"
+					Margin="10"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Select all"
+					CornerRadius="12"
+					Width="150"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					/>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Grid>
+
+</Window>
