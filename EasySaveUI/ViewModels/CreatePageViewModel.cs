@@ -19,8 +19,6 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickBrowseFiles { get; private set; }
         public ICommand OnClickBrowseFolder { get; private set; }
         public ICommand OnClickCreate { get; private set; }
-        public ICommand RadioPartialCheck { get; private set; }
-        public ICommand RadioEntireCheck { get; private set; }
         string type = "";
         public CreatePageViewModel()
         {
@@ -32,28 +30,19 @@ namespace EasySaveUI.ViewModels
 
                 string _path = await GetPathFolder();
             });
-            RadioPartialCheck = ReactiveCommand.Create(async () =>
-            {
-
-                type = "P";
-
-            });
-             RadioEntireCheck = ReactiveCommand.Create(async () => {
-
-                  type = "E";
-
-            });
             OnClickCreate = ReactiveCommand.Create(async () => {
 
-                Debug.WriteLine("chemin ");
-                    Debug.WriteLine(saveName);
-                    Debug.WriteLine(myValueSource);
-                    Debug.WriteLine(myValueDest);
+               
+                Debug.WriteLine(saveName);
+                Debug.WriteLine(myValueSource);
+                Debug.WriteLine(myValueDest);
                 Debug.WriteLine(type);
-                // mvm.CreateSavingJob(saveName, myValueSource, myValueDest, "test");
+                mvm.CreateSavingJob(saveName, myValueSource, myValueDest, "test");
 
             });
         }
+
+
 
         private string myValueSource;
         public string ValueSource
@@ -88,22 +77,7 @@ namespace EasySaveUI.ViewModels
 
             return result;
 
-            /* OpenFileDialog dialog = new OpenFileDialog();
-             dialog.AllowMultiple = true;
-
-             var result = await dialog.ShowAsync(CreatePage.Instance);
-             if (result != null)
-             {
-                 fileNames = result;
-
-                 foreach (string fileName in fileNames)
-                 {
-                     ValueSource = ValueSource + fileName.ToString() + ", ";
-
-                 }
-             }*/
-
-            // return string.Join(" ", result);
+          
         }
 
         private string myValueDest;
