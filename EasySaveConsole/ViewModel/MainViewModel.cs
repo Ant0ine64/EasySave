@@ -16,6 +16,13 @@ namespace EasySaveConsole.ViewModel
         private Save save = new Save();
         private Job job = new Job();
         private CryptoSoft cryptoSoft = CryptoSoft.GetInstance();
+        private Settings settings = new Settings(true);
+
+        public MainViewModel()
+        {
+            // init settings 
+            settings.ReadSettings();
+        }
 
         /// <summary>
         /// Start a backup job using its name
@@ -134,7 +141,13 @@ namespace EasySaveConsole.ViewModel
         public void SetXorKey(string key)
         {
             cryptoSoft.Key = key;
-            cryptoSoft.CryptoSoftPath = "/home/antoine/repos/cesi/EasySave-A3/CryptoFile/bin/Debug/netcoreapp3.1/CryptoSoft";
+            if (settings.CryptoSoftPath != "")
+                cryptoSoft.CryptoSoftPath = settings.CryptoSoftPath;
+            else
+            {
+                Console.Error.WriteLine($"Please set your CryptoSoft executable in {Settings.SettingsFile}");
+                throw new FileNotFoundException();
+            }
         }
 
     }
