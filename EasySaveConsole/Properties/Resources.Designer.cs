@@ -268,6 +268,15 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à there is no saving job.
+        /// </summary>
+        internal static string no_saving_job {
+            get {
+                return ResourceManager.GetString("no_saving_job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Permsission Error
         ///
         ///.

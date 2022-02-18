@@ -225,12 +225,18 @@ namespace EasySaveConsole.View
         /// <param name="arrayJobName">arrayJobName is an array containing all names of saving jobs</param>
         private void promptShowSavingJob(string[] arrayJobName)
         {
-            Console.WriteLine(Properties.Resources.list_jobs);
-
-            for (int i = 0; i < arrayJobName.Length; i++)
+            if (arrayJobName.Length != 0)
             {
-                Console.WriteLine(i + ".  " + arrayJobName[i]);
+                Console.WriteLine(Properties.Resources.list_jobs);
+                for (int i = 0; i < arrayJobName.Length; i++)
+                {
+                    Console.WriteLine(i + ".  " + arrayJobName[i]);
+                }
             }
+            else
+            {
+                Console.WriteLine(Properties.Resources.no_saving_job);
+            }                
         }
 
         /// <summary>

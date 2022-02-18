@@ -207,4 +207,7 @@
   <data name="log_file_path" xml:space="preserve">
     <value>le fichier log a été créé dans </value>
   </data>
+  <data name="no_saving_job" xml:space="preserve">
+    <value>il n'y a pas de travaux de sauvegarde</value>
+  </data>
 </root>

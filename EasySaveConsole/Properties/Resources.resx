@@ -206,4 +206,7 @@
   <data name="log_file_path" xml:space="preserve">
     <value>The log file was created in </value>
   </data>
+  <data name="no_saving_job" xml:space="preserve">
+    <value>there is no saving job</value>
+  </data>
 </root>
