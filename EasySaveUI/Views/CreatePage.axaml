@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:vm="using:EasySaveUI.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="EasySaveUI.Views.CreatePage"
+        Title="New Save">
+    <Design.DataContext>
+        <vm:CreatePageViewModel/>
+    </Design.DataContext>
+	
+		<Grid Background="#0F0F2D"
+			  Grid.ColumnSpan="1">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<StackPanel Grid.Row="1" Margin="20">
+			<TextBlock Text="Nouvelle Sauvegarde"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			
+			
+		</StackPanel>
+		
+		<StackPanel Grid.Row="2" Margin="20">
+		
+			<TextBlock Text="Entrer le nom de votre sauvegarde" Foreground="White"/>
+			<Separator Height="10" Background="Transparent"/>
+			<TextBox  Name="TextBlockName" Text="{Binding Path=SaveNameField}" />
+			 
+		</StackPanel>
+	
+		<StackPanel Grid.Row="3" Margin="20">
+			<TextBlock Text="Selectionner les fichiers source" Foreground="White"/>
+			<Separator Height="10" Background="Transparent"/>
+			<TextBox  Name="TextBlockSource" Text="{Binding Path=ValueSource}" />
+			<Separator Height="5" Background="Transparent"/>
+				<Button Content="Parcourrir"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFiles}"/>
+		</StackPanel>
+		<StackPanel Grid.Row="4" Margin="20">
+			<TextBlock Text="Selectionner le chemin de destinaion" Foreground="White"/>
+			<Separator Height="10" Background="Transparent"/>
+			<TextBox Name="TextBlockDestination" Text="{Binding Path=ValueDestination}"/>
+			<Separator Height="5" Background="Transparent"/>
+			<Button Content="Parcourrir"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFolder}" />
+		</StackPanel>
+		<StackPanel Grid.Row="5" Margin="20">
+			<TextBlock Text="Type de sauvegarde" Foreground="White"/>
+			<RadioButton IsChecked="{Binding Path=RadioPartialCheck}" Name="Partial" Foreground="White">Partielle</RadioButton>
+			<RadioButton IsChecked="{Binding Path=RadioEntireCheck}" Name="Entire" Foreground="White" >Entière</RadioButton>		
+		</StackPanel>
+			<Button Width="100"
+					Grid.Row="6"
+					Command="{Binding OnClickCreate}"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="Créer"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					/>
+		</Grid>
+</Window>
