@@ -74,7 +74,6 @@ namespace EasySaveConsole.Model
             foreach (FileInfo infosDestinationFile in infosDestinationFiles)
             {
                 infosDestinationFile.Delete();              
-
             }
 
             //copy all files from source to destination
