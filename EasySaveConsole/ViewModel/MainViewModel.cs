@@ -73,13 +73,19 @@ namespace EasySaveConsole.ViewModel
             Thread.CurrentThread.CurrentCulture = culture;
         }
 
-        public string[] fetchSavingJob()
+        public string[] fetchSavingJobNames()
         {
             string[] arrayJobsName;
             // List<string> listJobsName = new List<string>(new string[] { "Saving job 0", "Saving job 1", "Saving job 2" }); // uniquement pour tester la fonction, � supprimer avant le merge
             List<string> listJobsName = Job.GetAllJobNames();
             arrayJobsName = listJobsName.ToArray();
             return arrayJobsName;
+        }
+
+        public IEnumerable<Job> fetchSavingJob()
+        {
+            Job.GetFromJson();
+            return Job.Jobs;
         }
 
         public void deleteSavingJob(string name)

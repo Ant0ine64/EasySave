@@ -15,10 +15,10 @@
 	<Grid>
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="200"/>
-			<ColumnDefinition />
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="4*"/>
 		</Grid.ColumnDefinitions>
-		<Border BorderBrush="Black" BorderThickness="0 0 6 0"> 
+		<Border Grid.Column="0" BorderBrush="White" BorderThickness="0 0 6 0"> 
 		<Grid Background="#0F0F2D"
 			  Grid.ColumnSpan="1">
 			<Grid.RowDefinitions>
@@ -99,20 +99,23 @@
 					/>
 		</Grid>
 		</Border>
-		<Grid 
+		<Grid Grid.Column="1" 
 			  Grid.ColumnSpan="2"
-			  Margin="150,0,0,0">
+			  >
 			<Grid
 			  Grid.ColumnSpan="1">
 				<Grid.RowDefinitions>
+					<RowDefinition Height="4*"/>
 					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>	
 				</Grid.RowDefinitions>
 
-				<Grid Grid.Row="5" Background="#0F0F2D" >
+				<DataGrid
+					Grid.Row="0"
+					AutoGenerateColumns="True" 
+					Items="{Binding Jobs}"
+					/>
+
+				<Grid Grid.Row="1" RowSpan="1" Background="#0F0F2D" >
 				<Button FontSize="20"
 					Margin="10"
 					Foreground="White"
