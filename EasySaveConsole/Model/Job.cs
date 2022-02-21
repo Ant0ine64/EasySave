@@ -8,7 +8,7 @@ using EasySaveConsole.Properties;
 namespace EasySaveConsole.Model
 {
 
-    public class Job
+    public class Job : GenericModel
     {
         public string Name { get; set; }
         public string SourcePath { get; set; }
@@ -19,6 +19,8 @@ namespace EasySaveConsole.Model
         public long TotalFilesSize { get; set; }
         public int Progression { get; set; } = 0;
         public string Type { get; set; } = "c"; //c for complete, d for diferential
+        private bool isChecked = false;
+        public bool IsChecked { get => isChecked ; set => SetField(ref isChecked, value,  nameof(IsChecked)); }
 
         public static string jsonStateDirectory;
         public static string jsonStateFilepath;
