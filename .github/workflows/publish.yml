@@ -2,7 +2,7 @@ name: Publish and release
 
 on:
   push:
-    branches: [ master, github-actions ]
+    branches: [ master ]
     tags:
       - v*
 
@@ -23,6 +23,7 @@ jobs:
       run: dotnet build --no-restore
       continue-on-error: true
     - run: dotnet build --no-restore
+      if: failure()
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
