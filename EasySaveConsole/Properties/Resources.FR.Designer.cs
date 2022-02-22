@@ -153,19 +153,19 @@ namespace EasySaveConsole.Properties {
             }
         }
         
-        internal static string show_info {
+        internal static string change_log_format {
             get {
                 return ResourceManager.GetString("show_info", resourceCulture);
             }
         }
         
-        internal static string show_log {
+        internal static string xml_log_format {
             get {
                 return ResourceManager.GetString("show_log", resourceCulture);
             }
         }
         
-        internal static string show_state {
+        internal static string show_saving_jobs {
             get {
                 return ResourceManager.GetString("show_state", resourceCulture);
             }
