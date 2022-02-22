@@ -21,8 +21,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+      continue-on-error: true
     - run: dotnet build --no-restore
-      if: failure()
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
