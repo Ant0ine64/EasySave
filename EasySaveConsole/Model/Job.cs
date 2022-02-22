@@ -69,9 +69,6 @@ namespace EasySaveConsole.Model
             job.Complete();
             // add the new job 
             jobs.Add(job);
-            // Only take last 5 elements : required on version 1
-            if (jobs.Count > 5)
-                jobs = Enumerable.Reverse(jobs).Take(5).Reverse().ToList();
             
             WriteToJson();
         }
