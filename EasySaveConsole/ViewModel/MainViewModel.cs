@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace EasySaveConsole.ViewModel
 {
@@ -16,14 +17,23 @@ namespace EasySaveConsole.ViewModel
         public void StartSavingJob(string jobName)
         {
             job = Job.GetJobByName(jobName);
+            StartSavingJob(job);
+        }
+
+        public async Task StartSavingJob(Job job)
+        {
             job.Status = "ACTIVE";
             Job.Update(job);
+            var rand = new Random();
+            ;
+            await Task.Delay(rand.Next(2000, 5000));
 
             LogFile.CreateFile();
-            
-            if(job.Type == "d")
+
+            if (job.Type == "d")
             {
-                try {
+                try
+                {
                     DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
                     DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
                     save.copyFilesPartialSave(infosSourceDir, infosDestDir, job);
@@ -46,6 +56,7 @@ namespace EasySaveConsole.ViewModel
                     Console.WriteLine(Properties.Resources.error_directory_path);
                 }
             }
+
             // write log file
             job.Status = "END";
             Job.Update(job);

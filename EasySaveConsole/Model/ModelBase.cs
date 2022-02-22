@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace EasySaveConsole.Model
 {
-    public class GenericModel : INotifyPropertyChanged
+    public class ModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -107,44 +107,55 @@
 		</Grid>
 		</Border>
 		<Grid Grid.Column="1" >
-			<Grid Margin="20 10 10 0">
+			<Grid Margin="5">
 				
 				<Grid.RowDefinitions>
 					<RowDefinition Height="4*"/>
 					<RowDefinition/>
 				</Grid.RowDefinitions>
 
+			<Border Grid.Column="0"
+					CornerRadius="10"
+					BorderBrush="White"
+					BorderThickness="2"
+					Padding="5"
+					Background="#1F1F34" >
 				<DataGrid Grid.Row="0"
-				          Padding="50"
-				          Background="#1F1F34"
-				          Items="{Binding Jobs}">
+						  Padding="50"
+						  AlternatingRowBackground="#252539"
+						  Items="{Binding Jobs}">
 					<DataGrid.Columns>
 						<DataGridTemplateColumn Header="Select" >
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 									<CheckBox HorizontalAlignment="Center"
-									          IsChecked="{Binding IsChecked}"/>
+											  IsChecked="{Binding IsChecked}"/>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>             
 						<DataGridTextColumn Header="Name" 
-						                    Binding="{Binding Name}" 
-						                    IsReadOnly="True"
-						                    Width="2*" />
+											Binding="{Binding Name}" 
+											IsReadOnly="True"
+											Width="2*" />
 						<DataGridTextColumn Header="Source" 
-						                    Binding="{Binding SourcePath}" 
-						                    IsReadOnly="True"
-						                    Width="4*" />
+											Binding="{Binding SourcePath}" 
+											IsReadOnly="True"
+											Width="4*" />
 						<DataGridTextColumn Header="Destination" 
-						                    Binding="{Binding DestinationPath}" 
-						                    IsReadOnly="True"
-						                    Width="4*" />
+											Binding="{Binding DestinationPath}" 
+											IsReadOnly="True"
+											Width="4*" />
 						<DataGridTextColumn Header="Status" 
-						                    Binding="{Binding Status}" 
-						                    IsReadOnly="True"
-						                    Width="*" />
+											Binding="{Binding Status}" 
+											IsReadOnly="True"
+											Width="*" />
+						<DataGridTextColumn Header="Progress" 
+											Binding="{Binding Progression}" 
+											IsReadOnly="True"
+											Width="*" />
 					</DataGrid.Columns>
 				</DataGrid>
+				</Border>
 
 				<Grid Grid.Row="1" Background="#0F0F2D" >
 				<Button FontSize="20"

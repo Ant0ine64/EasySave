@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using EasySaveUI.Views;
 using ReactiveUI;
 using System.Windows.Input;
@@ -16,6 +18,7 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickDelete { get; private set; }
         public ICommand OnClickStart { get; private set; }
         public ICommand OnClickSelectAll { get; private set; }
+        public ICommand OnClickRefresh { get; private set; }
         private bool selectedAll = false;
         public MainViewModel mvm = new MainViewModel();
         public ObservableCollection<Job> Jobs { get; set; }
@@ -23,6 +26,10 @@ namespace EasySaveUI.ViewModels
         public MainWindowViewModel()
         {
             Jobs = new ObservableCollection<Job>(mvm.fetchSavingJob());
+            foreach (var job in Jobs)
+            {
+                job.IsChecked = false;
+            }
             
             OnClickCreated = ReactiveCommand.Create(() =>
             {
@@ -42,12 +49,9 @@ namespace EasySaveUI.ViewModels
                 }
             });
             
-            OnClickStart = ReactiveCommand.Create(() =>
+            OnClickStart = ReactiveCommand.Create(async () =>
             {
-                foreach (var job in Jobs)
-                {
-                    job.IsChecked = selectedAll;
-                }
+                await Task.WhenAll(Jobs.Where(job => job.IsChecked).Select(async j => await mvm.StartSavingJob(j)));
             });
             
             OnClickSelectAll = ReactiveCommand.Create(() =>

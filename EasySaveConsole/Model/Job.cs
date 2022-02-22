@@ -8,12 +8,13 @@ using EasySaveConsole.Properties;
 namespace EasySaveConsole.Model
 {
 
-    public class Job : GenericModel
+    public class Job : ModelBase
     {
         public string Name { get; set; }
         public string SourcePath { get; set; }
         public string DestinationPath { get; set; }
-        public string Status { get; set; }
+        private string status;
+        public string Status { get => status ; set => SetField(ref status, value,  nameof(Status)); }
         public int TotalFilesToCopy { get; set; }
         public int FilesLeftToDo { get; set; } = 0;
         public long TotalFilesSize { get; set; }
