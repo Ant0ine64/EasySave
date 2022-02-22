@@ -210,8 +210,8 @@
   <data name="no_saving_job" xml:space="preserve">
     <value>il n'y a pas de travaux de sauvegarde</value>
   </data>
-  <data name="blocking_software" xml:space="preserve">
-    <value>Applications bloquante</value>
+  <data name="blocking_softwares" xml:space="preserve">
+    <value>Applications bloquantes</value>
   </data>
   <data name="browse" xml:space="preserve">
     <value>Parcourir</value>

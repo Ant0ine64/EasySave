@@ -11,6 +11,8 @@ namespace EasySaveConsole.Model
         public string CryptoSoftPath { get; set; } = "";
         public string Lang { get; set; } = "fr-FR";
         public string LogFormat { get; set; } = "json";
+        public static Settings Instance { get; set; }
+
         public static string SettingsFile;
         
         public Settings() {}

@@ -209,8 +209,8 @@
   <data name="no_saving_job" xml:space="preserve">
     <value>there is no saving job</value>
   </data>
-  <data name="blocking_software" xml:space="preserve">
-    <value>Blocking software</value>
+  <data name="blocking_softwares" xml:space="preserve">
+    <value>Blocking softwares</value>
   </data>
   <data name="browse" xml:space="preserve">
     <value>Browse</value>

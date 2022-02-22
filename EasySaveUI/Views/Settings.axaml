@@ -1,4 +1,5 @@
-<Window xmlns="https://github.com/avaloniaui"
+<Window Name="settingsWindow" 
+		xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:vm="using:EasySaveUI.ViewModels"
 		xmlns:p="using:EasySaveConsole.Properties"
@@ -23,18 +24,16 @@
 		<Separator Height="20"/>
 		
 		<Grid Background="Transparent"
-			  MinWidth="300"
-			  MaxWidth="400"
+			  Width="400"
 			  HorizontalAlignment="Stretch">
 
 			<Grid.RowDefinitions>
-				<RowDefinition MinHeight="140" Height="*"/>
-				<RowDefinition MinHeight="150" Height="*"/>
-				<RowDefinition MinHeight="150" Height="3*"/>
+				<RowDefinition Height="140"/>
+				<RowDefinition Height="170"/>
+				<RowDefinition Height="200"/>
 			</Grid.RowDefinitions>
 
-			<StackPanel Grid.Row="0"
-						Margin="20 0 20 20">
+			<StackPanel Grid.Row="0">
 				<TextBlock Text="{x:Static p:Resources.logs_files_format}"
 						   FontSize="20"
 						   TextAlignment="Center"/>
@@ -51,8 +50,8 @@
 					  HorizontalAlignment="Stretch">
 
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition MinWidth="150" Width="*"/>
-						<ColumnDefinition MinWidth="150" Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
 
 					<Button Name="JSON"
@@ -81,8 +80,7 @@
 				</Grid>
 			</StackPanel>
 
-			<StackPanel Grid.Row="1"
-						Margin="20 0 20 20">
+			<StackPanel Grid.Row="1">
 				<TextBlock Text="{x:Static p:Resources.cryptosoft_path}"
 						   FontSize="20"
 						   TextAlignment="Center"/>
@@ -95,8 +93,7 @@
 				<Separator Height="10"
 						   Background="Transparent"/>
 
-				<TextBox Name="CryptoSoftPath"
-						 Text="{Binding}"/>
+				<TextBox Name="CryptoSoftPath" />
 
 				<Separator Height="5"
 						   Background="Transparent"/>
@@ -104,12 +101,11 @@
 				<Button HorizontalAlignment="Left"
 						Content="{x:Static p:Resources.browse}"
 						Background="Gray"
-						Command="{Binding OnClickBrowseFiles}"/>
+						Command="{Binding ElementName=settingsWindow, Path=GetPathExe}"/>
 			</StackPanel>
 
-			<StackPanel Grid.Row="2"
-						Margin="20 0 20 20">
-				<TextBlock Text="{x:Static p:Resources.blocking_software}"
+			<StackPanel Grid.Row="2">
+				<TextBlock Text="{x:Static p:Resources.blocking_softwares}"
 						   FontSize="20"
 						   TextAlignment="Center"/>
 
@@ -123,8 +119,7 @@
 						CornerRadius="3"
 						HorizontalAlignment="Stretch"
 						VerticalAlignment="Stretch"
-						Padding="50"
-						MinHeight="200"/>
+						Padding="50,50,50,190"/>
 			</StackPanel>
 		</Grid>
 	</StackPanel>

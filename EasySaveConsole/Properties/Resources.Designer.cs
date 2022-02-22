@@ -61,11 +61,11 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Blocking software.
+        ///   Recherche une chaîne localisée semblable à Blocking softwares.
         /// </summary>
-        public static string blocking_software {
+        public static string blocking_softwares {
             get {
-                return ResourceManager.GetString("blocking_software", resourceCulture);
+                return ResourceManager.GetString("blocking_softwares", resourceCulture);
             }
         }
         
