@@ -27,12 +27,12 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
     - name: Publish linux64
-      run: dotnet publish EasySaveUI/EasySaveUI.csproj -c Release -r linux-x64 -p:PublishSingleFile=true
+      run: dotnet publish EasySaveUI/EasySaveUI.csproj -c Release -f netcoreapp3.1 -r linux-x64 -p:PublishSingleFile=true
     - name: Give a diferent name to linux elf executable
       run: mv EasySaveUI/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveUI EasySaveUI/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveUI.elf
       
     - name: Publish win64
-      run: dotnet publish EasySaveUI/EasySaveUI.csproj -c Release -r win-x64 -p:PublishSingleFile=true    
+      run: dotnet publish EasySaveUI/EasySaveUI.csproj -c Release -f netcoreapp3.1 -r win-x64 -p:PublishSingleFile=true    
     
     - name: Upload a Build Artifact linux
       uses: actions/upload-artifact@v2.3.1
