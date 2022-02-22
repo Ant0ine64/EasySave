@@ -96,6 +96,7 @@
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
+					Command="{Binding OnClickSettings}"
 					/>
 		</Grid>
 		</Border>

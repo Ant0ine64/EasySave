@@ -209,4 +209,22 @@
   <data name="no_saving_job" xml:space="preserve">
     <value>there is no saving job</value>
   </data>
+  <data name="blocking_software" xml:space="preserve">
+    <value>Blocking software</value>
+  </data>
+  <data name="browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="choose_the_logs_files_format" xml:space="preserve">
+    <value>Choose the logs files format</value>
+  </data>
+  <data name="cryptosoft_path" xml:space="preserve">
+    <value>CryptoSoft path</value>
+  </data>
+  <data name="logs_files_format" xml:space="preserve">
+    <value>Logs files format</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

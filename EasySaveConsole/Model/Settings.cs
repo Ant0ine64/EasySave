@@ -10,6 +10,7 @@ namespace EasySaveConsole.Model
     {
         public string CryptoSoftPath { get; set; } = "";
         public string Lang { get; set; } = "fr-FR";
+        public string LogFormat { get; set; } = "json";
         public static string SettingsFile;
         
         public Settings() {}
@@ -41,6 +42,12 @@ namespace EasySaveConsole.Model
             }
         }
 
+        public void Write()
+        {
+            string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(SettingsFile, json);
+        }
+
         private static string createBaseContent()
         {
             var settings = new Settings();
@@ -56,6 +63,7 @@ namespace EasySaveConsole.Model
             // assign values read to the instance
             CryptoSoftPath = settings.CryptoSoftPath;
             Lang = settings.Lang;
+            LogFormat = settings.LogFormat;
         }
     }
 }

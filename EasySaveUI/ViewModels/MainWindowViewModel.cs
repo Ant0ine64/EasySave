@@ -7,6 +7,7 @@ namespace EasySaveUI.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         public ICommand OnClickCreated { get; private set; }
+        public ICommand OnClickSettings { get; private set; }
 
         public MainWindowViewModel()
         {
@@ -14,6 +15,11 @@ namespace EasySaveUI.ViewModels
             {
                 CreatePage createPage = new CreatePage();
                 createPage.Show();
+            });
+            OnClickSettings = ReactiveCommand.Create(() =>
+            {
+                Settings settingsPage = new Settings();
+                settingsPage.Show();
             });
         }
     }

@@ -41,7 +41,7 @@
         <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Properties\Resources.FR.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
+        <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.FR.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Properties\Resources.EN.resx">
@@ -49,7 +49,7 @@
         <LastGenOutput>Resources.EN.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Properties\Resources.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
+        <Generator>PublicResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
