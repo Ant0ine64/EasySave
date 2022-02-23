@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:EasySaveUI.ViewModels"
+		xmlns:p="using:EasySaveConsole.Properties"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -12,14 +13,18 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-	<Grid>
+	<Grid Background="#0F0F2D">
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="200"/>
-			<ColumnDefinition />
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="4*"/>
 		</Grid.ColumnDefinitions>
-		<Border BorderBrush="Black" BorderThickness="0 0 6 0"> 
-		<Grid Background="#0F0F2D"
+		<Border Grid.Column="0"
+		        CornerRadius="10"
+		        BorderBrush="White"
+		        BorderThickness="2"
+		        Margin="5 5 5 5"> 
+		<Grid 
 			  Grid.ColumnSpan="1">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
@@ -39,49 +44,52 @@
 					Grid.Row="1"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Create"
+					Content="{x:Static p:Resources.create}"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					Command="{Binding OnClickCreated}">
+			</Button>
+			<Button Width="100"
+			        Grid.Row="2"
+			        Foreground="White"
+			        Background="#FF4C70"
+			        Content="{x:Static p:Resources.delete}"
+			        CornerRadius="12"
+			        VerticalContentAlignment="Center"
+			        HorizontalContentAlignment="Center"
+			        HorizontalAlignment="Center"
+			        Command="{Binding OnClickDelete}"
+			/>
+			<Button Width="100"
+					Grid.Row="3"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="{x:Static p:Resources.start}"
+					CornerRadius="12"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					Command="{Binding OnClickStart}"
+					/>
+			<Button Width="100"
+					Grid.Row="4"
+					Foreground="White"
+					Background="#FF4C70"
+					Content="{x:Static p:Resources.decrypt}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
 					Command="{Binding OnClickCreated}"
 					/>
-			<Button Width="100"
-					Grid.Row="2"
-					Foreground="White"
-					Background="#FF4C70"
-					Content="Delete"
-					CornerRadius="12"
-					VerticalContentAlignment="Center"
-					HorizontalContentAlignment="Center"
-					HorizontalAlignment="Center"
-					/>
-			<Button Width="100"
-					Grid.Row="3"
-					Foreground="White"
-					Background="#FF4C70"
-					Content="Start"
-					CornerRadius="12"
-					VerticalContentAlignment="Center"
-					HorizontalContentAlignment="Center"
-					HorizontalAlignment="Center"
-					/>
-			<Button Width="100"
-					Grid.Row="4"
-					Foreground="White"
-					Background="#FF4C70"
-					Content="Decrypt"
-					CornerRadius="12"
-					VerticalContentAlignment="Center"
-					HorizontalContentAlignment="Center"
-					HorizontalAlignment="Center"
-					/>
 			
 			<Button Width="100"
 					Grid.Row="7"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Logs"
+					Content="{x:Static p:Resources.logs}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -91,7 +99,7 @@
 					Grid.Row="8"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Settings"
+					Content="{x:Static p:Resources.settings}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -100,32 +108,76 @@
 					/>
 		</Grid>
 		</Border>
-		<Grid 
-			  Grid.ColumnSpan="2"
-			  Margin="150,0,0,0">
-			<Grid
-			  Grid.ColumnSpan="1">
+		<Grid Grid.Column="1" >
+			<Grid Margin="5">
+				
 				<Grid.RowDefinitions>
+					<RowDefinition Height="4*"/>
 					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>	
 				</Grid.RowDefinitions>
 
-				<Grid Grid.Row="5" Background="#0F0F2D" >
+			<Border Grid.Column="0"
+					CornerRadius="10"
+					BorderBrush="White"
+					BorderThickness="2"
+					Padding="5"
+					Background="#1F1F34" >
+				<DataGrid Grid.Row="0"
+						  Padding="50"
+						  AlternatingRowBackground="#252539"
+						  Items="{Binding Jobs}">
+					<DataGrid.Columns>
+						<DataGridTemplateColumn Header="Select" >
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<CheckBox HorizontalAlignment="Center"
+											  IsChecked="{Binding IsChecked}"/>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>             
+						<DataGridTextColumn Header="Name" 
+											Binding="{Binding Name}" 
+											IsReadOnly="True"
+											Width="2*" />
+						<DataGridTextColumn Header="Source" 
+											Binding="{Binding SourcePath}" 
+											IsReadOnly="True"
+											Width="4*" />
+						<DataGridTextColumn Header="Destination" 
+											Binding="{Binding DestinationPath}" 
+											IsReadOnly="True"
+											Width="4*" />
+						<DataGridTextColumn Header="Status" 
+											Binding="{Binding Status}" 
+											IsReadOnly="True"
+											Width="*" />
+						<DataGridTextColumn Header="Progress" 
+											Binding="{Binding Progression}" 
+											IsReadOnly="True"
+											Width="*" />
+					</DataGrid.Columns>
+				</DataGrid>
+				</Border>
+
+				<Grid Grid.Row="1" Background="#0F0F2D" >
 				<Button FontSize="20"
-					Margin="10"
-					Foreground="White"
-					Background="#FF4C70"
-					Content="Select all"
-					CornerRadius="12"
-					Width="150"
-					VerticalContentAlignment="Center"
-					HorizontalContentAlignment="Center"
-					HorizontalAlignment="Center"
-					VerticalAlignment="Center"
-					/>
+				        Margin="10"
+						Foreground="White"
+						Background="#FF4C70"
+						Content="{x:Static p:Resources.select_all}"
+						CornerRadius="12"
+						Width="200"
+						VerticalContentAlignment="Center"
+						HorizontalContentAlignment="Center"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Command="{Binding OnClickSelectAll}"
+						/>
+					<ComboBox x:Name="colorComboBox" SelectionChanged="ColorComboBox_SelectionChanged" Margin="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" SelectedIndex="0">
+						<ComboBoxItem Name="-">-</ComboBoxItem>
+						<ComboBoxItem Name="fr">FR</ComboBoxItem>
+						<ComboBoxItem Name="en">EN</ComboBoxItem>
+					</ComboBox>
 				</Grid>
 			</Grid>
 		</Grid>

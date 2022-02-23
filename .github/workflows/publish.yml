@@ -5,8 +5,6 @@ on:
     branches: [ master ]
     tags:
       - v*
-#  pull_request:
-#    branches: [ master ]
 
 jobs:
   build-and-publish:
@@ -23,25 +21,31 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+      continue-on-error: true
+    - run: dotnet build --no-restore
+      if: failure()
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      
     - name: Publish linux64
-      run: dotnet publish --self-contained true -r linux-x64 -p:PublishSingleFile=true -c Release
+      run: dotnet publish EasySaveUI/EasySaveUI.csproj -c Release -f netcoreapp3.1 -r linux-x64 -p:PublishSingleFile=true
     - name: Give a diferent name to linux elf executable
-      run: mv EasySaveConsole/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveConsole EasySaveConsole/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveConsole.elf
+      run: mv EasySaveUI/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveUI EasySaveUI/bin/Release/netcoreapp3.1/linux-x64/publish/EasySaveUI.elf
+      
     - name: Publish win64
-      run: dotnet publish --self-contained true -r win-x64 -p:PublishSingleFile=true -c Release
+      run: dotnet publish EasySaveUI/EasySaveUI.csproj -c Release -f netcoreapp3.1 -r win-x64 -p:PublishSingleFile=true    
+    
     - name: Upload a Build Artifact linux
       uses: actions/upload-artifact@v2.3.1
       with:
-        name: hello-world_linux-x64
-        path: EasySaveConsole/bin/Release/netcoreapp3.1/linux-x64/publish/
+        name: EasySaveUi_linux-x64
+        path: EasySaveUI/bin/Release/netcoreapp3.1/linux-x64/publish/
     - name: Upload a Build Artifact windows
       uses: actions/upload-artifact@v2.3.1
       with:
-        name: hello-world_win-x64
-        path: EasySaveConsole/bin/Release/netcoreapp3.1/win-x64/publish/
-        
+        name: EasySaveUi_win-x64
+        path: EasySaveUI/bin/Release/netcoreapp3.1/win-x64/publish/
+          
   cryptosoft-publication:
     runs-on: ubuntu-latest
     
@@ -94,11 +98,11 @@ jobs:
       - name: Get artifact linux
         uses: actions/download-artifact@v2
         with:
-          name: hello-world_linux-x64
+          name: EasySaveUi_linux-x64
       - name: Get artifact win
         uses: actions/download-artifact@v2
         with:
-          name: hello-world_win-x64
+          name: EasySaveUi_win-x64
       - name: Upload Release Asset linux
         id: upload-release-asset
         uses: actions/upload-release-asset@v1

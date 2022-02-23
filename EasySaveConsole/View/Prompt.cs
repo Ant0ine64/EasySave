@@ -43,18 +43,18 @@ namespace EasySaveConsole.View
             {
                 case "0": // shows saving jobs
                     Console.Clear();
-                    promptShowSavingJob(mvm.FetchSavingJob());
+                    promptShowSavingJob(mvm.fetchSavingJobNames());
                     break;                    
                 case "1": // creates a saving job
                     Console.Clear();
-                    promptJobCreation(mvm.FetchSavingJob());
+                    promptJobCreation(mvm.fetchSavingJobNames());
                     break;
                 case "2": // runs a saving job
                     while (promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))) ;
                     break;
                 case "3": // delete logBook 
                     Console.Clear();
-                    while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job, mvm.FetchSavingJob()), mvm.FetchSavingJob())) ;
+                    while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job, mvm.fetchSavingJobNames()), mvm.fetchSavingJobNames())) ;
                     break;
                 case "4": // chooses log file format (.xml /.json)
                     Console.Clear();
@@ -136,7 +136,7 @@ namespace EasySaveConsole.View
                     keepturning = promptExecuteAllSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, arrayMenuYesNo, new string[] { "y", "n" }));  // ask the user if he is sure he wants to execute all saving job
                     break;
                 case "1":
-                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, mvm.FetchSavingJob()), mvm.FetchSavingJob()); // ask the user what work he wants to delete
+                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, mvm.fetchSavingJobNames()), mvm.fetchSavingJobNames()); // ask the user what work he wants to delete
                     break;
                 case "x":
                     break;

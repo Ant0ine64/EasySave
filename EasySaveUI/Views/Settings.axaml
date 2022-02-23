@@ -34,14 +34,14 @@
 			</Grid.RowDefinitions>
 
 			<StackPanel Grid.Row="0">
-				<TextBlock Text="{x:Static p:Resources.logs_files_format}"
+				<TextBlock Text="Resources.logs_files_format"
 						   FontSize="20"
 						   TextAlignment="Center"/>
 
 				<Separator Height="20"
 						   Background="Transparent"/>
 
-				<TextBlock Text="{x:Static p:Resources.choose_the_logs_files_format}"/>
+				<TextBlock Text="choose_the_logs_files_format"/>
 
 				<Separator Height="10"
 						   Background="Transparent"/>
@@ -81,7 +81,7 @@
 			</StackPanel>
 
 			<StackPanel Grid.Row="1">
-				<TextBlock Text="{x:Static p:Resources.cryptosoft_path}"
+				<TextBlock Text="cryptosoft_path"
 						   FontSize="20"
 						   TextAlignment="Center"/>
 
@@ -99,13 +99,13 @@
 						   Background="Transparent"/>
 
 				<Button HorizontalAlignment="Left"
-						Content="{x:Static p:Resources.browse}"
+						Content="browse"
 						Background="Gray"
 						Command="{Binding ElementName=settingsWindow, Path=GetPathExe}"/>
 			</StackPanel>
 
 			<StackPanel Grid.Row="2">
-				<TextBlock Text="{x:Static p:Resources.blocking_softwares}"
+				<TextBlock Text="blocking_softwares"
 						   FontSize="20"
 						   TextAlignment="Center"/>
 

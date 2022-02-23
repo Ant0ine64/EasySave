@@ -11,17 +11,20 @@ namespace EasySaveConsole.Model
     /// <summary>
     /// A job represent a backup work
     /// </summary>
-    public class Job
+    public class Job : ModelBase
     {
         public string Name { get; set; }
         public string SourcePath { get; set; }
         public string DestinationPath { get; set; }
-        public string Status { get; set; }
+        private string status;
+        public string Status { get => status ; set => SetField(ref status, value,  nameof(Status)); }
         public int TotalFilesToCopy { get; set; }
         public int FilesLeftToDo { get; set; } = 0;
         public long TotalFilesSize { get; set; }
         public int Progression { get; set; } = 0;
         public string Type { get; set; } = "c"; //c for complete, d for diferential
+        private bool isChecked = false;
+        public bool IsChecked { get => isChecked ; set => SetField(ref isChecked, value,  nameof(IsChecked)); }
         /// true if you want tu use cryptosoft
         public bool Cipher { get; set; } = false;
 
@@ -32,7 +35,7 @@ namespace EasySaveConsole.Model
         /// <summary>
         /// Contains all the jobs
         /// </summary>
-        private static List<Job> jobs = new List<Job>();
+        public static List<Job> Jobs = new List<Job>();
 
         /// <summary>
         /// Create job.json file if not exists
@@ -68,10 +71,7 @@ namespace EasySaveConsole.Model
             // complete job informations
             job.Complete();
             // add the new job 
-            jobs.Add(job);
-            // Only take last 5 elements : required on version 1
-            if (jobs.Count > 5)
-                jobs = Enumerable.Reverse(jobs).Take(5).Reverse().ToList();
+            Jobs.Add(job);
             
             WriteToJson();
         }
@@ -82,18 +82,18 @@ namespace EasySaveConsole.Model
         private static void WriteToJson()
         {
             // write jobs to json file
-            json = JsonSerializer.Serialize(jobs, new JsonSerializerOptions {WriteIndented = true});
+            json = JsonSerializer.Serialize(Jobs, new JsonSerializerOptions {WriteIndented = true});
             File.WriteAllText(jsonStateFilepath, json);
         }
 
         /// <summary>
         /// Fill jobs static variable with jobs from json
         /// </summary>
-        private static void GetFromJson()
+        public static void GetFromJson()
         {
             // get existing jobs from json
             string jsonJobs = File.ReadAllText(jsonStateFilepath);
-            jobs = JsonSerializer.Deserialize<List<Job>>(jsonJobs);
+            Jobs = JsonSerializer.Deserialize<List<Job>>(jsonJobs);
         }
 
         /// <summary>
@@ -116,8 +116,8 @@ namespace EasySaveConsole.Model
             GetFromJson();
 
             // find corresponding job (by name) and rewrite it
-            int i = jobs.FindIndex(j => j.Name == job.Name);
-            jobs[i] = job;
+            int i = Jobs.FindIndex(j => j.Name == job.Name);
+            Jobs[i] = job;
             
             WriteToJson();
         }
@@ -131,8 +131,8 @@ namespace EasySaveConsole.Model
             GetFromJson();
 
             // find corresponding job (by name) and delete it
-            int i = jobs.FindIndex(j => j.Name == job.Name);
-            jobs.RemoveAt(i);
+            int i = Jobs.FindIndex(j => j.Name == job.Name);
+            Jobs.RemoveAt(i);
             
             WriteToJson();
         }
@@ -147,7 +147,7 @@ namespace EasySaveConsole.Model
             
             GetFromJson();
 
-            foreach (Job job in jobs)
+            foreach (Job job in Jobs)
             {
                 jobsName.Add(job.Name);
             }
@@ -174,7 +174,7 @@ namespace EasySaveConsole.Model
         /// <returns>corresponding job</returns>
         public static Job? GetJobByName(string jobName)
         {
-            return jobs.Find(j => j.Name == jobName);
+            return Jobs.Find(j => j.Name == jobName);
         }
     }
 }
