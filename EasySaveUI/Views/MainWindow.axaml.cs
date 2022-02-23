@@ -9,8 +9,8 @@ namespace EasySaveUI.Views
         
         public MainWindow()
         {
-          
-            InitializeComponent();
+            
+            InitializeComponent(); 
 #if DEBUG
             this.AttachDevTools();
 #endif

@@ -20,6 +20,7 @@ namespace EasySaveUI.ViewModels
 
         public MainWindowViewModel()
         {
+            
             Jobs = new ObservableCollection<Job>(mvm.fetchSavingJob());
             OnClickCreated = ReactiveCommand.Create(() =>
             {
@@ -30,7 +31,6 @@ namespace EasySaveUI.ViewModels
             LogsButton = ReactiveCommand.Create(() =>
             {
                 LogsWindow logsWindow = new LogsWindow();
-                //logsWindow.Show();
                 updateContent(logsWindow.Content, logsWindow.DataContext);
 
             });

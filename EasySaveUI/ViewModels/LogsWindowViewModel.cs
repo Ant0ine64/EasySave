@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using Avalonia.Controls.ApplicationLifetimes;
+using EasySaveUI.Views;
 
 namespace EasySaveUI.ViewModels
 {
@@ -20,6 +20,7 @@ namespace EasySaveUI.ViewModels
 
         public ICommand ButtonBack { get; set; }
 
+
         public LogsWindowViewModel()
         {
             Logs = new ObservableCollection<string>(fetchLogFiles());
@@ -27,6 +28,13 @@ namespace EasySaveUI.ViewModels
             ButtonLog = ReactiveCommand.Create((string? arg) => 
             {
                 openLogFile(arg);
+            });
+
+            ButtonBack = ReactiveCommand.Create(() =>
+            {
+                MainWindow mainWindow = new MainWindow();
+                updateContent(mainWindow.Content, mainWindow.DataContext);
+                mainWindow.Close();
             });
         }
 

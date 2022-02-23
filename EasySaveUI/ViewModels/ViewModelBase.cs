@@ -1,3 +1,4 @@
+using EasySaveUI.Views;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using ReactiveUI;
@@ -14,9 +15,15 @@ namespace EasySaveUI.ViewModels
         public void updateContent(object content, object dataContext)
         {
             if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                desktop.MainWindow.Content = content;
+            {               
+                
+                if (dataContext==null)
+                {
+                    dataContext = new MainWindowViewModel();
+                }
                 desktop.MainWindow.DataContext = dataContext;
+                desktop.MainWindow.Content = content;
+                
             }
         }
     }

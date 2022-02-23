@@ -13,6 +13,7 @@
 		</Design.DataContext>
 		
 		<StackPanel Background="#0F0F2D">
+			<Button Name ="Back" Content="◀" Command="{Binding ElementName=logsWindow, Path=DataContext.ButtonBack}" Margin="10" Background="#0F0F2D"/>
 			<TextBlock Text="Logs" Margin="0 0 0 20" FontSize="30" Foreground="White" HorizontalAlignment="Center" />
 			<Border Background="#0B0B21" Width="200" Height="300" CornerRadius="10" BorderBrush="White" BorderThickness="2" Margin="5 5 5 5">
 				<DataGrid HorizontalAlignment="Center" Items="{Binding Logs}">
