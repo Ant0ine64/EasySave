@@ -233,4 +233,10 @@
   <data name="start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="cryptosoft_choice" xml:space="preserve">
+    <value>Use CryptoSoft?</value>
+  </data>
+  <data name="password_placeholder" xml:space="preserve">
+    <value>Enter CryptoSoft passord</value>
+  </data>
 </root>

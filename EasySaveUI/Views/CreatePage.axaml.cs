@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using EasySaveUI.ViewModels;
 using System;
+using Avalonia.Interactivity;
 
 namespace EasySaveUI.Views
 {
@@ -28,6 +29,15 @@ namespace EasySaveUI.Views
         {
             AvaloniaXamlLoader.Load(this);
             
+        }
+
+        private void CrytosoftCheckbox_OnChecked(object? sender, RoutedEventArgs e)
+        {
+            if (sender == null)
+                return;
+            var checkbox = (CheckBox) sender;
+            if (checkbox.IsChecked != null)
+                this.Find<TextBox>("CryptoSoftPassword").IsEnabled = (bool) checkbox.IsChecked;
         }
     }
 }
