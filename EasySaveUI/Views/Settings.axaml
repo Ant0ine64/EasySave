@@ -119,7 +119,18 @@
 						CornerRadius="3"
 						HorizontalAlignment="Stretch"
 						VerticalAlignment="Stretch"
-						Padding="50,50,50,190"/>
+						Padding="0">
+
+
+
+					<StackPanel Background="#0F0F2D">
+						<Border Margin="5 5 5 5">
+							<DataGrid HorizontalAlignment="Center" Items="{Binding ElementName=settingsWindow, Path=DataContext.BlockingApp}" AutoGenerateColumns="True">
+								
+							</DataGrid>
+						</Border>
+					</StackPanel>
+				</Border>
 			</StackPanel>
 		</Grid>
 	</StackPanel>

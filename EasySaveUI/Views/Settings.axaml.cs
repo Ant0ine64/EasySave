@@ -13,8 +13,9 @@ namespace EasySaveUI.Views
         public Settings()
         {
             var vm = new SettingsPageViewModel();
-            InitializeComponent();
             DataContext = vm;
+            InitializeComponent();
+            
             vm.SuccessChangedEvent += SuccessChangedEvent;
                 #if DEBUG
             this.AttachDevTools();
