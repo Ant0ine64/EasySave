@@ -4,5 +4,9 @@ namespace EasySaveUI.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {
+        public void updateContent()
+        {
+
+        }
     }
 }

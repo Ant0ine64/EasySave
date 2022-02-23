@@ -86,6 +86,7 @@
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
+					Command="{Binding LogsButton}"
 					/>
 			<Button Width="100"
 					Grid.Row="8"

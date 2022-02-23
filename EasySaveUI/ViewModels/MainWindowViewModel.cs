@@ -5,12 +5,16 @@ using ReactiveUI;
 using System.Windows.Input;
 using EasySaveConsole.Model;
 using EasySaveConsole.ViewModel;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace EasySaveUI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         public ICommand OnClickCreated { get; private set; }
+
+        public ICommand LogsButton { get; private set; }
+
         public MainViewModel mvm = new MainViewModel();
         public ObservableCollection<Job> Jobs { get; set; }
 
@@ -21,6 +25,20 @@ namespace EasySaveUI.ViewModels
             {
                 CreatePage createPage = new CreatePage();
                 createPage.Show();
+            });
+
+            LogsButton = ReactiveCommand.Create(() =>
+            {
+                LogsWindow logsWindow = new LogsWindow();
+                logsWindow.Show();
+                /*if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    desktop.MainWindow.Content = logsWindow.Content;
+                    desktop.MainWindow.DataContext = logsWindow.DataContext;
+
+                }
+                logsWindow.Close();*/
+
             });
         }
     }
