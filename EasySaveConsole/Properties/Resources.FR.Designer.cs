@@ -159,27 +159,27 @@ namespace EasySaveConsole.Properties {
             }
         }
         
-        public static string show_info {
+        public static string change_log_format {
             get {
-                return ResourceManager.GetString("show_info", resourceCulture);
+                return ResourceManager.GetString("change_log_format", resourceCulture);
             }
         }
         
-        public static string show_job {
+        public static string json_log_format {
             get {
-                return ResourceManager.GetString("show_job", resourceCulture);
+                return ResourceManager.GetString("json_log_format", resourceCulture);
             }
         }
         
-        public static string show_log {
+        public static string xml_log_format {
             get {
-                return ResourceManager.GetString("show_log", resourceCulture);
+                return ResourceManager.GetString("xml_log_format", resourceCulture);
             }
         }
         
-        public static string show_state {
+        public static string show_saving_jobs {
             get {
-                return ResourceManager.GetString("show_state", resourceCulture);
+                return ResourceManager.GetString("show_saving_jobs", resourceCulture);
             }
         }
         
@@ -216,6 +216,18 @@ namespace EasySaveConsole.Properties {
         public static string perm_error {
             get {
                 return ResourceManager.GetString("perm_error", resourceCulture);
+            }
+        }
+        
+        public static string log_file_path {
+            get {
+                return ResourceManager.GetString("log_file_path", resourceCulture);
+            }
+        }
+        
+        public static string no_saving_job {
+            get {
+                return ResourceManager.GetString("no_saving_job", resourceCulture);
             }
         }
         

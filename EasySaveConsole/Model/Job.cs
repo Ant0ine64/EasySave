@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -9,6 +8,9 @@ using EasySaveConsole.Properties;
 namespace EasySaveConsole.Model
 {
 
+    /// <summary>
+    /// A job represent a backup work
+    /// </summary>
     public class Job : ModelBase
     {
         public string Name { get; set; }
@@ -23,17 +25,24 @@ namespace EasySaveConsole.Model
         public string Type { get; set; } = "c"; //c for complete, d for diferential
         private bool isChecked = false;
         public bool IsChecked { get => isChecked ; set => SetField(ref isChecked, value,  nameof(IsChecked)); }
+        /// true if you want tu use cryptosoft
+        public bool Cipher { get; set; } = false;
 
         public static string jsonStateDirectory;
         public static string jsonStateFilepath;
 
         private static string json;
+        /// <summary>
+        /// Contains all the jobs
+        /// </summary>
         public static List<Job> Jobs = new List<Job>();
 
+        /// <summary>
+        /// Create job.json file if not exists
+        /// </summary>
         public Job()
         {
             jsonStateDirectory = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave");
-            Debug.WriteLine("path " + jsonStateDirectory);
             string fileName = "jobs.json";
             jsonStateFilepath = Path.Join(jsonStateDirectory, fileName);
             try
@@ -51,7 +60,11 @@ namespace EasySaveConsole.Model
             }
         }
 
-        public static bool Add(Job job)
+        /// <summary>
+        /// Add job to json state file
+        /// </summary>
+        /// <param name="job">instance to add into json</param>
+        public static void Add(Job job)
         {
             GetFromJson();
 
@@ -59,15 +72,13 @@ namespace EasySaveConsole.Model
             job.Complete();
             // add the new job 
             Jobs.Add(job);
-            // Only take last 5 elements : required on version 1
-            if (Jobs.Count > 5)
-                Jobs = Enumerable.Reverse(Jobs).Take(5).Reverse().ToList();
             
             WriteToJson();
-            
-            return true;
         }
 
+        /// <summary>
+        /// Write jobs static variable to json
+        /// </summary>
         private static void WriteToJson()
         {
             // write jobs to json file
@@ -75,6 +86,9 @@ namespace EasySaveConsole.Model
             File.WriteAllText(jsonStateFilepath, json);
         }
 
+        /// <summary>
+        /// Fill jobs static variable with jobs from json
+        /// </summary>
         public static void GetFromJson()
         {
             // get existing jobs from json
@@ -82,6 +96,9 @@ namespace EasySaveConsole.Model
             Jobs = JsonSerializer.Deserialize<List<Job>>(jsonJobs);
         }
 
+        /// <summary>
+        /// Complete your job attributes (fill TotalFilesToCopy and TotalFilesSize)
+        /// </summary>
         private void Complete()
         {
             var files = Directory.GetFiles(this.SourcePath, "*", SearchOption.AllDirectories);
@@ -90,6 +107,10 @@ namespace EasySaveConsole.Model
 
         }
 
+        /// <summary>
+        /// Update your job in the json
+        /// </summary>
+        /// <param name="job">Job you want to update</param>
         public static void Update(Job job)
         {
             GetFromJson();
@@ -101,6 +122,10 @@ namespace EasySaveConsole.Model
             WriteToJson();
         }
 
+        /// <summary>
+        /// Delete your job in the json
+        /// </summary>
+        /// <param name="job">Job you want to delete</param>
         public static void Delete(Job job)
         {
             GetFromJson();
@@ -112,10 +137,10 @@ namespace EasySaveConsole.Model
             WriteToJson();
         }
 
-        /**
-         * Usage example :
-         *  Job.GetAllJobNames().ForEach(Console.WriteLine);
-         */
+        /// <summary>
+        /// Usage example : Job.GetAllJobNames().ForEach(Console.WriteLine);
+        /// </summary>
+        /// <returns>Names of all the jobs</returns>
         public static List<string> GetAllJobNames()
         {
             List<string> jobsName = new List<string>();
@@ -130,6 +155,9 @@ namespace EasySaveConsole.Model
             return jobsName;
         }
 
+        /// <summary>
+        /// Update FilesLeftTdo and Progression of your instance and write it to json
+        /// </summary>
         public void UpdateProgression()
         {
             var sourceFiles = Directory.GetFiles(this.SourcePath, "*", SearchOption.AllDirectories).Count();
@@ -139,6 +167,11 @@ namespace EasySaveConsole.Model
             Update(this);
         }
 
+        /// <summary>
+        /// Find a job by its name
+        /// </summary>
+        /// <param name="jobName">Name of the job</param>
+        /// <returns>corresponding job</returns>
         public static Job? GetJobByName(string jobName)
         {
             return Jobs.Find(j => j.Name == jobName);
