@@ -30,14 +30,8 @@ namespace EasySaveUI.ViewModels
             LogsButton = ReactiveCommand.Create(() =>
             {
                 LogsWindow logsWindow = new LogsWindow();
-                logsWindow.Show();
-                /*if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-                {
-                    desktop.MainWindow.Content = logsWindow.Content;
-                    desktop.MainWindow.DataContext = logsWindow.DataContext;
-
-                }
-                logsWindow.Close();*/
+                //logsWindow.Show();
+                updateContent(logsWindow.Content, logsWindow.DataContext);
 
             });
         }
