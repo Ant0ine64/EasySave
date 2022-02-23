@@ -10,16 +10,40 @@ using Avalonia.Controls;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using EasySaveConsole.ViewModel;
+using Avalonia.Data.Converters;
+using System.Globalization;
+using Avalonia.Data;
+using EasySaveUI.Enum;
 
 namespace EasySaveUI.ViewModels
 {
-   public class CreatePageViewModel : ViewModelBase, INotifyPropertyChanged
+   
+    public class CreatePageViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        SaveType saveType { get; set; }
+
+      
+
         private MainViewModel mvm = new MainViewModel();
+        public Action CloseAction { get; set; }
+
         public ICommand OnClickBrowseFiles { get; private set; }
         public ICommand OnClickBrowseFolder { get; private set; }
         public ICommand OnClickCreate { get; private set; }
+        public bool errormessage { get;  set; }
         string type = "";
+
+        private bool errorMessage;
+        public bool ErrorMessage
+        {
+            get { return errormessage; }
+            set
+            {
+                errorMessage = value;
+                RaisePropertyChanged("ErrorMessage");
+            }
+        }
+
         public CreatePageViewModel()
         {
             OnClickBrowseFiles = ReactiveCommand.Create( async () => {
@@ -31,16 +55,38 @@ namespace EasySaveUI.ViewModels
                 string _path = await GetPathFolder();
             });
             OnClickCreate = ReactiveCommand.Create(async () => {
-
-               
+                CreatePage createPage = new CreatePage();
+                string typeSave;
                 Debug.WriteLine(saveName);
                 Debug.WriteLine(myValueSource);
                 Debug.WriteLine(myValueDest);
-                Debug.WriteLine(type);
-                mvm.CreateSavingJob(saveName, myValueSource, myValueDest, "test");
+                Debug.WriteLine(saveType);
+                if (saveName == null || myValueSource == null || myValueDest == null)
+                {
+
+                    Debug.WriteLine("errormessage");
+                    errorMessage = true;
+                    Debug.WriteLine(errormessage);
+                   
+                }
+                else
+                {
+                    if (saveType == SaveType.Complete)
+                    {
+                        typeSave = "c";
+                    }
+                    else
+                    {
+                        typeSave = "d";
+                    }
+
+                    mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave);
+                }
+               
 
             });
         }
+       
 
 
 
@@ -110,4 +156,5 @@ namespace EasySaveUI.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }
+   
 }

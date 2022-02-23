@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -29,6 +30,7 @@ namespace EasySaveConsole.Model
         public Job()
         {
             jsonStateDirectory = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave");
+            Debug.WriteLine("path " + jsonStateDirectory);
             string fileName = "jobs.json";
             jsonStateFilepath = Path.Join(jsonStateDirectory, fileName);
             try

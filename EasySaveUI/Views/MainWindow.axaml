@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:EasySaveUI.ViewModels"
+		xmlns:p="using:EasySaveConsole.Properties"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -18,7 +19,7 @@
 			<ColumnDefinition Width="200"/>
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
-		<Border BorderBrush="Black" BorderThickness="0 0 6 0"> 
+		<Border BorderBrush="Black" BorderThickness="0 0 20 0"> 
 		<Grid Background="#0F0F2D"
 			  Grid.ColumnSpan="1">
 			<Grid.RowDefinitions>
@@ -36,10 +37,11 @@
 
 
 			<Button Width="100"
+					Name=""
 					Grid.Row="1"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Create"
+					Content="{x:Static p:Resources.create}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -50,7 +52,7 @@
 					Grid.Row="2"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Delete"
+					Content="{x:Static p:Resources.delete}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -60,7 +62,7 @@
 					Grid.Row="3"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Start"
+					Content="{x:Static p:Resources.start}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -70,7 +72,7 @@
 					Grid.Row="4"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Decrypt"
+					Content="{x:Static p:Resources.decrypt}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -81,7 +83,7 @@
 					Grid.Row="7"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Logs"
+					Content="{x:Static p:Resources.logs}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -91,7 +93,7 @@
 					Grid.Row="8"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Settings"
+					Content="{x:Static p:Resources.settings}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
@@ -117,15 +119,26 @@
 					Margin="10"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Select all"
+					Content="{x:Static p:Resources.select_all}"
 					CornerRadius="12"
-					Width="150"
+					Width="200"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
 					VerticalAlignment="Center"
 					/>
+					<ComboBox x:Name="colorComboBox" SelectionChanged="ColorComboBox_SelectionChanged" Margin="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" SelectedIndex="0">
+						<ComboBoxItem Name="-">-</ComboBoxItem>
+						<ComboBoxItem Name="fr">FR</ComboBoxItem>
+						<ComboBoxItem Name="en">EN</ComboBoxItem>
+					</ComboBox>
 				</Grid>
+				
+				<Grid>
+				<ListBox Grid.Row="1" Margin="10" Name="lvDataBinding">
+					
+				</ListBox>
+			</Grid>
 			</Grid>
 		</Grid>
 	</Grid>
