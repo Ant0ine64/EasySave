@@ -85,5 +85,4 @@
 					HorizontalAlignment="Center"
 					/>
 		</StackPanel>
-		<!-- </Grid> -->
 </Window>

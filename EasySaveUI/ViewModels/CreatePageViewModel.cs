@@ -21,18 +21,13 @@ namespace EasySaveUI.ViewModels
     public class CreatePageViewModel : ViewModelBase, INotifyPropertyChanged
     {
         SaveType saveType { get; set; }
-
-      
-
         private MainViewModel mvm = new MainViewModel();
         public Action CloseAction { get; set; }
-
         public ICommand OnClickBrowseFiles { get; private set; }
         public ICommand OnClickBrowseFolder { get; private set; }
         public ICommand OnClickCreate { get; private set; }
         public bool errormessage { get;  set; }
         string type = "";
-
         private bool errorMessage;
         public bool ErrorMessage
         {
@@ -43,53 +38,6 @@ namespace EasySaveUI.ViewModels
                 RaisePropertyChanged("ErrorMessage");
             }
         }
-
-        public CreatePageViewModel()
-        {
-            OnClickBrowseFiles = ReactiveCommand.Create( async () => {
-               
-                string _path = await GetPathFiles();
-            });
-            OnClickBrowseFolder = ReactiveCommand.Create(async () => {
-
-                string _path = await GetPathFolder();
-            });
-            OnClickCreate = ReactiveCommand.Create(async () => {
-                CreatePage createPage = new CreatePage();
-                string typeSave;
-                Debug.WriteLine(saveName);
-                Debug.WriteLine(myValueSource);
-                Debug.WriteLine(myValueDest);
-                Debug.WriteLine(saveType);
-                if (saveName == null || myValueSource == null || myValueDest == null)
-                {
-
-                    Debug.WriteLine("errormessage");
-                    errorMessage = true;
-                    Debug.WriteLine(errormessage);
-                   
-                }
-                else
-                {
-                    if (saveType == SaveType.Complete)
-                    {
-                        typeSave = "c";
-                    }
-                    else
-                    {
-                        typeSave = "d";
-                    }
-
-                    mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave);
-                }
-               
-
-            });
-        }
-       
-
-
-
         private string myValueSource;
         public string ValueSource
         {
@@ -110,6 +58,42 @@ namespace EasySaveUI.ViewModels
                 RaisePropertyChanged("SaveNameField");
             }
         }
+        private string myValueDest;
+        public string ValueDestination
+        {
+            get { return myValueDest; }
+            set
+            {
+                myValueDest = value;
+                RaisePropertyChanged("ValueDestination");
+            }
+        }
+
+        public CreatePageViewModel()
+        {
+            OnClickBrowseFiles = ReactiveCommand.Create( async () => { string _path = await GetPathFiles(); });
+            OnClickBrowseFolder = ReactiveCommand.Create(async () => { string _path = await GetPathFolder(); });
+            
+            OnClickCreate = ReactiveCommand.Create(async () => {
+                // CreatePage createPage = new CreatePage();
+                Debug.WriteLine(saveName);
+                Debug.WriteLine(myValueSource);
+                Debug.WriteLine(myValueDest);
+                Debug.WriteLine(saveType);
+                if (saveName == null || myValueSource == null || myValueDest == null)
+                {
+                    Debug.WriteLine("errormessage");
+                    errorMessage = true;
+                    Debug.WriteLine(errormessage);
+                }
+                else
+                {
+                    var typeSave = saveType == SaveType.Complete ? "c" : "d";
+                    mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave);
+                }
+            });
+        }
+       
         public async Task<string> GetPathFiles()
         {
             var dialogFolderSource = new OpenFolderDialog();
@@ -122,20 +106,8 @@ namespace EasySaveUI.ViewModels
             }
 
             return result;
-
-          
         }
 
-        private string myValueDest;
-        public string ValueDestination
-        {
-            get { return myValueDest; }
-            set
-            {
-                myValueDest = value;
-                RaisePropertyChanged("ValueDestination");
-            }
-        }
         public async Task<string> GetPathFolder()
         {
             var dialogFolderDest = new OpenFolderDialog();
@@ -149,6 +121,7 @@ namespace EasySaveUI.ViewModels
 
             return result;
         }
+        
         private void RaisePropertyChanged(string propName)
         {
             if (PropertyChanged != null)
