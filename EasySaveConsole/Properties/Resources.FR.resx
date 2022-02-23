@@ -234,4 +234,7 @@
   <data name="start" xml:space="preserve">
     <value>Démarrer</value>
   </data>
+  <data name="error_create" xml:space="preserve">
+    <value>Tous les champs doivent etres remplis pour créer une sauvegarde</value>
+  </data>
 </root>

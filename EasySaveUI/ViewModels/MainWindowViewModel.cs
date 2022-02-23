@@ -33,15 +33,11 @@ namespace EasySaveUI.ViewModels
             {
                 CreatePage createPage = new CreatePage();
                 createPage.Show();
+
             });
            
         }
-        private void ColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Add "using Windows.UI;" for Color and Colors.
-            string colorName = e.AddedItems[0].ToString();
-            Debug.WriteLine(colorName);
-        }
+        
 
     }
 }

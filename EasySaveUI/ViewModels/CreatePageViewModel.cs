@@ -22,7 +22,7 @@ namespace EasySaveUI.ViewModels
     {
         SaveType saveType { get; set; }
 
-      
+        
 
         private MainViewModel mvm = new MainViewModel();
         public Action CloseAction { get; set; }
@@ -30,63 +30,81 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickBrowseFiles { get; private set; }
         public ICommand OnClickBrowseFolder { get; private set; }
         public ICommand OnClickCreate { get; private set; }
-        public bool errormessage { get;  set; }
-        string type = "";
-
-        private bool errorMessage;
-        public bool ErrorMessage
-        {
-            get { return errormessage; }
-            set
-            {
-                errorMessage = value;
-                RaisePropertyChanged("ErrorMessage");
-            }
-        }
-
+        bool result;
+       
         public CreatePageViewModel()
         {
             OnClickBrowseFiles = ReactiveCommand.Create( async () => {
                
                 string _path = await GetPathFiles();
             });
-            OnClickBrowseFolder = ReactiveCommand.Create(async () => {
+            OnClickBrowseFolder = ReactiveCommand.Create(async ()  => {
 
                 string _path = await GetPathFolder();
             });
-            OnClickCreate = ReactiveCommand.Create(async () => {
+            OnClickCreate = ReactiveCommand.Create( () =>
+            {
                 CreatePage createPage = new CreatePage();
+
                 string typeSave;
                 Debug.WriteLine(saveName);
                 Debug.WriteLine(myValueSource);
                 Debug.WriteLine(myValueDest);
                 Debug.WriteLine(saveType);
+
                 if (saveName == null || myValueSource == null || myValueDest == null)
                 {
-
-                    Debug.WriteLine("errormessage");
-                    errorMessage = true;
-                    Debug.WriteLine(errormessage);
-                   
+                    CreatePage.resultError = true;                 
+                    Debug.WriteLine("true");
                 }
+
                 else
                 {
+                    CreatePage.resultError = false;
+                    Debug.WriteLine("save crée");
                     if (saveType == SaveType.Complete)
-                    {
                         typeSave = "c";
-                    }
                     else
-                    {
                         typeSave = "d";
-                    }
+
 
                     mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave);
+                    Debug.WriteLine("false");
+                    this.CloseAction();
                 }
-               
-
             });
         }
-       
+
+       /*public bool OnClickCreate()
+            {
+          
+            string typeSave;
+            Debug.WriteLine(saveName);
+            Debug.WriteLine(myValueSource);
+            Debug.WriteLine(myValueDest);
+            Debug.WriteLine(saveType);
+
+            if (saveName == null || myValueSource == null || myValueDest == null)
+            {
+                return false;
+                Debug.WriteLine("false");
+            }
+            
+            else
+            {
+                Debug.WriteLine("save crée");
+                if (saveType == SaveType.Complete)              
+                    typeSave = "c";           
+                else 
+                    typeSave = "d";
+                
+
+                mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave);
+                  Debug.WriteLine("false");
+                return true;
+            }
+        }*/
+
 
 
 

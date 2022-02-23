@@ -214,6 +214,15 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à All fields must be completed to create a backup.
+        /// </summary>
+        public static string error_create {
+            get {
+                return ResourceManager.GetString("error_create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The destination or source directory doesn&apos;t exists..
         /// </summary>
         public static string error_directory_path {

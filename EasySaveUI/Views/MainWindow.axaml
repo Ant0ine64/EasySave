@@ -37,7 +37,7 @@
 
 
 			<Button Width="100"
-					Name=""
+					Name="create"
 					Grid.Row="1"
 					Foreground="White"
 					Background="#FF4C70"
@@ -49,6 +49,7 @@
 					Command="{Binding OnClickCreated}"
 					/>
 			<Button Width="100"
+					Name="delete"
 					Grid.Row="2"
 					Foreground="White"
 					Background="#FF4C70"
@@ -59,6 +60,7 @@
 					HorizontalAlignment="Center"
 					/>
 			<Button Width="100"
+					Name="start"
 					Grid.Row="3"
 					Foreground="White"
 					Background="#FF4C70"
@@ -69,6 +71,7 @@
 					HorizontalAlignment="Center"
 					/>
 			<Button Width="100"
+					Name="decrypt"
 					Grid.Row="4"
 					Foreground="White"
 					Background="#FF4C70"
@@ -81,6 +84,7 @@
 			
 			<Button Width="100"
 					Grid.Row="7"
+					Name="logs"
 					Foreground="White"
 					Background="#FF4C70"
 					Content="{x:Static p:Resources.logs}"
@@ -90,6 +94,7 @@
 					HorizontalAlignment="Center"
 					/>
 			<Button Width="100"
+					Name="settings"
 					Grid.Row="8"
 					Foreground="White"
 					Background="#FF4C70"
@@ -117,6 +122,7 @@
 				<Grid Grid.Row="5" Background="#0F0F2D" >
 				<Button FontSize="20"
 					Margin="10"
+					Name="add_all"
 					Foreground="White"
 					Background="#FF4C70"
 					Content="{x:Static p:Resources.select_all}"

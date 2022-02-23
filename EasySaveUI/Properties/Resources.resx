@@ -192,4 +192,7 @@
   <data name="file_transfered" xml:space="preserve">
     <value>File transfered : </value>
   </data>
+  <data name="error_create" xml:space="preserve">
+    <value>All fields must be completed to create a backup</value>
+  </data>
 </root>

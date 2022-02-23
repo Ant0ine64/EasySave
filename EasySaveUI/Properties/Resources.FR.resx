@@ -195,4 +195,7 @@
   <data name="file_transfered" xml:space="preserve">
     <value>Fichier transfèré : </value>
   </data>
+  <data name="error_create" xml:space="preserve">
+    <value>Tous les champs doivent etres remplis pour créer une sauvegarde</value>
+  </data>
 </root>

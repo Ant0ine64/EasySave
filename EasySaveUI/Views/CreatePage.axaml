@@ -30,7 +30,7 @@
 				<RowDefinition/>
 			</Grid.RowDefinitions>
 			<StackPanel Grid.Row="1" Margin="20">
-			<TextBlock Text="{x:Static p:Resources.create_saving_job}"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			<TextBlock Name="create" Text="{x:Static p:Resources.create_saving_job}"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			
 			
 		</StackPanel>
@@ -65,7 +65,10 @@
 			
 			<Button Width="100"
 					Grid.Row="6"
+					Name="createBtn"
 					Command="{Binding OnClickCreate}"
+					
+					Click="errorMessage"
 					Foreground="White"
 					Background="#FF4C70"
 					Content="{x:Static p:Resources.create}"
@@ -74,5 +77,12 @@
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
 					/>
+			<TextBlock IsVisible="false" 
+					   HorizontalAlignment="Center" 
+					   VerticalAlignment="Center" 
+					   Foreground="red" 
+					   Name="errorLabel" 
+					   Grid.Row="7" 
+					   Text="{x:Static p:Resources.error_create}" />
 		</Grid>
 </Window>
