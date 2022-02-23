@@ -43,14 +43,14 @@ namespace EasySaveConsole.View
             {
                 case "0": // creates a saving job
                     Console.Clear();
-                    promptJobCreation(mvm.fetchSavingJob());
+                    promptJobCreation(mvm.fetchSavingJobNames());
                     break;
                 case "1": // runs a saving job
                     while (promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))) ;
                     break;
                 case "2": // deletes a saving job
                     Console.Clear();
-                    while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job, mvm.fetchSavingJob()), mvm.fetchSavingJob())) ;
+                    while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job, mvm.fetchSavingJobNames()), mvm.fetchSavingJobNames())) ;
                     break;
                 case "3": // opens logBook 
                     Console.Clear();
@@ -62,7 +62,7 @@ namespace EasySaveConsole.View
                     break;
                 case "5":
                     Console.Clear();
-                    promptShowSavingJob(mvm.fetchSavingJob());
+                    promptShowSavingJob(mvm.fetchSavingJobNames());
                     break;
                 case "x": // leaves the App
                     keepTurning = false;
@@ -136,7 +136,7 @@ namespace EasySaveConsole.View
                     keepturning = promptExecuteAllSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, arrayMenuYesNo, new string[] { "y", "n" }));  // ask the user if he is sure he wants to execute all saving job
                     break;
                 case "1":
-                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, mvm.fetchSavingJob()), mvm.fetchSavingJob()); // ask the user what work he wants to delete
+                    keepturning = promptExecuteOneSavingJob(makeMenu(Properties.Resources.confirm_execute_all_saving_job, mvm.fetchSavingJobNames()), mvm.fetchSavingJobNames()); // ask the user what work he wants to delete
                     break;
                 case "x":
                     break;

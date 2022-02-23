@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace EasySaveConsole.ViewModel
 {
@@ -16,14 +17,23 @@ namespace EasySaveConsole.ViewModel
         public void StartSavingJob(string jobName)
         {
             job = Job.GetJobByName(jobName);
+            StartSavingJob(job);
+        }
+
+        public async Task StartSavingJob(Job job)
+        {
             job.Status = "ACTIVE";
             Job.Update(job);
+            var rand = new Random();
+            ;
+            await Task.Delay(rand.Next(2000, 5000));
 
             LogFile.CreateFile();
-            
-            if(job.Type == "d")
+
+            if (job.Type == "d")
             {
-                try {
+                try
+                {
                     DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
                     DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
                     save.copyFilesPartialSave(infosSourceDir, infosDestDir, job);
@@ -46,6 +56,7 @@ namespace EasySaveConsole.ViewModel
                     Console.WriteLine(Properties.Resources.error_directory_path);
                 }
             }
+
             // write log file
             job.Status = "END";
             Job.Update(job);
@@ -73,13 +84,19 @@ namespace EasySaveConsole.ViewModel
             Thread.CurrentThread.CurrentCulture = culture;
         }
 
-        public string[] fetchSavingJob()
+        public string[] fetchSavingJobNames()
         {
             string[] arrayJobsName;
             // List<string> listJobsName = new List<string>(new string[] { "Saving job 0", "Saving job 1", "Saving job 2" }); // uniquement pour tester la fonction, � supprimer avant le merge
             List<string> listJobsName = Job.GetAllJobNames();
             arrayJobsName = listJobsName.ToArray();
             return arrayJobsName;
+        }
+
+        public IEnumerable<Job> fetchSavingJob()
+        {
+            Job.GetFromJson();
+            return Job.Jobs;
         }
 
         public void deleteSavingJob(string name)
