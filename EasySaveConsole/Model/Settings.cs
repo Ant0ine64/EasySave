@@ -12,7 +12,16 @@ namespace EasySaveConsole.Model
         public string Lang { get; set; } = "fr-FR";
         public string LogFormat { get; set; } = "json";
         public static Settings Instance { get; set; }
-        public List<string> BlockingApp { get; set; } = new List<string>();
+        private List<string> blockingApp = new List<string>();
+        public List<string> BlockingApp
+        {
+            get =>
+                blockingApp;
+            set =>
+                SetField(ref blockingApp,
+                    value,
+                    nameof(BlockingApp));
+        }
 
         public static string SettingsFile;
         

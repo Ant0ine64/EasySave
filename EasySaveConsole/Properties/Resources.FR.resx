@@ -246,4 +246,16 @@
   <data name="password_placeholder" xml:space="preserve">
     <value>Entrer le mot de passe CryptoSoft</value>
   </data>
+  <data name="blocking_softwares" xml:space="preserve">
+    <value>Logiciels bloquants</value>
+  </data>
+  <data name="choose_the_logs_files_format" xml:space="preserve">
+    <value>Choisissez le format des fichier logs</value>
+  </data>
+  <data name="cryptosoft_path" xml:space="preserve">
+    <value>Chemin de CryptoSoft</value>
+  </data>
+  <data name="logs_files_format" xml:space="preserve">
+    <value>Format des fichier logs</value>
+  </data>
 </root>
