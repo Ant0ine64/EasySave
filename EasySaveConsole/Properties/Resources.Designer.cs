@@ -159,7 +159,7 @@ namespace EasySaveConsole.Properties {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The destination or source directory doesn&apos;t exists..
         /// </summary>
-        public static string error_directory_path {
+        public static string no {
             get {
                 return ResourceManager.GetString("no", resourceCulture);
             }
