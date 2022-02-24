@@ -26,6 +26,7 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickBrowseFiles { get; private set; }
         public ICommand OnClickBrowseFolder { get; private set; }
         public ICommand OnClickCreate { get; private set; }
+        public ICommand OnClickBack { get; set; }
         public bool errormessage { get; set; }
         string type = "";
         private bool errorMessage;
@@ -112,7 +113,13 @@ namespace EasySaveUI.ViewModels
                     mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave, "TODO", cryptosoft);
                     Debug.WriteLine("false");
                     this.CloseAction();
+                    updateContent();
                 }
+            });
+
+            OnClickBack = ReactiveCommand.Create(() =>
+            {
+                updateContent();
             });
         }
 

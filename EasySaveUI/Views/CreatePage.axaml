@@ -1,96 +1,95 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:vm="using:EasySaveUI.ViewModels"
-		xmlns:p="using:EasySaveConsole.Properties"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="EasySaveUI.Views.CreatePage"
-		xmlns:converter="using:EasySaveUI.Converter"
-        Title="New Save"
-        Background="#0F0F2D">
-	<Window.Resources>
-		<converter:EnumBooleanConverter x:Key="enumBooleanConverter" />
-	</Window.Resources>
-    <Design.DataContext>
-        <vm:CreatePageViewModel/>
-    </Design.DataContext>
-	
-			<StackPanel Margin="20">
-			
-			<TextBlock Text="{x:Static p:Resources.create_saving_job}"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-			
-			<TextBlock Text="{x:Static p:Resources.enter_job_name}" Foreground="White"/>
-			<Separator Height="10" Background="Transparent"/>
-			<TextBox  Name="TextBlockName" Text="{Binding Path=SaveNameField}" />
-			 
-			<Separator Height="40" Background="Transparent"/>
-			
-			<TextBlock Text="{x:Static p:Resources.enter_source_path}" Foreground="White"/>
-			<Separator Height="10" Background="Transparent"/>
-			<TextBox  Name="TextBlockSource" Text="{Binding Path=ValueSource}" />
-			<Separator Height="5" Background="Transparent"/>
-			<Button Content="{x:Static p:Resources.browse}"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFiles}"/>
-			
-			<Separator Height="40" Background="Transparent"/>
+	<Window xmlns="https://github.com/avaloniaui"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			xmlns:vm="using:EasySaveUI.ViewModels"
+			xmlns:p="using:EasySaveConsole.Properties"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			x:Class="EasySaveUI.Views.CreatePage"
+			xmlns:converter="using:EasySaveUI.Converter"
+			Title="New Save" >
+		<Window.Resources>
+			<converter:EnumBooleanConverter x:Key="enumBooleanConverter" />
+		</Window.Resources>
+		<Design.DataContext>
+			<vm:CreatePageViewModel/>
+		</Design.DataContext>
 		
-			<TextBlock Text="{x:Static p:Resources.enter_destination_path}" Foreground="White"/>
-			<Separator Height="10" Background="Transparent"/>
-			<TextBox Name="TextBlockDestination" Text="{Binding Path=ValueDestination}"/>
-			<Separator Height="5" Background="Transparent"/>
-			<Button Content="{x:Static p:Resources.browse}"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFolder}" />
-			
-			<Separator Height="40" Background="Transparent"/>
-			
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
-				
-				<StackPanel Grid.Column="0" Margin="20">
-					<TextBlock Text="{x:Static p:Resources.enter_job_type}" Foreground="White"/>
-					<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Partial}" Content="{x:Static p:Resources.diferential}"></RadioButton>
-					<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Complete}" Content="{x:Static p:Resources.complete}"></RadioButton>	
-				</StackPanel>
-				
-				<StackPanel Grid.Column="1"
-				            Orientation="Horizontal"
-				            Margin="20">
-					<TextBlock Text="{x:Static p:Resources.cryptosoft_choice }"
-					           VerticalAlignment="Center"
-					           Foreground="White"/>
-					<Separator Width="20" Background="Transparent"/>
-					<!-- <StackPanel Orientation="Horizontal"> -->
-						<CheckBox Name="CrytosoftCheckbox"
-						          IsChecked="{Binding Cryptosoft}"
-						          Checked="CrytosoftCheckbox_OnChecked"
-						          Unchecked="CrytosoftCheckbox_OnChecked"/>
-					<!-- </StackPanel> -->
-				</StackPanel>
-			</Grid>
-			<StackPanel>
-			<Button Width="100"
-					Grid.Row="1"
-					Command="{Binding OnClickCreate}"
+				<StackPanel Background="#0F0F2D">
+					<Button Name ="Back" Content="◀" Command="{Binding OnClickBack}" Margin="10" Background="#0F0F2D"/>
+					<StackPanel Margin="20 0 20 20">
+						<TextBlock Text="{x:Static p:Resources.create_saving_job}"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+						
+						<TextBlock Text="{x:Static p:Resources.enter_job_name}" Foreground="White"/>
+						<Separator Height="10" Background="Transparent"/>
+						<TextBox  Name="TextBlockName" Text="{Binding Path=SaveNameField}" />
+						 
+						<Separator Height="40" Background="Transparent"/>
+						
+						<TextBlock Text="{x:Static p:Resources.enter_source_path}" Foreground="White"/>
+						<Separator Height="10" Background="Transparent"/>
+						<TextBox  Name="TextBlockSource" Text="{Binding Path=ValueSource}" />
+						<Separator Height="5" Background="Transparent"/>
+						<Button Content="{x:Static p:Resources.browse}"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFiles}"/>
+						
+						<Separator Height="40" Background="Transparent"/>
 					
-					Click="errorMessage"
-					Foreground="White"
-					Background="#FF4C70"
-					Content="{x:Static p:Resources.create}"
-					CornerRadius="12"
-					VerticalContentAlignment="Center"
-					HorizontalContentAlignment="Center"
-					HorizontalAlignment="Center"
-					/>
-			<TextBlock IsVisible="false" 
-					   Margin="0 10 0 0"
-					   HorizontalAlignment="Center" 
-					   VerticalAlignment="Center" 
-					   Foreground="red" 
-					   Name="errorLabel" 
-					   Grid.Row="7" 
-					   Text="{x:Static p:Resources.error_create}" />
-			</StackPanel>
-			</StackPanel>
-</Window>
+						<TextBlock Text="{x:Static p:Resources.enter_destination_path}" Foreground="White"/>
+						<Separator Height="10" Background="Transparent"/>
+						<TextBox Name="TextBlockDestination" Text="{Binding Path=ValueDestination}"/>
+						<Separator Height="5" Background="Transparent"/>
+						<Button Content="{x:Static p:Resources.browse}"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFolder}" />
+						
+						<Separator Height="40" Background="Transparent"/>
+					</StackPanel>
+				
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					
+					<StackPanel Grid.Column="0" Margin="20">
+						<TextBlock Text="{x:Static p:Resources.enter_job_type}" Foreground="White"/>
+						<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Partial}" Content="{x:Static p:Resources.diferential}"></RadioButton>
+						<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Complete}" Content="{x:Static p:Resources.complete}"></RadioButton>	
+					</StackPanel>
+					
+					<StackPanel Grid.Column="1"
+								Orientation="Horizontal"
+								Margin="20">
+						<TextBlock Text="{x:Static p:Resources.cryptosoft_choice }"
+								   VerticalAlignment="Center"
+								   Foreground="White"/>
+						<Separator Width="20" Background="Transparent"/>
+							<CheckBox Name="CrytosoftCheckbox"
+									  IsChecked="{Binding Cryptosoft}"
+									  Checked="CrytosoftCheckbox_OnChecked"
+									  Unchecked="CrytosoftCheckbox_OnChecked"/>
+					</StackPanel>
+				</Grid>
+				<StackPanel>
+					<Button Width="100"
+							Grid.Row="1"
+							Command="{Binding OnClickCreate}"
+							Click="errorMessage"
+							Foreground="White"
+							Background="#FF4C70"
+							Content="{x:Static p:Resources.create}"
+							CornerRadius="12"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							HorizontalAlignment="Center"
+							Margin="0,90,0,0"
+							/>
+					<TextBlock IsVisible="false" 
+								  Margin="0 10 0 0"
+								  HorizontalAlignment="Center" 
+								  VerticalAlignment="Center" 
+								  Foreground="red" 
+								  Name="errorLabel" 
+								  Grid.Row="7" 
+								  Text="{x:Static p:Resources.error_create}" />
+				</StackPanel>
+		</StackPanel>
+	</Window>

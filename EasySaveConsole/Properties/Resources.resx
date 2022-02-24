@@ -248,4 +248,16 @@
   <data name="password_placeholder" xml:space="preserve">
     <value>Enter CryptoSoft passord</value>
   </data>
+  <data name="blocking_softwares" xml:space="preserve">
+    <value>Blocking Softwares</value>
+  </data>
+  <data name="choose_the_logs_files_format" xml:space="preserve">
+    <value>Choose the logs files format</value>
+  </data>
+  <data name="cryptosoft_path" xml:space="preserve">
+    <value>Cryptosoft Path</value>
+  </data>
+  <data name="logs_files_format" xml:space="preserve">
+    <value>Logs files format</value>
+  </data>
 </root>

@@ -4,9 +4,9 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySaveConsole", "EasySaveConsole\EasySaveConsole.csproj", "{03996369-7940-483E-8A93-B11335066854}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySaveUI", "EasySaveUI\EasySaveUI.csproj", "{3AA3BB2B-5E7F-4535-B3A1-161A5E460303}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoFile", "CryptoFile\CryptoFile.csproj", "{C291EAE1-2962-4EFF-835C-BBFB4E0B7C86}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySaveUI", "EasySaveUI\EasySaveUI.csproj", "{3AA3BB2B-5E7F-4535-B3A1-161A5E460303}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +18,10 @@ Global
 		{03996369-7940-483E-8A93-B11335066854}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03996369-7940-483E-8A93-B11335066854}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03996369-7940-483E-8A93-B11335066854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C291EAE1-2962-4EFF-835C-BBFB4E0B7C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C291EAE1-2962-4EFF-835C-BBFB4E0B7C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C291EAE1-2962-4EFF-835C-BBFB4E0B7C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C291EAE1-2962-4EFF-835C-BBFB4E0B7C86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3AA3BB2B-5E7F-4535-B3A1-161A5E460303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3AA3BB2B-5E7F-4535-B3A1-161A5E460303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AA3BB2B-5E7F-4535-B3A1-161A5E460303}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -60,12 +60,12 @@ namespace EasySaveUI.Views
                 Debug.WriteLine("fr");
                 var lang = Thread.CurrentThread.CurrentUICulture;
                 Debug.WriteLine(lang);
-                create.Content = "Créer";
+                create.Content = "Crï¿½er";
                 delete.Content = "Supprimer";
-                start.Content = "Démarrer";
-                decrypt.Content = "Décrypter";
-                settings.Content = "Paramètres";
-                add_all.Content = "Tout sélectionner";
+                start.Content = "Dï¿½marrer";
+                decrypt.Content = "Dï¿½crypter";
+                settings.Content = "Paramï¿½tres";
+                add_all.Content = "Tout sï¿½lectionner";
                 list_jobs.Columns[0].Header = "Selectionner";
                 list_jobs.Columns[1].Header = "Nom";             
                 list_jobs.Columns[5].Header = "Progression";
