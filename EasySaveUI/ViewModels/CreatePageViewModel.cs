@@ -22,11 +22,10 @@ namespace EasySaveUI.ViewModels
     {
         SaveType saveType { get; set; }
 
-        
+      
 
         private MainViewModel mvm = new MainViewModel();
         public Action CloseAction { get; set; }
-
         public ICommand OnClickBrowseFiles { get; private set; }
         public ICommand OnClickBrowseFolder { get; private set; }
         public ICommand OnClickCreate { get; private set; }
@@ -34,19 +33,11 @@ namespace EasySaveUI.ViewModels
        
         public CreatePageViewModel()
         {
-            OnClickBrowseFiles = ReactiveCommand.Create( async () => {
-               
-                string _path = await GetPathFiles();
-            });
-            OnClickBrowseFolder = ReactiveCommand.Create(async ()  => {
-
-                string _path = await GetPathFolder();
-            });
-            OnClickCreate = ReactiveCommand.Create( () =>
-            {
-                CreatePage createPage = new CreatePage();
-
-                string typeSave;
+            OnClickBrowseFiles = ReactiveCommand.Create( async () => { string _path = await GetPathFiles(); });
+            OnClickBrowseFolder = ReactiveCommand.Create(async () => { string _path = await GetPathFolder(); });
+            
+            OnClickCreate = ReactiveCommand.Create(async () => {
+                // CreatePage createPage = new CreatePage();
                 Debug.WriteLine(saveName);
                 Debug.WriteLine(myValueSource);
                 Debug.WriteLine(myValueDest);
@@ -140,20 +131,8 @@ namespace EasySaveUI.ViewModels
             }
 
             return result;
-
-          
         }
 
-        private string myValueDest;
-        public string ValueDestination
-        {
-            get { return myValueDest; }
-            set
-            {
-                myValueDest = value;
-                RaisePropertyChanged("ValueDestination");
-            }
-        }
         public async Task<string> GetPathFolder()
         {
             var dialogFolderDest = new OpenFolderDialog();
@@ -167,6 +146,7 @@ namespace EasySaveUI.ViewModels
 
             return result;
         }
+        
         private void RaisePropertyChanged(string propName)
         {
             if (PropertyChanged != null)
