@@ -9,7 +9,7 @@ namespace EasySaveConsole.Model
     public class Save
     {
         private Stopwatch watch = new Stopwatch();
-        public bool Cipher = true;
+        public bool Cipher = false;
 
         /// <summary>
         /// Copy files for a differential backup 

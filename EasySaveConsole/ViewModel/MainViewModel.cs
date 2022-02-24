@@ -29,7 +29,7 @@ namespace EasySaveConsole.ViewModel
         /// Start a backup job using its name
         /// </summary>
         /// <param name="jobName">The name of the job you want to start</param>
-        public void StartSavingJob(string jobName)
+        public async void StartSavingJob(string jobName)
         {
             SetXorKey("azerty");
             
@@ -37,7 +37,7 @@ namespace EasySaveConsole.ViewModel
             StartSavingJob(job);
         }
 
-        public async Task StartSavingJob(Job job)
+        public void StartSavingJob(Job job)
         {
             if (job.Cipher)
                 save.Cipher = job.Cipher;

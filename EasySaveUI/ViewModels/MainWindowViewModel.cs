@@ -64,7 +64,11 @@ namespace EasySaveUI.ViewModels
                         await cryptosoftDialog.ShowDialog(desktop.MainWindow);
                     mvm.SetXorKey(CryptosoftPassword);
                 }
-                await Task.WhenAll(checkedJobs.Select(async j => await mvm.StartSavingJob(j)));
+                
+                foreach (var checkedJob in checkedJobs)
+                {
+                    Task.Run(() => mvm.StartSavingJob(checkedJob));
+                }
             });
 
             OnClickSetPassword = OnClickStart;
