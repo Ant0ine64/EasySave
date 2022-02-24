@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="using:EasySaveConsole.Properties"
+        xmlns:vm="using:EasySaveUI.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="EasySaveUI.Views.CrptosoftDialog"
+        Height="100"
+        Width="400"
+        Title="CryptosoftDialog"
+        Name="CryptosoftDialog"
+        WindowStartupLocation="CenterOwner"
+        x:DataType="CompiledBindingExtension"
+        Background="#0F0F2D">
+    
+		<Design.DataContext>
+			<vm:MainWindowViewModel/>
+		</Design.DataContext>
+
+		<StackPanel Margin="20">
+			<TextBox PasswordChar="●"
+					 Name="CryptoSoftPassword"
+					 Margin="5 0 0 0"
+					 Text="{Binding CryptosoftPassword}"
+					 
+					 Watermark="{x:Static p:Resources.password_placeholder}"/>
+			
+			<Separator Height="10" Background="Transparent"/>
+			
+			<Button Width="100"
+			        Command="{Binding OnClickSetPassword, FallbackValue={x:Null}}"
+			        
+			        IsEnabled="True"
+			        Foreground="White"
+			        Background="#FF4C70"
+			        Content="{x:Static p:Resources.create}"
+			        CornerRadius="12"
+			        VerticalContentAlignment="Center"
+			        HorizontalContentAlignment="Center"
+			        HorizontalAlignment="Center"
+			/>	
+		</StackPanel>
+</Window>

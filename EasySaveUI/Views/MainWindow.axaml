@@ -62,6 +62,7 @@
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
+					Command="{Binding OnClickDelete}"
 					/>
 			<Button Width="100"
 					Name="start"

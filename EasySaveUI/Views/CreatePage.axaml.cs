@@ -54,8 +54,8 @@ namespace EasySaveUI.Views
             if (sender == null)
                 return;
             var checkbox = (CheckBox) sender;
-            if (checkbox.IsChecked != null)
-                this.Find<TextBox>("CryptoSoftPassword").IsEnabled = (bool) checkbox.IsChecked;
+            // if (checkbox.IsChecked != null)
+                // this.Find<TextBox>("CryptoSoftPassword").IsEnabled = (bool) checkbox.IsChecked;
         }
     }
 }

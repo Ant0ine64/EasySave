@@ -68,6 +68,16 @@ namespace EasySaveUI.ViewModels
                 RaisePropertyChanged("ValueDestination");
             }
         }
+        private bool cryptosoft;
+        public bool Cryptosoft
+        {
+            get { return cryptosoft; }
+            set
+            {
+                cryptosoft = value;
+                RaisePropertyChanged(nameof(value));
+            }
+        }
 
         public CreatePageViewModel()
         {
@@ -133,13 +143,12 @@ namespace EasySaveUI.ViewModels
 
             return result;
         }
-
+public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string propName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 
 }

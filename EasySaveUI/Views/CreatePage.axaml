@@ -54,22 +54,19 @@
 					<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Complete}" Content="{x:Static p:Resources.complete}"></RadioButton>	
 				</StackPanel>
 				
-				<StackPanel Grid.Column="1" Margin="20">
+				<StackPanel Grid.Column="1"
+				            Orientation="Horizontal"
+				            Margin="20">
 					<TextBlock Text="{x:Static p:Resources.cryptosoft_choice }"
+					           VerticalAlignment="Center"
 					           Foreground="White"/>
-					<Separator Height="10" Background="Transparent"/>
-					<StackPanel Orientation="Horizontal">
+					<Separator Width="20" Background="Transparent"/>
+					<!-- <StackPanel Orientation="Horizontal"> -->
 						<CheckBox Name="CrytosoftCheckbox"
+						          IsChecked="{Binding Cryptosoft}"
 						          Checked="CrytosoftCheckbox_OnChecked"
 						          Unchecked="CrytosoftCheckbox_OnChecked"/>
-						<TextBox PasswordChar="●"
-						         Name="CryptoSoftPassword"
-						         IsEnabled="False"
-						         Margin="5 0 0 0"
-						         MinWidth="250"
-						         Text="{Binding cryptosoftPassword}"
-								 Watermark="{x:Static p:Resources.password_placeholder }"/>
-					</StackPanel>
+					<!-- </StackPanel> -->
 				</StackPanel>
 			</Grid>
 			<StackPanel>
