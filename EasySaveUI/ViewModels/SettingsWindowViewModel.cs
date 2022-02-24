@@ -14,15 +14,15 @@ using System.Collections.ObjectModel;
 
 namespace EasySaveUI.ViewModels
 {
-    public class SettingsPageViewModel : ViewModelBase, INotifyPropertyChanged
+    public class SettingsWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public ObservableCollection<string> BlockingApp { get; private set; }
+        public ObservableCollection<BlockingApp> BlockingApp { get; set; }
         public ICommand ChangeSettingEvent { get; private set; }
         public Action<string>? SuccessChangedEvent;
-        private EasySaveConsole.Model.Settings settings = new EasySaveConsole.Model.Settings(true);
-        public SettingsPageViewModel()
+        public EasySaveConsole.Model.Settings settings = new EasySaveConsole.Model.Settings(true);
+        public SettingsWindowViewModel()
         {
-            BlockingApp = new ObservableCollection<string>(FetchBlockingApp());
+            BlockingApp = new ObservableCollection<BlockingApp>(FetchBlockingApp());
 
             settings.ReadSettings();
             ChangeSettingEvent = ReactiveCommand.Create((object? arg) =>
@@ -59,15 +59,31 @@ namespace EasySaveUI.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private List<string> FetchBlockingApp()
+        private List<BlockingApp> FetchBlockingApp()
         {
-            List<string> list = new List<string>
+            var list = new List<BlockingApp>
             {
-                "EXCEL.EXE",
-                "WORD.EXE",
-                "COUCOU.EXE"
+                new BlockingApp("EXCEL.EXE"),
+                new BlockingApp("WORD.EXE"),
+                new BlockingApp("COUCOU.EXE"),
+                new BlockingApp("EXCEL.EXE"),
+                new BlockingApp("WORD.EXE"),
+                new BlockingApp("COUCOU.EXE"),
+                new BlockingApp("EXCEL.EXE"),
+                new BlockingApp("WORD.EXE"),
+                new BlockingApp("COUCOU.EXE")
             };
             return list;
         }
     }
+
+    public class BlockingApp
+    {
+        public string App;
+        public BlockingApp(string App)
+        {
+            this.App = App;
+        }
+    }
+
 }

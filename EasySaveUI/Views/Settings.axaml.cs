@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using EasySaveUI.ViewModels;
 using System.Collections.Generic;
@@ -9,17 +10,17 @@ namespace EasySaveUI.Views
 
     public partial class Settings : Window
     {
-
+        private SettingsWindowViewModel vm = new SettingsWindowViewModel();
         public Settings()
         {
-            var vm = new SettingsPageViewModel();
-            DataContext = vm;
             InitializeComponent();
+            DataContext = vm;
             
             vm.SuccessChangedEvent += SuccessChangedEvent;
                 #if DEBUG
             this.AttachDevTools();
 #endif
+            this.Find<TextBox>("CryptoSoftPath").Text = vm.settings.CryptoSoftPath;
             SuccessChangedEvent(vm.GetLogFormat().ToUpper());
         }
 
@@ -46,6 +47,8 @@ namespace EasySaveUI.Views
             if (result == null || result.Length <= 0)
                 return;
             this.Find<TextBox>("CryptoSoftPath").Text = result[0];
+            vm.settings.CryptoSoftPath = result[0];
+            vm.settings.Write();
         }
 
         private void InitializeComponent()

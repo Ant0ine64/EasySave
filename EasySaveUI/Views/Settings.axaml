@@ -93,7 +93,9 @@
 				<Separator Height="10"
 						   Background="Transparent"/>
 
-				<TextBox Name="CryptoSoftPath" />
+				<TextBox Name="CryptoSoftPath" 
+						 Text=""
+						 IsEnabled="False"/>
 
 				<Separator Height="5"
 						   Background="Transparent"/>
@@ -112,24 +114,69 @@
 				<Separator Height="20"
 						   Background="Transparent"/>
 
-				<Border Background="Black"
-						Opacity="0.4"
+				<Border Background="#09091B"
+						
 						BorderBrush="White"
-						BorderThickness="2"
+						BorderThickness="1"
 						CornerRadius="3"
 						HorizontalAlignment="Stretch"
 						VerticalAlignment="Stretch"
-						Padding="0">
+						Height="250">
+					<Grid Background="Transparent" Name="Application Bloquante">
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="50"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="357"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<DataGrid HorizontalAlignment="Left" 
+								  Items="{Binding BlockingApp}"
+								  Grid.ColumnSpan="2">
+							<DataGrid.Columns>
+								<DataGridTemplateColumn>
+									<DataGridTemplateColumn.CellTemplate>
+										<DataTemplate>
+											<Grid Margin="10,0,0,0" 
+												  Background="Transparent" 
+												  Width="378"
+												  Name="Liste">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="5*"/>
+													<ColumnDefinition Width="*"/>
+												</Grid.ColumnDefinitions>
+												<TextBlock Text="{Binding}" 
+														   VerticalAlignment="Center"/>
+												
+												<Button Grid.Column="1" 
+														Content="×" FontSize="20" 
+														HorizontalAlignment="Right" 
+														CornerRadius="12" 
+														Background="#C60008"/>
+											</Grid>
+										</DataTemplate>
+									</DataGridTemplateColumn.CellTemplate>
+								</DataGridTemplateColumn>
+							</DataGrid.Columns>
+						</DataGrid>
 
-
-
-					<StackPanel Background="#0F0F2D">
-						<Border Margin="5 5 5 5">
-							<DataGrid HorizontalAlignment="Center" Items="{Binding ElementName=settingsWindow, Path=DataContext.BlockingApp}" AutoGenerateColumns="True">
-								
-							</DataGrid>
-						</Border>
-					</StackPanel>
+						<TextBox HorizontalContentAlignment="Stretch"
+								 Grid.Row="1"
+								 Margin="10,10,0,10"/>
+						
+						<Button Grid.Row="1"
+								Grid.Column="1"
+								Content="+"
+								FontSize="17"
+								CornerRadius="2,12,12,2"
+								Background="#FF4C70"
+								HorizontalAlignment="Left"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								VerticalAlignment="Bottom"
+								Margin="0,8,0,10"/>
+					</Grid>
 				</Border>
 			</StackPanel>
 		</Grid>
