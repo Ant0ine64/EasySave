@@ -16,6 +16,10 @@ namespace EasySaveUI.ViewModels
         public ICommand AddBlockingApp { get; private set; }
         public string NewBlockingApp { get; set; } = "";
         public Action? AddEvent;
+<<<<<<< 47-update-window
+        public ICommand OnClickBack { get; set; }
+=======
+>>>>>>> master
         public Action<string>? SuccessChangedEvent;
         public EasySaveConsole.Model.Settings settings = new EasySaveConsole.Model.Settings(true);
         public ObservableCollection<String> BlockingApp { get; set; }
@@ -39,6 +43,13 @@ namespace EasySaveUI.ViewModels
                 settings.Write();
                 AddEvent?.Invoke();
             });
+<<<<<<< 47-update-window
+            OnClickBack = ReactiveCommand.Create(() =>
+            {
+                updateContent();
+            });
+=======
+>>>>>>> master
         }
 
         public string GetLogFormat()

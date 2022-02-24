@@ -7,8 +7,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EasySaveUI.Views.CreatePage"
 		xmlns:converter="using:EasySaveUI.Converter"
-        Title="New Save"
-        Background="#0F0F2D">
+        Title="New Save">
+
 	<Window.Resources>
 		<converter:EnumBooleanConverter x:Key="enumBooleanConverter" />
 	</Window.Resources>
@@ -16,8 +16,9 @@
         <vm:CreatePageViewModel/>
     </Design.DataContext>
 	
-			<StackPanel Margin="20">
-			
+			<StackPanel Background="#0F0F2D">
+			<Button Name ="Back" Content="◀" Command="{Binding OnClickBack}" Margin="10" Background="#0F0F2D"/>
+			<StackPanel Margin="20 0 20 20">
 			<TextBlock Text="{x:Static p:Resources.create_saving_job}"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			
 			<TextBlock Text="{x:Static p:Resources.enter_job_name}" Foreground="White"/>
@@ -52,7 +53,8 @@
 					<TextBlock Text="{x:Static p:Resources.enter_job_type}" Foreground="White"/>
 					<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Partial}" Content="{x:Static p:Resources.diferential}"></RadioButton>
 					<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Complete}" Content="{x:Static p:Resources.complete}"></RadioButton>	
-				</StackPanel>
+			
+			</StackPanel>
 				
 				<StackPanel Grid.Column="1" Margin="20">
 					<TextBlock Text="{x:Static p:Resources.cryptosoft_choice }"
@@ -83,6 +85,8 @@
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
+					Margin="0,90,0,0"
 					/>
 		</StackPanel>
+	</StackPanel>
 </Window>

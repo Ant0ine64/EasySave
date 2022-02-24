@@ -11,6 +11,7 @@ using Avalonia.Controls;
 using EasySaveConsole.Model;
 using EasySaveConsole.ViewModel;
 using Settings = EasySaveUI.Views.Settings;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace EasySaveUI.ViewModels
 {
@@ -22,12 +23,14 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickSelectAll { get; private set; }
         public ICommand OnClickRefresh { get; private set; }
         private bool selectedAll = false;
+        public ICommand OnClickLogs { get; private set; }
         public MainViewModel mvm = new MainViewModel();
         public ObservableCollection<Job> Jobs { get; set; }
         public ICommand OnClickSettings { get; private set; }
 
         public MainWindowViewModel()
         {
+            
             Jobs = new ObservableCollection<Job>(mvm.fetchSavingJob());
             foreach (var job in Jobs)
             {
@@ -37,7 +40,8 @@ namespace EasySaveUI.ViewModels
             OnClickCreated = ReactiveCommand.Create(() =>
             {
                 CreatePage createPage = new CreatePage();
-                createPage.Show();
+                updateContent(createPage.Content, createPage.DataContext);
+                createPage.Close();
             });
             
             OnClickDelete = ReactiveCommand.Create(() =>
@@ -68,7 +72,15 @@ namespace EasySaveUI.ViewModels
             OnClickSettings = ReactiveCommand.Create(() =>
             {
                 Settings settingsPage = new Settings();
-                settingsPage.Show();
+                updateContent(settingsPage.Content, settingsPage.DataContext);
+                settingsPage.Close();
+            });
+            OnClickLogs = ReactiveCommand.Create(() =>
+            {
+                LogsWindow logsWindow = new LogsWindow();
+                updateContent(logsWindow.Content, logsWindow.DataContext);
+                logsWindow.Close();
+
             });
         }
         private void ColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,6 +88,8 @@ namespace EasySaveUI.ViewModels
             // Add "using Windows.UI;" for Color and Colors.
             string colorName = e.AddedItems[0].ToString();
             Debug.WriteLine(colorName);
+
+            
         }
 
             

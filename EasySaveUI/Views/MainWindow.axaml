@@ -7,9 +7,12 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EasySaveUI.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="EasySaveUI">
+        Title="EasySaveUI"
+		MinWidth="1000"
+		MinHeight="770">
 
-    <Design.DataContext>
+
+	<Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
@@ -94,6 +97,7 @@
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
+					Command="{Binding OnClickLogs}"
 					/>
 			<Button Width="100"
 					Grid.Row="8"

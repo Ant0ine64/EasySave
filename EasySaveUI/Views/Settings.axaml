@@ -15,6 +15,7 @@
 	</Design.DataContext>
 	
 	<StackPanel Background="#0F0F2D">
+		<Button Name ="Back" Content="◀" Command="{Binding OnClickBack}" Margin="10" Background="#0F0F2D"/>
 		<TextBlock HorizontalAlignment="Center"
 				   VerticalAlignment="Top"
 				   Margin="15"
