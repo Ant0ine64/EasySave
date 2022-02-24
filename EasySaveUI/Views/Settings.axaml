@@ -23,8 +23,7 @@
 		
 		<Separator Height="20"/>
 		
-		<Grid Background="Transparent"
-			  Width="400"
+		<Grid Width="400"
 			  HorizontalAlignment="Stretch">
 
 			<Grid.RowDefinitions>
@@ -34,14 +33,14 @@
 			</Grid.RowDefinitions>
 
 			<StackPanel Grid.Row="0">
-				<TextBlock Text="Resources.logs_files_format"
+				<TextBlock Text="{x:Static p:Resources.logs_files_format}"
 						   FontSize="20"
 						   TextAlignment="Center"/>
 
 				<Separator Height="20"
 						   Background="Transparent"/>
 
-				<TextBlock Text="choose_the_logs_files_format"/>
+				<TextBlock Text="{x:Static p:Resources.choose_the_logs_files_format}"/>
 
 				<Separator Height="10"
 						   Background="Transparent"/>
@@ -81,7 +80,7 @@
 			</StackPanel>
 
 			<StackPanel Grid.Row="1">
-				<TextBlock Text="cryptosoft_path"
+				<TextBlock Text="{x:Static p:Resources.cryptosoft_path}"
 						   FontSize="20"
 						   TextAlignment="Center"/>
 
@@ -100,13 +99,13 @@
 						   Background="Transparent"/>
 
 				<Button HorizontalAlignment="Left"
-						Content="browse"
+						Content="{x:Static p:Resources.browse}"
 						Background="Gray"
 						Command="{Binding ElementName=settingsWindow, Path=GetPathExe}"/>
 			</StackPanel>
 
 			<StackPanel Grid.Row="2">
-				<TextBlock Text="blocking_softwares"
+				<TextBlock Text="{x:Static p:Resources.blocking_softwares}"
 						   FontSize="20"
 						   TextAlignment="Center"/>
 
@@ -121,7 +120,7 @@
 						HorizontalAlignment="Stretch"
 						VerticalAlignment="Stretch"
 						Height="250">
-					<Grid Background="Transparent" Name="Application Bloquante">
+					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition/>
 							<RowDefinition Height="50"/>
@@ -138,7 +137,6 @@
 									<DataGridTemplateColumn.CellTemplate>
 										<DataTemplate>
 											<Grid Margin="10,0,0,0" 
-												  Background="Transparent" 
 												  Width="378"
 												  Name="Liste">
 												<Grid.ColumnDefinitions>
@@ -175,7 +173,7 @@
 								Content="+"
 								FontSize="17"
 								CornerRadius="2,12,12,2"
-								Background="#FF4C70"
+								Background="Gray"
 								HorizontalAlignment="Left"
 								HorizontalContentAlignment="Center"
 								VerticalContentAlignment="Center"
