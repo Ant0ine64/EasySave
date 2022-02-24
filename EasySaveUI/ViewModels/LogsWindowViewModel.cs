@@ -15,26 +15,22 @@ namespace EasySaveUI.ViewModels
         private string directoryPath = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "easysave");
 
         public ObservableCollection<string> Logs { get; private set; }
-
-        public ICommand ButtonLog { get; set; }
-
-        public ICommand ButtonBack { get; set; }
+        public ICommand OnClickLog { get; set; }
+        public ICommand OnClickBack { get; set; }
 
 
         public LogsWindowViewModel()
         {
             Logs = new ObservableCollection<string>(fetchLogFiles());
 
-            ButtonLog = ReactiveCommand.Create((string? arg) => 
+            OnClickLog = ReactiveCommand.Create((string? arg) => 
             {
                 openLogFile(arg);
             });
 
-            ButtonBack = ReactiveCommand.Create(() =>
+            OnClickBack = ReactiveCommand.Create(() =>
             {
-                MainWindow mainWindow = new MainWindow();
-                updateContent(mainWindow.Content, mainWindow.DataContext);
-                mainWindow.Close();
+                updateContent();
             });
         }
 

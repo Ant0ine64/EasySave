@@ -23,7 +23,7 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickSelectAll { get; private set; }
         public ICommand OnClickRefresh { get; private set; }
         private bool selectedAll = false;
-        public ICommand LogsButton { get; private set; }
+        public ICommand OnClickLogs { get; private set; }
         public MainViewModel mvm = new MainViewModel();
         public ObservableCollection<Job> Jobs { get; set; }
         public ICommand OnClickSettings { get; private set; }
@@ -40,7 +40,8 @@ namespace EasySaveUI.ViewModels
             OnClickCreated = ReactiveCommand.Create(() =>
             {
                 CreatePage createPage = new CreatePage();
-                createPage.Show();
+                updateContent(createPage.Content, createPage.DataContext);
+                createPage.Close();
             });
             
             OnClickDelete = ReactiveCommand.Create(() =>
@@ -71,12 +72,14 @@ namespace EasySaveUI.ViewModels
             OnClickSettings = ReactiveCommand.Create(() =>
             {
                 Settings settingsPage = new Settings();
-                settingsPage.Show();
+                updateContent(settingsPage.Content, settingsPage.DataContext);
+                settingsPage.Close();
             });
-            LogsButton = ReactiveCommand.Create(() =>
+            OnClickLogs = ReactiveCommand.Create(() =>
             {
                 LogsWindow logsWindow = new LogsWindow();
                 updateContent(logsWindow.Content, logsWindow.DataContext);
+                logsWindow.Close();
 
             });
         }

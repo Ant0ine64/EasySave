@@ -16,14 +16,16 @@ namespace EasySaveUI.ViewModels
         {
             if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {               
-                
-                if (dataContext==null)
-                {
-                    dataContext = new MainWindowViewModel();
-                }
                 desktop.MainWindow.DataContext = dataContext;
                 desktop.MainWindow.Content = content;
-                
+            }
+        }
+        public void updateContent()
+        {
+            if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {             
+                desktop.MainWindow.DataContext = new MainWindowViewModel();
+                desktop.MainWindow.Content = new MainWindow().Content;
             }
         }
     }

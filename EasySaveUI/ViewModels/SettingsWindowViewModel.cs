@@ -17,6 +17,7 @@ namespace EasySaveUI.ViewModels
     public class SettingsWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
         public ICommand ChangeSettingEvent { get; private set; }
+        public ICommand OnClickBack { get; set; }
         public Action<string>? SuccessChangedEvent;
         public EasySaveConsole.Model.Settings settings = new EasySaveConsole.Model.Settings(true);
         public ObservableCollection<String> BlockingApp;
@@ -32,6 +33,10 @@ namespace EasySaveUI.ViewModels
                 LogFile.selectLogFormat = settings.LogFormat;
                 settings.Write();
                 SuccessChangedEvent?.Invoke(type.ToUpper());
+            });
+            OnClickBack = ReactiveCommand.Create(() =>
+            {
+                updateContent();
             });
         }
 

@@ -13,7 +13,7 @@ namespace EasySaveUI.Views
         
         public MainWindow()
         {
-           
+            // defaut size : 1137.6, 660.8
             InitializeComponent();
 #if DEBUG
             this.AttachDevTools();
