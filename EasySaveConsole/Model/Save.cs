@@ -9,10 +9,16 @@ namespace EasySaveConsole.Model
     public class Save
     {
         private Stopwatch watch = new Stopwatch();
+        public bool Cipher = true;
 
-        public void copyFilesPartialSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)// sauvegarde partielle
+        /// <summary>
+        /// Copy files for a differential backup 
+        /// </summary>
+        /// <param name="infosSourceDir"></param>
+        /// <param name="infosDestDir"></param>
+        /// <param name="job">Saving job to execute</param>
+        public void copyFilesPartialSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)
         {
-
        
             FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
             FileInfo[] infosSourceFiles = infosSourceDir.GetFiles();
@@ -21,59 +27,76 @@ namespace EasySaveConsole.Model
             {
                 foreach (FileInfo infosDestinationFile in infosDestinationFiles)
                 {
-
-                    // si le fichier a été modifié (nom est le meme mais pas l'heure de modif)
+                    // if file have been modified
                     if (infosSourceFile.Name == infosDestinationFile.Name && infosSourceFile.LastWriteTime != infosDestinationFile.LastWriteTime)
                     { 
                         watch.Start();
-                        // copie en écrasant la version existante  
-                        File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
+                        // replace existing file
+                        ExecuteSave(infosSourceDir, infosDestDir, infosSourceFile);
                         watch.Stop();
                         Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);
                         LogFile.WriteToLog(job, infosSourceFile.FullName, Path.Combine(infosDestDir.FullName, infosSourceFile.Name), watch.ElapsedMilliseconds);
                     }
-                   
-
                 }
-                // si le fichier n'existe pas dans le destination on le copie
+                // if file doesn't exist in destination
                 if (infosDestinationFiles.Any(x => x.Name == infosSourceFile.Name)) { }
                 else
                 {
                     watch.Start();
-                    File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
+                    ExecuteSave(infosSourceDir, infosDestDir, infosSourceFile);
                     watch.Stop();
                     Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);
                     LogFile.WriteToLog(job, infosSourceFile.FullName, Path.Combine(infosDestDir.FullName, infosSourceFile.Name), watch.ElapsedMilliseconds);
-
                 }
                 job.UpdateProgression();
-               
             }
-           
         }
 
-        public void copyFilesEntireSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)// Sauvegarde entière
+        /// <summary>
+        /// Copy file to create a complete backup
+        /// </summary>
+        /// <param name="infosSourceDir"></param>
+        /// <param name="infosDestDir"></param>
+        /// <param name="job">Saving job to execute</param>
+        public void copyFilesEntireSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)
         {
 
             FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
             FileInfo[] infosSourceFiles = infosSourceDir.GetFiles();
 
-            foreach (FileInfo infosDestinationFile in infosDestinationFiles)// clean du dossier de destination
+            // cleaning destination folder
+            foreach (FileInfo infosDestinationFile in infosDestinationFiles)
             {
                 infosDestinationFile.Delete();              
-
             }
 
-            foreach (FileInfo infosSourceFile in infosSourceFiles)// copie de tous les fichiers du sorce vers le destination
+            //copy all files from source to destination
+            foreach (FileInfo infosSourceFile in infosSourceFiles)
             {
                 watch.Start();
-                File.Copy(Path.Combine(infosSourceDir.FullName, infosSourceFile.Name), Path.Combine(infosDestDir.FullName, infosSourceFile.Name), true);
+                ExecuteSave(infosSourceDir, infosDestDir, infosSourceFile);
                 watch.Stop();
                 Console.WriteLine(Properties.Resources.file_transfered + infosSourceFile.Name);
                 job.UpdateProgression();
                 LogFile.WriteToLog(job, infosSourceFile.FullName, Path.Combine(infosDestDir.FullName, infosSourceFile.Name), watch.ElapsedMilliseconds);
-
             }
+        }
+
+        /// <summary>
+        /// Choose whether to do a normal save of user xor cipher from cryptosoft
+        /// </summary>
+        /// <param name="infosSourceDir"></param>
+        /// <param name="infosDestDir"></param>
+        /// <param name="infosSourceFile"></param>
+        private void ExecuteSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, FileInfo infosSourceFile)
+        {
+            string source = Path.Combine(infosSourceDir.FullName, infosSourceFile.Name);
+            string dest = Path.Combine(infosDestDir.FullName, infosSourceFile.Name);
+            
+            if (!Cipher)
+                File.Copy(source, dest, true);
+            else
+                CryptoSoft.GetInstance().XorCypher(source, dest);
         }
     }
 }

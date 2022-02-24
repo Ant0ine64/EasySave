@@ -14,7 +14,7 @@ namespace EasySaveConsole.Properties {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static System.Resources.ResourceManager resourceMan;
         
@@ -25,7 +25,7 @@ namespace EasySaveConsole.Properties {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Resources.ResourceManager ResourceManager {
+        public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
                     System.Resources.ResourceManager temp = new System.Resources.ResourceManager("EasySaveConsole.Properties.Resources", typeof(Resources).Assembly);
@@ -36,7 +36,7 @@ namespace EasySaveConsole.Properties {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture {
+        public static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -45,186 +45,255 @@ namespace EasySaveConsole.Properties {
             }
         }
         
-        internal static string change_lang {
+        public static string change_lang {
             get {
                 return ResourceManager.GetString("change_lang", resourceCulture);
             }
         }
         
-        internal static string change_lang_en {
+        public static string change_lang_en {
             get {
                 return ResourceManager.GetString("change_lang_en", resourceCulture);
             }
         }
         
-        internal static string change_lang_fr {
+        public static string change_lang_fr {
             get {
                 return ResourceManager.GetString("change_lang_fr", resourceCulture);
             }
         }
         
-        internal static string confirm_delete {
+        public static string confirm_delete {
             get {
                 return ResourceManager.GetString("confirm_delete", resourceCulture);
             }
         }
         
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Are you sure you want to execute all backup?.
-        /// </summary>
-        internal static string confirm_execute_all_saving_job {
+        public static string confirm_execute_all_saving_job {
             get {
                 return ResourceManager.GetString("confirm_execute_all_saving_job", resourceCulture);
             }
         }
         
-        internal static string create_saving_job {
+        public static string create_saving_job {
             get {
                 return ResourceManager.GetString("create_saving_job", resourceCulture);
             }
         }
         
-        internal static string delete_saving_job {
+        public static string delete_saving_job {
             get {
                 return ResourceManager.GetString("delete_saving_job", resourceCulture);
             }
         }
         
-        internal static string enter_destination_path {
+        public static string enter_destination_path {
             get {
                 return ResourceManager.GetString("enter_destination_path", resourceCulture);
             }
         }
         
-        internal static string enter_job_name {
+        public static string enter_job_name {
             get {
                 return ResourceManager.GetString("enter_job_name", resourceCulture);
             }
         }
         
-        internal static string enter_job_type {
+        public static string enter_job_type {
             get {
                 return ResourceManager.GetString("enter_job_type", resourceCulture);
             }
         }
         
-        internal static string enter_source_path {
+        public static string enter_source_path {
             get {
                 return ResourceManager.GetString("enter_source_path", resourceCulture);
             }
         }
         
-        internal static string execute_all_saving_job {
+        public static string execute_all_saving_job {
             get {
                 return ResourceManager.GetString("execute_all_saving_job", resourceCulture);
             }
         }
         
-        internal static string execute_one_saving_job {
+        public static string execute_one_saving_job {
             get {
                 return ResourceManager.GetString("execute_one_saving_job", resourceCulture);
             }
         }
         
-        internal static string execute_saving_job {
+        public static string execute_saving_job {
             get {
                 return ResourceManager.GetString("execute_saving_job", resourceCulture);
             }
         }
         
-        internal static string impossible_create_saving_job {
+        public static string impossible_create_saving_job {
             get {
                 return ResourceManager.GetString("impossible_create_saving_job", resourceCulture);
             }
         }
         
-        internal static string leave_current_menu {
+        public static string leave_current_menu {
             get {
                 return ResourceManager.GetString("leave_current_menu", resourceCulture);
             }
         }
         
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Saving Jobs list:.
-        /// </summary>
-        internal static string list_jobs {
+        public static string list_jobs {
             get {
                 return ResourceManager.GetString("list_jobs", resourceCulture);
             }
         }
         
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à no.
-        /// </summary>
-        internal static string no {
+        public static string no {
             get {
                 return ResourceManager.GetString("no", resourceCulture);
             }
         }
         
-        internal static string show_info {
+        public static string change_log_format {
             get {
-                return ResourceManager.GetString("show_info", resourceCulture);
+                return ResourceManager.GetString("change_log_format", resourceCulture);
             }
         }
         
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Show saving jobs.
-        /// </summary>
-        internal static string show_job {
+        public static string json_log_format {
             get {
-                return ResourceManager.GetString("show_job", resourceCulture);
+                return ResourceManager.GetString("json_log_format", resourceCulture);
             }
         }
         
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Show logs.
-        /// </summary>
-        internal static string show_log {
+        public static string xml_log_format {
             get {
-                return ResourceManager.GetString("show_log", resourceCulture);
+                return ResourceManager.GetString("xml_log_format", resourceCulture);
             }
         }
         
-        internal static string show_state {
+        public static string show_saving_jobs {
             get {
-                return ResourceManager.GetString("show_state", resourceCulture);
+                return ResourceManager.GetString("show_saving_jobs", resourceCulture);
             }
         }
         
-        internal static string title_main_menu {
+        public static string title_main_menu {
             get {
                 return ResourceManager.GetString("title_main_menu", resourceCulture);
             }
         }
         
-        internal static string user_input_error {
+        public static string user_input_error {
             get {
                 return ResourceManager.GetString("user_input_error", resourceCulture);
             }
         }
         
-        internal static string yes {
+        public static string yes {
             get {
                 return ResourceManager.GetString("yes", resourceCulture);
             }
         }
         
-        internal static string error_directory_path {
+        public static string error_directory_path {
             get {
                 return ResourceManager.GetString("error_directory_path", resourceCulture);
             }
         }
         
-        internal static string file_transfered {
+        public static string file_transfered {
             get {
                 return ResourceManager.GetString("file_transfered", resourceCulture);
             }
         }
         
-        internal static string perm_error {
+        public static string perm_error {
             get {
                 return ResourceManager.GetString("perm_error", resourceCulture);
+            }
+        }
+        
+        public static string log_file_path {
+            get {
+                return ResourceManager.GetString("log_file_path", resourceCulture);
+            }
+        }
+        
+        public static string no_saving_job {
+            get {
+                return ResourceManager.GetString("no_saving_job", resourceCulture);
+            }
+        }
+        
+        public static string browse {
+            get {
+                return ResourceManager.GetString("browse", resourceCulture);
+            }
+        }
+        
+        public static string complete {
+            get {
+                return ResourceManager.GetString("complete", resourceCulture);
+            }
+        }
+        
+        public static string create {
+            get {
+                return ResourceManager.GetString("create", resourceCulture);
+            }
+        }
+        
+        public static string decrypt {
+            get {
+                return ResourceManager.GetString("decrypt", resourceCulture);
+            }
+        }
+        
+        public static string delete {
+            get {
+                return ResourceManager.GetString("delete", resourceCulture);
+            }
+        }
+        
+        public static string diferential {
+            get {
+                return ResourceManager.GetString("diferential", resourceCulture);
+            }
+        }
+        
+        public static string logs {
+            get {
+                return ResourceManager.GetString("logs", resourceCulture);
+            }
+        }
+        
+        public static string select_all {
+            get {
+                return ResourceManager.GetString("select_all", resourceCulture);
+            }
+        }
+        
+        public static string settings {
+            get {
+                return ResourceManager.GetString("settings", resourceCulture);
+            }
+        }
+        
+        public static string start {
+            get {
+                return ResourceManager.GetString("start", resourceCulture);
+            }
+        }
+        
+        public static string cryptosoft_choice {
+            get {
+                return ResourceManager.GetString("cryptosoft_choice", resourceCulture);
+            }
+        }
+        
+        public static string password_placeholder {
+            get {
+                return ResourceManager.GetString("password_placeholder", resourceCulture);
             }
         }
     }

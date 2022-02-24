@@ -5,10 +5,10 @@ using EasySaveConsole.ViewModel;
 
 namespace EasySaveConsole.View
 {
-
-    /**
-     * Display to user prompt to choose save filepath (input and output) and status when running
-     */
+    
+    /// <summary>
+    /// Display to user prompt to choose save filepath (input and output) and status when running
+    /// </summary>
     public class Prompt
     {
 
@@ -16,7 +16,7 @@ namespace EasySaveConsole.View
 
         private string[] arrayMainMenu; // contains the texts of the main menu options 
         private string[] arrayMenuTraduction; // contains the texts of the translation menu options 
-        private string[] arrayMenuShow; // contains the texts of the logbook menu options 
+        private string[] arrayMenuLogFormat; // contains the texts of the logbook menu options 
         private string[] arrayMenuYesNo; // contains the texts of the Confirmation menu options 
         private string[] arrayMenuExecuteSavingJob; // contains the texts of the execute saving job menu options 
 
@@ -26,7 +26,7 @@ namespace EasySaveConsole.View
         public void MainMenu() 
         {
             applyTrad();
-            Console.WriteLine("-----Eassy Save Console v1.0-----");
+            Console.WriteLine("-----Easy Save Console v1.1-----");
             while (promptMainMenu(makeMenu(Properties.Resources.title_main_menu, arrayMainMenu)));
         }
 
@@ -41,28 +41,28 @@ namespace EasySaveConsole.View
 
             switch (option)
             {
-                case "0": // creates a saving job
+                case "0": // shows saving jobs
+                    Console.Clear();
+                    promptShowSavingJob(mvm.fetchSavingJobNames());
+                    break;                    
+                case "1": // creates a saving job
                     Console.Clear();
                     promptJobCreation(mvm.fetchSavingJobNames());
                     break;
-                case "1": // runs a saving job
+                case "2": // runs a saving job
                     while (promptExecuteSavingJob(makeMenu(Properties.Resources.execute_saving_job, arrayMenuExecuteSavingJob))) ;
                     break;
-                case "2": // deletes a saving job
+                case "3": // delete logBook 
                     Console.Clear();
                     while (promptDeleteSavingJob(makeMenu(Properties.Resources.delete_saving_job, mvm.fetchSavingJobNames()), mvm.fetchSavingJobNames())) ;
                     break;
-                case "3": // opens logBook 
+                case "4": // chooses log file format (.xml /.json)
                     Console.Clear();
-                    promptShowInfo(makeMenu(Properties.Resources.show_info, arrayMenuShow));
+                    promptChangeLogFormat(makeMenu(Properties.Resources.change_log_format, arrayMenuLogFormat, new string[] { "json", "xml" }));
                     break;
-                case "4": // changes languages
+                case "5": // changes languages
                     Console.Clear();
                     promptTraduction(makeMenu(Properties.Resources.change_lang, arrayMenuTraduction, new string[] { "fr", "en" }));
-                    break;
-                case "5":
-                    Console.Clear();
-                    promptShowSavingJob(mvm.fetchSavingJobNames());
                     break;
                 case "x": // leaves the App
                     keepTurning = false;
@@ -115,7 +115,7 @@ namespace EasySaveConsole.View
                 }
                 if (userInput != "x")
                 {
-                    mvm.CreateSavingJob(userInputs[0], userInputs[1], userInputs[2], userInputs[3]); // create a saving jobs with the input informations  
+                    mvm.CreateSavingJob(userInputs[0], userInputs[1], userInputs[2], userInputs[3]);
                 }
             }
             Console.Clear();
@@ -166,7 +166,7 @@ namespace EasySaveConsole.View
 
                         if (verif == "y") 
                         {
-                            mvm.deleteSavingJob(arrayJobName[i]); // delete the Saving Job [i]
+                            mvm.DeleteSavingJob(arrayJobName[i]); // delete the Saving Job [i]
                         }
                         else if (verif == "n")
                         {
@@ -180,24 +180,20 @@ namespace EasySaveConsole.View
         }
 
         /// <summary>
-        /// executes one of the function of "logBook Saving Job Menu" corresponding to the user input
+        /// changes the format of log files (xml or json)
         /// </summary>
         /// <param name="option">option is the user input</param>
-        private void promptShowInfo(string option)
+        private void promptChangeLogFormat(string option)
         {
-            switch (option)
-            {
-                case "0":
-                    Console.WriteLine("afficher le journal des logs");
-                    // call the show Log function (not implanted)
-                    break;
-                case "1":
-                    Console.WriteLine("afficher l'etat d'avancement");
-                    // call the show State function (not implanted)
-                    break;
-                case "x":
-                    break;
-            }
+            string logFormat = "";
+
+            if (option != "x")
+            {          
+                logFormat = option;
+                mvm.SelectLogFormat(logFormat);
+                Console.Clear();
+                Console.WriteLine(Properties.Resources.log_file_path + mvm.returnLogFilePath(logFormat));
+            }       
         }
 
         /// <summary>
@@ -209,11 +205,11 @@ namespace EasySaveConsole.View
             switch (option)
             {
                 case "en":
-                    mvm.translate("en-US");
+                    mvm.Translate("en-US");
                     applyTrad();
                     break;
                 case "fr":
-                    mvm.translate("fr-FR");
+                    mvm.Translate("fr-FR");
                     applyTrad();
                     break;
                 case "x":
@@ -229,12 +225,18 @@ namespace EasySaveConsole.View
         /// <param name="arrayJobName">arrayJobName is an array containing all names of saving jobs</param>
         private void promptShowSavingJob(string[] arrayJobName)
         {
-            Console.WriteLine(Properties.Resources.list_jobs);
-
-            for (int i = 0; i < arrayJobName.Length; i++)
+            if (arrayJobName.Length != 0)
             {
-                Console.WriteLine(i + ".  " + arrayJobName[i]);
+                Console.WriteLine(Properties.Resources.list_jobs);
+                for (int i = 0; i < arrayJobName.Length; i++)
+                {
+                    Console.WriteLine(i + ".  " + arrayJobName[i]);
+                }
             }
+            else
+            {
+                Console.WriteLine(Properties.Resources.no_saving_job);
+            }                
         }
 
         /// <summary>
@@ -397,22 +399,22 @@ namespace EasySaveConsole.View
         private void applyTrad()
         {
             arrayMainMenu = new string[] {
+            Properties.Resources.show_saving_jobs,
             Properties.Resources.create_saving_job,
             Properties.Resources.execute_saving_job,
             Properties.Resources.delete_saving_job,
-            Properties.Resources.show_info,
-            Properties.Resources.change_lang,
-            Properties.Resources.show_job
+            Properties.Resources.change_log_format,
+            Properties.Resources.change_lang
             };
             arrayMenuTraduction = new string[]
             {
             Properties.Resources.change_lang_fr,
             Properties.Resources.change_lang_en
             };
-            arrayMenuShow = new string[]
+            arrayMenuLogFormat = new string[]
             {
-            Properties.Resources.show_log ,
-            Properties.Resources.show_state
+            Properties.Resources.json_log_format,
+            Properties.Resources.xml_log_format
             };
             arrayMenuYesNo = new string[]
             {

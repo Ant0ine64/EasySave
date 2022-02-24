@@ -171,17 +171,17 @@
   <data name="no" xml:space="preserve">
     <value>no</value>
   </data>
-  <data name="show_info" xml:space="preserve">
-    <value>Logbook</value>
+  <data name="change_log_format" xml:space="preserve">
+    <value>change the log files format</value>
   </data>
-  <data name="show_job" xml:space="preserve">
-    <value>Show saving jobs</value>
+  <data name="json_log_format" xml:space="preserve">
+    <value>log files in .json</value>
   </data>
-  <data name="show_log" xml:space="preserve">
-    <value>Show logs</value>
+  <data name="xml_log_format" xml:space="preserve">
+    <value>log files in .xml</value>
   </data>
-  <data name="show_state" xml:space="preserve">
-    <value>Show backup status</value>
+  <data name="show_saving_jobs" xml:space="preserve">
+    <value>Show the saving jobs</value>
   </data>
   <data name="title_main_menu" xml:space="preserve">
     <value>Main Menu</value>
@@ -202,5 +202,47 @@
     <value>Permsission Error
 
 </value>
+  </data>
+  <data name="log_file_path" xml:space="preserve">
+    <value>The log file was created in </value>
+  </data>
+  <data name="no_saving_job" xml:space="preserve">
+    <value>there is no saving job</value>
+  </data>
+  <data name="browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="decrypt" xml:space="preserve">
+    <value>Decrypt</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="diferential" xml:space="preserve">
+    <value>diferential</value>
+  </data>
+  <data name="logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="select_all" xml:space="preserve">
+    <value>Select All </value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="cryptosoft_choice" xml:space="preserve">
+    <value>Use CryptoSoft?</value>
+  </data>
+  <data name="password_placeholder" xml:space="preserve">
+    <value>Enter CryptoSoft passord</value>
   </data>
 </root>

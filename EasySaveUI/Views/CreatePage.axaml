@@ -2,71 +2,87 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:vm="using:EasySaveUI.ViewModels"
+		xmlns:p="using:EasySaveConsole.Properties"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EasySaveUI.Views.CreatePage"
-        Title="New Save">
+		xmlns:converter="using:EasySaveUI.Converter"
+        Title="New Save"
+        Background="#0F0F2D">
+	<Window.Resources>
+		<converter:EnumBooleanConverter x:Key="enumBooleanConverter" />
+	</Window.Resources>
     <Design.DataContext>
         <vm:CreatePageViewModel/>
     </Design.DataContext>
 	
-		<Grid Background="#0F0F2D"
-			  Grid.ColumnSpan="1">
-			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
-			<StackPanel Grid.Row="1" Margin="20">
-			<TextBlock Text="Nouvelle Sauvegarde"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			<StackPanel Margin="20">
 			
+			<TextBlock Text="{x:Static p:Resources.create_saving_job}"  FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			
-		</StackPanel>
-		
-		<StackPanel Grid.Row="2" Margin="20">
-		
-			<TextBlock Text="Entrer le nom de votre sauvegarde" Foreground="White"/>
+			<TextBlock Text="{x:Static p:Resources.enter_job_name}" Foreground="White"/>
 			<Separator Height="10" Background="Transparent"/>
 			<TextBox  Name="TextBlockName" Text="{Binding Path=SaveNameField}" />
 			 
-		</StackPanel>
-	
-		<StackPanel Grid.Row="3" Margin="20">
-			<TextBlock Text="Selectionner les fichiers source" Foreground="White"/>
+			<Separator Height="40" Background="Transparent"/>
+			
+			<TextBlock Text="{x:Static p:Resources.enter_source_path}" Foreground="White"/>
 			<Separator Height="10" Background="Transparent"/>
 			<TextBox  Name="TextBlockSource" Text="{Binding Path=ValueSource}" />
 			<Separator Height="5" Background="Transparent"/>
-				<Button Content="Parcourrir"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFiles}"/>
-		</StackPanel>
-		<StackPanel Grid.Row="4" Margin="20">
-			<TextBlock Text="Selectionner le chemin de destinaion" Foreground="White"/>
+			<Button Content="{x:Static p:Resources.browse}"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFiles}"/>
+			
+			<Separator Height="40" Background="Transparent"/>
+		
+			<TextBlock Text="{x:Static p:Resources.enter_destination_path}" Foreground="White"/>
 			<Separator Height="10" Background="Transparent"/>
 			<TextBox Name="TextBlockDestination" Text="{Binding Path=ValueDestination}"/>
 			<Separator Height="5" Background="Transparent"/>
-			<Button Content="Parcourrir"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFolder}" />
-		</StackPanel>
-		<StackPanel Grid.Row="5" Margin="20">
-			<TextBlock Text="Type de sauvegarde" Foreground="White"/>
-			<RadioButton IsChecked="{Binding Path=RadioPartialCheck}" Name="Partial" Foreground="White">Partielle</RadioButton>
-			<RadioButton IsChecked="{Binding Path=RadioEntireCheck}" Name="Entire" Foreground="White" >Entière</RadioButton>		
-		</StackPanel>
+			<Button Content="{x:Static p:Resources.browse}"  Foreground="White" Background="Gray" Command="{Binding OnClickBrowseFolder}" />
+			
+			<Separator Height="40" Background="Transparent"/>
+			
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				
+				<StackPanel Grid.Column="0" Margin="20">
+					<TextBlock Text="{x:Static p:Resources.enter_job_type}" Foreground="White"/>
+					<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Partial}" Content="{x:Static p:Resources.diferential}"></RadioButton>
+					<RadioButton IsChecked="{Binding Path=saveType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Complete}" Content="{x:Static p:Resources.complete}"></RadioButton>	
+				</StackPanel>
+				
+				<StackPanel Grid.Column="1" Margin="20">
+					<TextBlock Text="{x:Static p:Resources.cryptosoft_choice }"
+					           Foreground="White"/>
+					<Separator Height="10" Background="Transparent"/>
+					<StackPanel Orientation="Horizontal">
+						<CheckBox Name="CrytosoftCheckbox"
+						          Checked="CrytosoftCheckbox_OnChecked"
+						          Unchecked="CrytosoftCheckbox_OnChecked"/>
+						<TextBox PasswordChar="●"
+						         Name="CryptoSoftPassword"
+						         IsEnabled="False"
+						         Margin="5 0 0 0"
+						         MinWidth="250"
+						         Text="{Binding cryptosoftPassword}"
+								 Watermark="{x:Static p:Resources.password_placeholder }"/>
+					</StackPanel>
+				</StackPanel>
+			</Grid>
+			
 			<Button Width="100"
-					Grid.Row="6"
+					Grid.Row="1"
 					Command="{Binding OnClickCreate}"
 					Foreground="White"
 					Background="#FF4C70"
-					Content="Créer"
+					Content="{x:Static p:Resources.create}"
 					CornerRadius="12"
 					VerticalContentAlignment="Center"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
 					/>
-		</Grid>
+		</StackPanel>
 </Window>
