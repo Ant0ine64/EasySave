@@ -111,7 +111,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: EasySaveUI.elf
-          asset_name: hello-wolrd_linux-x64
+          asset_name: EasySave_linux-x64
           asset_content_type: application/octet-stream
       - name: Upload Release Asset Windows 
         id: upload-release-asset-win
@@ -121,7 +121,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: EasySaveUI.exe
-          asset_name: hello-world_win-x64.exe
+          asset_name: EasySave_win-x64.exe
           asset_content_type: application/octet-stream
 
       # Upload Cryptosoft artifacts
