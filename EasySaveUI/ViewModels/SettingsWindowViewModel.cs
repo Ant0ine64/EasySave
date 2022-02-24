@@ -16,15 +16,14 @@ namespace EasySaveUI.ViewModels
 {
     public class SettingsWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public ObservableCollection<BlockingApp> BlockingApp { get; set; }
         public ICommand ChangeSettingEvent { get; private set; }
         public Action<string>? SuccessChangedEvent;
         public EasySaveConsole.Model.Settings settings = new EasySaveConsole.Model.Settings(true);
+        public ObservableCollection<String> BlockingApp;
         public SettingsWindowViewModel()
         {
-            BlockingApp = new ObservableCollection<BlockingApp>(FetchBlockingApp());
-
             settings.ReadSettings();
+            BlockingApp = new ObservableCollection<string>(settings.BlockingApp);
             ChangeSettingEvent = ReactiveCommand.Create((object? arg) =>
             {
                 if (!(arg is string type))
@@ -59,31 +58,6 @@ namespace EasySaveUI.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private List<BlockingApp> FetchBlockingApp()
-        {
-            var list = new List<BlockingApp>
-            {
-                new BlockingApp("EXCEL.EXE"),
-                new BlockingApp("WORD.EXE"),
-                new BlockingApp("COUCOU.EXE"),
-                new BlockingApp("EXCEL.EXE"),
-                new BlockingApp("WORD.EXE"),
-                new BlockingApp("COUCOU.EXE"),
-                new BlockingApp("EXCEL.EXE"),
-                new BlockingApp("WORD.EXE"),
-                new BlockingApp("COUCOU.EXE")
-            };
-            return list;
-        }
+        
     }
-
-    public class BlockingApp
-    {
-        public string App;
-        public BlockingApp(string App)
-        {
-            this.App = App;
-        }
-    }
-
 }

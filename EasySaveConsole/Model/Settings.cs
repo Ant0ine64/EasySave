@@ -6,12 +6,13 @@ using EasySaveConsole.Properties;
 
 namespace EasySaveConsole.Model
 {
-    public class Settings
+    public class Settings : ModelBase
     {
         public string CryptoSoftPath { get; set; } = "";
         public string Lang { get; set; } = "fr-FR";
         public string LogFormat { get; set; } = "json";
         public static Settings Instance { get; set; }
+        public List<string> BlockingApp { get; set; } = new List<string>();
 
         public static string SettingsFile;
         
@@ -66,6 +67,7 @@ namespace EasySaveConsole.Model
             CryptoSoftPath = settings.CryptoSoftPath;
             Lang = settings.Lang;
             LogFormat = settings.LogFormat;
+            BlockingApp = settings.BlockingApp;
         }
     }
 }

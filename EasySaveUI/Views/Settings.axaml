@@ -93,8 +93,7 @@
 				<Separator Height="10"
 						   Background="Transparent"/>
 
-				<TextBox Name="CryptoSoftPath" 
-						 Text=""
+				<TextBox Name="CryptoSoftPath"
 						 IsEnabled="False"/>
 
 				<Separator Height="5"
