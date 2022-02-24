@@ -148,7 +148,7 @@
     <value>Entrer un nom pour le tavail de sauvegarde :</value>
   </data>
   <data name="enter_job_type" xml:space="preserve">
-    <value>Choisissez le type de sauvegarde (c|d):</value>
+    <value>Choisissez le type de sauvegarde :</value>
   </data>
   <data name="enter_source_path" xml:space="preserve">
     <value>Entrer le chemin du fichier source :</value>
@@ -209,5 +209,41 @@
   </data>
   <data name="no_saving_job" xml:space="preserve">
     <value>il n'y a pas de travaux de sauvegarde</value>
+  </data>
+  <data name="browse" xml:space="preserve">
+    <value>Parcourir</value>
+  </data>
+  <data name="complete" xml:space="preserve">
+    <value>Complette</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="decrypt" xml:space="preserve">
+    <value>Décrypter</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="diferential" xml:space="preserve">
+    <value>Différentielle</value>
+  </data>
+  <data name="logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="select_all" xml:space="preserve">
+    <value>Tout sélectionner</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="cryptosoft_choice" xml:space="preserve">
+    <value>Utiliser CryptoSoft ?</value>
+  </data>
+  <data name="password_placeholder" xml:space="preserve">
+    <value>Entrer le mot de passe CryptoSoft</value>
   </data>
 </root>

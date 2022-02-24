@@ -478,3 +478,6 @@ _UpgradeReport_Files/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+NoSave/
+Save/

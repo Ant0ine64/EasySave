@@ -209,4 +209,40 @@
   <data name="no_saving_job" xml:space="preserve">
     <value>there is no saving job</value>
   </data>
+  <data name="browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="decrypt" xml:space="preserve">
+    <value>Decrypt</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="diferential" xml:space="preserve">
+    <value>diferential</value>
+  </data>
+  <data name="logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="select_all" xml:space="preserve">
+    <value>Select All </value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="cryptosoft_choice" xml:space="preserve">
+    <value>Use CryptoSoft?</value>
+  </data>
+  <data name="password_placeholder" xml:space="preserve">
+    <value>Enter CryptoSoft passord</value>
+  </data>
 </root>

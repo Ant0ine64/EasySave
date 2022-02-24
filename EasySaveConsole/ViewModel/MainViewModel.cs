@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace EasySaveConsole.ViewModel
 {
@@ -33,21 +34,23 @@ namespace EasySaveConsole.ViewModel
             SetXorKey("azerty");
             
             job = Job.GetJobByName(jobName);
+            StartSavingJob(job);
+        }
 
+        public async Task StartSavingJob(Job job)
+        {
             if (job.Cipher)
-            {
                 save.Cipher = job.Cipher;
-            }
             
             job.Status = "ACTIVE";
             Job.Update(job);
 
             LogFile.CreateFile();
-            
             // Chose the type: d for differential, c for complete
-            if(job.Type == "d")
+            if (job.Type == "d")
             {
-                try {
+                try
+                {
                     DirectoryInfo infosDestDir = new DirectoryInfo(job.DestinationPath);
                     DirectoryInfo infosSourceDir = new DirectoryInfo(job.SourcePath);
                     save.copyFilesPartialSave(infosSourceDir, infosDestDir, job);
@@ -71,6 +74,7 @@ namespace EasySaveConsole.ViewModel
 
                 }
             }
+
             // write log file
             job.Status = "END";
             Job.Update(job);
@@ -114,12 +118,18 @@ namespace EasySaveConsole.ViewModel
         /// Obtains all the jobs
         /// </summary>
         /// <returns>job names</returns>
-        public string[] FetchSavingJob()
+        public string[] fetchSavingJobNames()
         {
             string[] arrayJobsName;
             List<string> listJobsName = Job.GetAllJobNames();
             arrayJobsName = listJobsName.ToArray();
             return arrayJobsName;
+        }
+
+        public IEnumerable<Job> fetchSavingJob()
+        {
+            Job.GetFromJson();
+            return Job.Jobs;
         }
 
         /// <summary>
