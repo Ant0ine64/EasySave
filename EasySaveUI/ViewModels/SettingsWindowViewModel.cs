@@ -5,10 +5,6 @@ using System.ComponentModel;
 using System.Windows.Input;
 using ReactiveUI;
 using EasySaveConsole.Model;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Avalonia.Controls;
-using EasySaveUI.Views;
 using System.Collections.ObjectModel;
 
 
@@ -17,9 +13,12 @@ namespace EasySaveUI.ViewModels
     public class SettingsWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
         public ICommand ChangeSettingEvent { get; private set; }
+        public ICommand AddBlockingApp { get; private set; }
+        public string NewBlockingApp { get; set; } = "";
+        public Action? AddEvent;
         public Action<string>? SuccessChangedEvent;
         public EasySaveConsole.Model.Settings settings = new EasySaveConsole.Model.Settings(true);
-        public ObservableCollection<String> BlockingApp;
+        public ObservableCollection<String> BlockingApp { get; set; }
         public SettingsWindowViewModel()
         {
             settings.ReadSettings();
@@ -32,6 +31,13 @@ namespace EasySaveUI.ViewModels
                 LogFile.selectLogFormat = settings.LogFormat;
                 settings.Write();
                 SuccessChangedEvent?.Invoke(type.ToUpper());
+            });
+            AddBlockingApp = ReactiveCommand.Create((object? arg) =>
+            {
+                BlockingApp.Add(NewBlockingApp);
+                settings.BlockingApp.Add(NewBlockingApp);
+                settings.Write();
+                AddEvent?.Invoke();
             });
         }
 
@@ -58,6 +64,13 @@ namespace EasySaveUI.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+
+        public void DeleteBlockingApp(string? rowDataContext)
+        {
+            if (rowDataContext == null)
+                return;
+            settings.BlockingApp.Remove(rowDataContext);
+            settings.Write(); 
+        }
     }
 }

@@ -11,7 +11,7 @@
 		Icon="/Assets/avalonia-logo.ico"
         Title="{x:Static p:Resources.settings}">
 	<Design.DataContext>
-		<vm:SettingsPageViewModel/>
+		<vm:SettingsWindowViewModel/>
 	</Design.DataContext>
 	
 	<StackPanel Background="#0F0F2D">
@@ -149,9 +149,13 @@
 														   VerticalAlignment="Center"/>
 												
 												<Button Grid.Column="1" 
-														Content="×" FontSize="20" 
+												        Name="DeleteApp"
+														Content="×"
+														FontSize="18" 
+														Margin="2"
 														HorizontalAlignment="Right" 
 														CornerRadius="12" 
+														Click="DeleteApp_OnClick"
 														Background="#C60008"/>
 											</Grid>
 										</DataTemplate>
@@ -162,6 +166,8 @@
 
 						<TextBox HorizontalContentAlignment="Stretch"
 								 Grid.Row="1"
+								 Name="NewBlockingApp"
+								 Text="{Binding NewBlockingApp}"
 								 Margin="10,10,0,10"/>
 						
 						<Button Grid.Row="1"
@@ -174,6 +180,7 @@
 								HorizontalContentAlignment="Center"
 								VerticalContentAlignment="Center"
 								VerticalAlignment="Bottom"
+								Command="{Binding AddBlockingApp}"
 								Margin="0,8,0,10"/>
 					</Grid>
 				</Border>

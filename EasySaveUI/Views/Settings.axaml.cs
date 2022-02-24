@@ -4,6 +4,7 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using EasySaveUI.ViewModels;
 using System.Collections.Generic;
+using Avalonia.VisualTree;
 
 namespace EasySaveUI.Views
 {
@@ -17,6 +18,7 @@ namespace EasySaveUI.Views
             DataContext = vm;
             
             vm.SuccessChangedEvent += SuccessChangedEvent;
+            vm.AddEvent += ClearAddBlockingApp;
                 #if DEBUG
             this.AttachDevTools();
 #endif
@@ -39,6 +41,11 @@ namespace EasySaveUI.Views
             }
         }
 
+        private void ClearAddBlockingApp()
+        {
+            this.Find<TextBox>("NewBlockingApp").Text = "";
+        }
+
         public async void GetPathExe()
         {
             var dialogExeSource = new OpenFileDialog();
@@ -54,6 +61,25 @@ namespace EasySaveUI.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+        private void DeleteApp_OnClick(object? sender, RoutedEventArgs e)
+        {
+            var vis = sender as IVisual;
+            if (vis == null)
+                return;
+            while (true)
+            {
+                vis = vis.GetVisualParent();
+                if (vis is DataGridRow)
+                {
+                    var row = (DataGridRow)vis;
+                    row.IsVisible = false;
+                    vm.DeleteBlockingApp((string?) row.DataContext);
+                }
+                if (vis is Window)
+                    break;
+            }
         }
     }
 }
