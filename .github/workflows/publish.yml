@@ -110,7 +110,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: EasySaveConsole.elf
+          asset_path: EasySaveUI.elf
           asset_name: hello-wolrd_linux-x64
           asset_content_type: application/octet-stream
       - name: Upload Release Asset Windows 
@@ -120,7 +120,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: EasySaveConsole.exe
+          asset_path: EasySaveUI.exe
           asset_name: hello-world_win-x64.exe
           asset_content_type: application/octet-stream
 
