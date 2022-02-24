@@ -76,6 +76,8 @@
 			<Button Width="100"
 					Grid.Row="1"
 					Command="{Binding OnClickCreate}"
+					
+					Click="errorMessage"
 					Foreground="White"
 					Background="#FF4C70"
 					Content="{x:Static p:Resources.create}"
@@ -84,5 +86,12 @@
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
 					/>
-		</StackPanel>
+			<TextBlock IsVisible="false" 
+					   HorizontalAlignment="Center" 
+					   VerticalAlignment="Center" 
+					   Foreground="red" 
+					   Name="errorLabel" 
+					   Grid.Row="7" 
+					   Text="{x:Static p:Resources.error_create}" />
+		</Grid>
 </Window>

@@ -239,6 +239,9 @@
   <data name="start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="error_create" xml:space="preserve">
+    <value>All fields must be completed to create a backup</value>
+  </data>
   <data name="cryptosoft_choice" xml:space="preserve">
     <value>Use CryptoSoft?</value>
   </data>
