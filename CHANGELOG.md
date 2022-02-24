@@ -1,6 +1,5 @@
-EasySave version 1.1 now features :
-- Deleting jobs
-- Changing the format of log file (Json or XML)
-- Bug fixes
-
+EasySave version 2.0 now features :
+- Interface graphique réalisé avec Avalonia
+- Intégration CrytoSoft
+- (pas finis)
 *Release automatically created with GitHub Actions*
