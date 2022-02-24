@@ -28,6 +28,7 @@ namespace EasySaveUI.Views
             Button decrypt = this.Find<Button>("decrypt");
             Button settings = this.Find<Button>("settings");
             Button add_all = this.Find<Button>("add_all");
+            DataGrid list_jobs = this.Find<DataGrid>("ListJobs");
 
 
 
@@ -47,6 +48,9 @@ namespace EasySaveUI.Views
                 decrypt.Content = "Decrypt";
                 settings.Content = "Settings";
                 add_all.Content = "Select All";
+                list_jobs.Columns[0].Header = "Select";
+                list_jobs.Columns[1].Header = "Name";             
+                list_jobs.Columns[5].Header = "Progress";
 
 
             }
@@ -62,8 +66,9 @@ namespace EasySaveUI.Views
                 decrypt.Content = "Décrypter";
                 settings.Content = "Paramètres";
                 add_all.Content = "Tout sélectionner";
-               
-
+                list_jobs.Columns[0].Header = "Selectionner";
+                list_jobs.Columns[1].Header = "Nom";             
+                list_jobs.Columns[5].Header = "Progression";
             }
 
         }

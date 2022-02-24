@@ -127,7 +127,8 @@
 					BorderThickness="2"
 					Padding="5"
 					Background="#1F1F34" >
-				<DataGrid Grid.Row="0"
+				<DataGrid  Name="ListJobs"
+						   Grid.Row="0"
 						  Padding="50"
 						  AlternatingRowBackground="#252539"
 						  Items="{Binding Jobs}">
@@ -140,7 +141,8 @@
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>             
-						<DataGridTextColumn Header="Name" 
+						<DataGridTextColumn
+											Header="Name"		
 											Binding="{Binding Name}" 
 											IsReadOnly="True"
 											Width="2*" />
