@@ -57,7 +57,7 @@ namespace EasySaveUI.ViewModels
         /// <param name="fileName">Name of selected File</param>
         private void openLogFile(string fileName)
         {
-            string file = directoryPath + "\\" + fileName;
+            string file = Path.Join(directoryPath, fileName);
             Process openLog = new Process();
             openLog.StartInfo = new ProcessStartInfo(file)
             {
