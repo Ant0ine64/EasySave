@@ -8,6 +8,7 @@ using EasySaveUI.Views;
 using ReactiveUI;
 using System.Windows.Input;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using EasySaveConsole.Model;
 using EasySaveConsole.ViewModel;
 using Settings = EasySaveUI.Views.Settings;
@@ -21,12 +22,14 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickDelete { get; private set; }
         public ICommand OnClickStart { get; private set; }
         public ICommand OnClickSelectAll { get; private set; }
-        public ICommand OnClickRefresh { get; private set; }
+        public ICommand OnClickSetPassword { get; private set; }
         private bool selectedAll = false;
         public ICommand OnClickLogs { get; private set; }
         public MainViewModel mvm = new MainViewModel();
         public ObservableCollection<Job> Jobs { get; set; }
         public ICommand OnClickSettings { get; private set; }
+
+        public string CryptosoftPassword { private get; set; } = "";
 
         public MainWindowViewModel()
         {
@@ -58,8 +61,22 @@ namespace EasySaveUI.ViewModels
             
             OnClickStart = ReactiveCommand.Create(async () =>
             {
-                await Task.WhenAll(Jobs.Where(job => job.IsChecked).Select(async j => await mvm.StartSavingJob(j)));
+                var checkedJobs = Jobs.Where(job => job.IsChecked);
+                if (checkedJobs.Any(job => job.Cipher))
+                {
+                    var cryptosoftDialog = new CrptosoftDialog();
+                    if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                        await cryptosoftDialog.ShowDialog(desktop.MainWindow);
+                    mvm.SetXorKey(CryptosoftPassword);
+                }
+                
+                foreach (var checkedJob in checkedJobs)
+                {
+                    Task.Run(() => mvm.StartSavingJob(checkedJob));
+                }
             });
+
+            OnClickSetPassword = OnClickStart;
             
             OnClickSelectAll = ReactiveCommand.Create(() =>
             {
@@ -88,10 +105,6 @@ namespace EasySaveUI.ViewModels
             // Add "using Windows.UI;" for Color and Colors.
             string colorName = e.AddedItems[0].ToString();
             Debug.WriteLine(colorName);
-
-            
         }
-
-            
     }
 }

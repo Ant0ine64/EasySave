@@ -21,7 +21,8 @@ namespace EasySaveConsole.Model
         public int TotalFilesToCopy { get; set; }
         public int FilesLeftToDo { get; set; } = 0;
         public long TotalFilesSize { get; set; }
-        public int Progression { get; set; } = 0;
+        private int progression = 0;
+        public int Progression { get => progression ; set => SetField(ref progression, value,  nameof(Progression)); }
         public string Type { get; set; } = "c"; //c for complete, d for diferential
         private bool isChecked = false;
         public bool IsChecked { get => isChecked ; set => SetField(ref isChecked, value,  nameof(IsChecked)); }
@@ -163,7 +164,7 @@ namespace EasySaveConsole.Model
             var sourceFiles = Directory.GetFiles(this.SourcePath, "*", SearchOption.AllDirectories).Count();
             var destFiles = Directory.GetFiles(this.DestinationPath, "*", SearchOption.AllDirectories).Count();
             FilesLeftToDo = sourceFiles - destFiles;
-            Progression = ((sourceFiles - FilesLeftToDo) / sourceFiles) * 100;
+            Progression = (int)(((float)(sourceFiles - FilesLeftToDo) / (float)sourceFiles) * 100);
             Update(this);
         }
 

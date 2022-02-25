@@ -29,7 +29,7 @@ namespace EasySaveConsole.ViewModel
         /// Start a backup job using its name
         /// </summary>
         /// <param name="jobName">The name of the job you want to start</param>
-        public void StartSavingJob(string jobName)
+        public async void StartSavingJob(string jobName)
         {
             SetXorKey("azerty");
             
@@ -37,7 +37,7 @@ namespace EasySaveConsole.ViewModel
             StartSavingJob(job);
         }
 
-        public async Task StartSavingJob(Job job)
+        public void StartSavingJob(Job job)
         {
             if (job.Cipher)
                 save.Cipher = job.Cipher;
@@ -87,18 +87,18 @@ namespace EasySaveConsole.ViewModel
         /// <param name="source">Source path to save</param>
         /// <param name="destination">Destination of where to put saved files</param>
         /// <param name="type">Type of save: d for differential, c for complete</param>
+        /// <param name="cipher"></param>
         /// <param name="status">optional</param>
-        public void CreateSavingJob(string name, string source, string destination, string type, string status="TODO")
+        public void CreateSavingJob(string name, string source, string destination, string type,
+            string status = "TODO", bool cipher = false)
         {
             job.Name = name;
             job.SourcePath = source;
             job.DestinationPath = destination;
             job.Type = type;
             job.Status = status;
+            job.Cipher = cipher;
             Job.Add(job);
-            //Save
-            //Write state file 
-
         }
 
         /// <summary>

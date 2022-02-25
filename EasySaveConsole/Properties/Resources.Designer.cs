@@ -340,6 +340,53 @@ namespace EasySaveConsole.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à All fields must be completed to create a backup.
+        /// </summary>
+        public static string error_create {
+            get {
+                return ResourceManager.GetString("error_create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The destination or source directory doesn&apos;t exists..
+        /// </summary>
+        public static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
+            }
+        }
+        
+        public static string xml_log_format {
+            get {
+                return ResourceManager.GetString("xml_log_format", resourceCulture);
+            }
+        }
+        
+        public static string show_saving_jobs {
+            get {
+                return ResourceManager.GetString("show_saving_jobs", resourceCulture);
+            }
+        }
+        
+        public static string title_main_menu {
+            get {
+                return ResourceManager.GetString("title_main_menu", resourceCulture);
+            }
+        }
+        
+        public static string user_input_error {
+            get {
+                return ResourceManager.GetString("user_input_error", resourceCulture);
+            }
+        }
+        
+        public static string yes {
+            get {
+                return ResourceManager.GetString("yes", resourceCulture);
+            }
+        }
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The log file was created in .
         /// </summary>
         public static string log_file_path {
@@ -363,15 +410,6 @@ namespace EasySaveConsole.Properties {
         public static string logs_files_format {
             get {
                 return ResourceManager.GetString("logs_files_format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à no.
-        /// </summary>
-        public static string no {
-            get {
-                return ResourceManager.GetString("no", resourceCulture);
             }
         }
         
@@ -421,58 +459,13 @@ namespace EasySaveConsole.Properties {
                 return ResourceManager.GetString("settings", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Show the saving jobs.
-        /// </summary>
-        public static string show_saving_jobs {
-            get {
-                return ResourceManager.GetString("show_saving_jobs", resourceCulture);
-            }
-        }
-        
+
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Start.
         /// </summary>
         public static string start {
             get {
                 return ResourceManager.GetString("start", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Main Menu.
-        /// </summary>
-        public static string title_main_menu {
-            get {
-                return ResourceManager.GetString("title_main_menu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Error : invalid input.
-        /// </summary>
-        public static string user_input_error {
-            get {
-                return ResourceManager.GetString("user_input_error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à log files in .xml.
-        /// </summary>
-        public static string xml_log_format {
-            get {
-                return ResourceManager.GetString("xml_log_format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à yes.
-        /// </summary>
-        public static string yes {
-            get {
-                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
     }

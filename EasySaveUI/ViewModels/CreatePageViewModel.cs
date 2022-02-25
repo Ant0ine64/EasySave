@@ -17,7 +17,7 @@ using EasySaveUI.Enum;
 
 namespace EasySaveUI.ViewModels
 {
-   
+
     public class CreatePageViewModel : ViewModelBase, INotifyPropertyChanged
     {
         SaveType saveType { get; set; }
@@ -27,7 +27,7 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickBrowseFolder { get; private set; }
         public ICommand OnClickCreate { get; private set; }
         public ICommand OnClickBack { get; set; }
-        public bool errormessage { get;  set; }
+        public bool errormessage { get; set; }
         string type = "";
         private bool errorMessage;
         public bool ErrorMessage
@@ -69,28 +69,50 @@ namespace EasySaveUI.ViewModels
                 RaisePropertyChanged("ValueDestination");
             }
         }
+        private bool cryptosoft;
+        public bool Cryptosoft
+        {
+            get { return cryptosoft; }
+            set
+            {
+                cryptosoft = value;
+                RaisePropertyChanged(nameof(value));
+            }
+        }
 
         public CreatePageViewModel()
         {
-            OnClickBrowseFiles = ReactiveCommand.Create( async () => { string _path = await GetPathFiles(); });
+            OnClickBrowseFiles = ReactiveCommand.Create(async () => { string _path = await GetPathFiles(); });
             OnClickBrowseFolder = ReactiveCommand.Create(async () => { string _path = await GetPathFolder(); });
-            
+
             OnClickCreate = ReactiveCommand.Create(async () => {
                 // CreatePage createPage = new CreatePage();
                 Debug.WriteLine(saveName);
                 Debug.WriteLine(myValueSource);
                 Debug.WriteLine(myValueDest);
                 Debug.WriteLine(saveType);
+
                 if (saveName == null || myValueSource == null || myValueDest == null)
                 {
-                    Debug.WriteLine("errormessage");
-                    errorMessage = true;
-                    Debug.WriteLine(errormessage);
+                    CreatePage.resultError = true;
+                    Debug.WriteLine("true");
                 }
+
                 else
                 {
-                    var typeSave = saveType == SaveType.Complete ? "c" : "d";
-                    mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave);
+                    string typeSave;
+                    CreatePage.resultError = false;
+                    Debug.WriteLine("save crée");
+                    if (saveType == SaveType.Complete)
+                       
+                        typeSave = "c";
+                    else
+                        typeSave = "d";
+
+
+                    mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave, "TODO", cryptosoft);
+                    Debug.WriteLine("false");
+                    this.CloseAction();
                     updateContent();
                 }
             });
@@ -100,7 +122,7 @@ namespace EasySaveUI.ViewModels
                 updateContent();
             });
         }
-       
+
         public async Task<string> GetPathFiles()
         {
             var dialogFolderSource = new OpenFolderDialog();
@@ -128,13 +150,12 @@ namespace EasySaveUI.ViewModels
 
             return result;
         }
-        
+public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string propName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-        public event PropertyChangedEventHandler PropertyChanged;
     }
-   
+
 }
