@@ -79,7 +79,7 @@
 					HorizontalAlignment="Center"
 					Command="{Binding OnClickStart}"
 					/>
-			<Button Width="100"
+			<!--<Button Width="100"
 					Name="decrypt"
 					Grid.Row="4"
 					Foreground="White"
@@ -90,7 +90,7 @@
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
 					Command="{Binding OnClickCreated}"
-					/>
+					/>-->
 			
 			<Button Width="100"
 					Grid.Row="7"

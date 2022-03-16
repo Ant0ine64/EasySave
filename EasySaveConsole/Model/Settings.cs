@@ -11,6 +11,7 @@ namespace EasySaveConsole.Model
         public string CryptoSoftPath { get; set; } = "";
         public string Lang { get; set; } = "fr-FR";
         public string LogFormat { get; set; } = "json";
+        public string CryptoKey { get; set; } = "";
         public static Settings Instance { get; set; }
         private List<string> blockingApp = new List<string>();
         public List<string> BlockingApp
@@ -24,15 +25,15 @@ namespace EasySaveConsole.Model
         }
 
         public static string SettingsFile;
-        
+
         public Settings() {}
         public Settings(bool create)
         {
             if (create)
+            {
                 CreateFile();
+            }           
         }
-
-        
 
         private static void CreateFile()
         {
@@ -54,6 +55,19 @@ namespace EasySaveConsole.Model
             }
         }
 
+        private void CreateCryptoKey()
+        {
+            string charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$%#*.!?:-@=(){}[]_";
+            char[] charsOfKey = new char[16];
+            var random = new Random();
+
+            for (int i = 0; i < charsOfKey.Length; i++)
+            {
+                charsOfKey[i] = charList[random.Next(charList.Length)];
+            }
+            CryptoKey = new String(charsOfKey);
+        }
+
         public void Write()
         {
             string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
@@ -63,6 +77,7 @@ namespace EasySaveConsole.Model
         private static string createBaseContent()
         {
             var settings = new Settings();
+            settings.CreateCryptoKey();
             string json = JsonSerializer.Serialize(settings, new JsonSerializerOptions {WriteIndented = true});
             return json;
         }
@@ -76,6 +91,7 @@ namespace EasySaveConsole.Model
             CryptoSoftPath = settings.CryptoSoftPath;
             Lang = settings.Lang;
             LogFormat = settings.LogFormat;
+            CryptoKey = settings.CryptoKey;
             BlockingApp = settings.BlockingApp;
         }
     }

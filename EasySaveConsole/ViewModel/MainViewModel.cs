@@ -31,7 +31,6 @@ namespace EasySaveConsole.ViewModel
         /// <param name="jobName">The name of the job you want to start</param>
         public async void StartSavingJob(string jobName)
         {
-            SetXorKey("azerty");
             
             job = Job.GetJobByName(jobName);
             StartSavingJob(job);
@@ -40,8 +39,11 @@ namespace EasySaveConsole.ViewModel
         public void StartSavingJob(Job job)
         {
             if (job.Cipher)
+            {
                 save.Cipher = job.Cipher;
-            
+                SetXorKey();
+            }
+
             job.Status = "ACTIVE";
             Job.Update(job);
 
@@ -149,9 +151,9 @@ namespace EasySaveConsole.ViewModel
             Job.GetAllJobNames().ForEach(StartSavingJob);
         }
 
-        public void SetXorKey(string key)
+        public void SetXorKey()
         {
-            cryptoSoft.Key = key;
+            cryptoSoft.Key = settings.CryptoKey;
             if (settings.CryptoSoftPath != "")
                 cryptoSoft.CryptoSoftPath = settings.CryptoSoftPath;
             else

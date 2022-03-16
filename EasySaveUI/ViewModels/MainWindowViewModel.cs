@@ -22,7 +22,6 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickDelete { get; private set; }
         public ICommand OnClickStart { get; private set; }
         public ICommand OnClickSelectAll { get; private set; }
-        public ICommand OnClickSetPassword { get; private set; }
         private bool selectedAll = false;
         public ICommand OnClickLogs { get; private set; }
         public MainViewModel mvm = new MainViewModel();
@@ -62,22 +61,12 @@ namespace EasySaveUI.ViewModels
             OnClickStart = ReactiveCommand.Create(async () =>
             {
                 var checkedJobs = Jobs.Where(job => job.IsChecked);
-                if (checkedJobs.Any(job => job.Cipher))
-                {
-                    var cryptosoftDialog = new CrptosoftDialog();
-                    if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-                        await cryptosoftDialog.ShowDialog(desktop.MainWindow);
-                    mvm.SetXorKey(CryptosoftPassword);
-                }
-                
                 foreach (var checkedJob in checkedJobs)
                 {
                     Task.Run(() => mvm.StartSavingJob(checkedJob));
                 }
             });
 
-            OnClickSetPassword = OnClickStart;
-            
             OnClickSelectAll = ReactiveCommand.Create(() =>
             {
                 selectedAll = !selectedAll;
