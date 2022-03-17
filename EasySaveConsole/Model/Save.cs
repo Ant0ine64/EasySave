@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace EasySaveConsole.Model
 {
@@ -19,17 +20,20 @@ namespace EasySaveConsole.Model
         /// <param name="job">Saving job to execute</param>
         public void copyFilesPartialSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)
         {
-       
-            FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
             FileInfo[] infosSourceFiles = infosSourceDir.GetFiles();
+            FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
           
             foreach (FileInfo infosSourceFile in infosSourceFiles)
             {
-                foreach (FileInfo infosDestinationFile in infosDestinationFiles)
+                // check the job state and quit the function if it is stopped
+                if (CheckState(job)) return;
+
+                // if the file exist in destination
+                if (infosDestinationFiles.Any(x => x.Name == infosSourceFile.Name)) 
                 {
-                    // if file have been modified
-                    if (infosSourceFile.Name == infosDestinationFile.Name && infosSourceFile.LastWriteTime != infosDestinationFile.LastWriteTime)
-                    { 
+                    // if the file which exist in destination has been edited in source 
+                    if (infosDestinationFiles.Any(x => x.Name == infosSourceFile.Name && infosSourceFile.LastWriteTime != x.LastWriteTime)) 
+                    {
                         watch.Start();
                         // replace existing file
                         ExecuteSave(infosSourceDir, infosDestDir, infosSourceFile);
@@ -38,8 +42,6 @@ namespace EasySaveConsole.Model
                         LogFile.WriteToLog(job, infosSourceFile.FullName, Path.Combine(infosDestDir.FullName, infosSourceFile.Name), watch.ElapsedMilliseconds);
                     }
                 }
-                // if file doesn't exist in destination
-                if (infosDestinationFiles.Any(x => x.Name == infosSourceFile.Name)) { }
                 else
                 {
                     watch.Start();
@@ -50,6 +52,7 @@ namespace EasySaveConsole.Model
                 }
                 job.UpdateProgression();
             }
+            job.state = 0;
         }
 
         /// <summary>
@@ -60,19 +63,18 @@ namespace EasySaveConsole.Model
         /// <param name="job">Saving job to execute</param>
         public void copyFilesEntireSave(DirectoryInfo infosSourceDir, DirectoryInfo infosDestDir, Job job)
         {
-
-            FileInfo[] infosDestinationFiles = infosDestDir.GetFiles();
             FileInfo[] infosSourceFiles = infosSourceDir.GetFiles();
 
             // cleaning destination folder
-            foreach (FileInfo infosDestinationFile in infosDestinationFiles)
-            {
-                infosDestinationFile.Delete();              
-            }
+            infosDestDir.Delete(true);
+            infosDestDir.Create();
 
             //copy all files from source to destination
             foreach (FileInfo infosSourceFile in infosSourceFiles)
             {
+                // check the job state and quit the function if it is stopped
+                if (CheckState(job)) return;
+
                 watch.Start();
                 ExecuteSave(infosSourceDir, infosDestDir, infosSourceFile);
                 watch.Stop();
@@ -80,6 +82,7 @@ namespace EasySaveConsole.Model
                 job.UpdateProgression();
                 LogFile.WriteToLog(job, infosSourceFile.FullName, Path.Combine(infosDestDir.FullName, infosSourceFile.Name), watch.ElapsedMilliseconds);
             }
+            job.state = 0;
         }
 
         /// <summary>
@@ -92,11 +95,30 @@ namespace EasySaveConsole.Model
         {
             string source = Path.Combine(infosSourceDir.FullName, infosSourceFile.Name);
             string dest = Path.Combine(infosDestDir.FullName, infosSourceFile.Name);
-            
             if (!Cipher)
                 File.Copy(source, dest, true);
             else
                 CryptoSoft.GetInstance().XorCypher(source, dest);
+        }
+
+        private bool CheckState(Job job)
+        {
+            bool stop = false;
+            // Thread.Sleep(2000); <-- pour tester la pause ou l'arret
+            // if the job is stopped
+            if (job.state == 0)
+            {
+                job.Status = "STOP";
+                stop = true;
+            }
+            // if the job is on pause
+            else if (job.state == 2)
+            {
+                job.Status = "PAUSE";
+                while (job.state == 2) ;
+                job.Status = "ACTIVE";
+            }
+            return stop;
         }
     }
 }

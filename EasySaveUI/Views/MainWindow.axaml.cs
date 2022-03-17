@@ -25,7 +25,8 @@ namespace EasySaveUI.Views
             Button create = this.Find<Button>("create");
             Button delete = this.Find<Button>("delete");
             Button start = this.Find<Button>("start");
-            Button decrypt = this.Find<Button>("decrypt");
+            Button pause = this.Find<Button>("pause");
+            Button stop = this.Find<Button>("stop");
             Button settings = this.Find<Button>("settings");
             Button add_all = this.Find<Button>("add_all");
             DataGrid list_jobs = this.Find<DataGrid>("ListJobs");
@@ -45,7 +46,8 @@ namespace EasySaveUI.Views
                 create.Content = "Create";
                 delete.Content = "Delete";
                 start.Content = "Start";
-                decrypt.Content = "Decrypt";
+                pause.Content = "Pause";
+                stop.Content = "Stop";
                 settings.Content = "Settings";
                 add_all.Content = "Select All";
                 list_jobs.Columns[0].Header = "Select";
@@ -63,7 +65,8 @@ namespace EasySaveUI.Views
                 create.Content = "Créer";
                 delete.Content = "Supprimer";
                 start.Content = "Démarrer";
-                decrypt.Content = "Décrypter";
+                pause.Content = "Pause";
+                stop.Content = "Stop";
                 settings.Content = "Paramêtres";
                 add_all.Content = "Tout sélectionner";
                 list_jobs.Columns[0].Header = "Selectionner";

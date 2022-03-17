@@ -260,4 +260,10 @@
   <data name="logs_files_format" xml:space="preserve">
     <value>Logs files format</value>
   </data>
+  <data name="pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
 </root>

@@ -45,6 +45,7 @@ namespace EasySaveConsole.ViewModel
             }
 
             job.Status = "ACTIVE";
+            job.Progression = 0;
             Job.Update(job);
 
             LogFile.CreateFile();
@@ -76,9 +77,8 @@ namespace EasySaveConsole.ViewModel
 
                 }
             }
-
             // write log file
-            job.Status = "END";
+            if (job.Status != "STOP") job.Status = "END";
             Job.Update(job);
         }
 
