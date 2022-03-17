@@ -105,18 +105,18 @@ namespace EasySaveConsole.Model
         {
             bool stop = false;
             // Thread.Sleep(2000); <-- pour tester la pause ou l'arret
+            // if the job is on pause
+            if (job.state == 2)
+            {
+                job.Status = "PAUSE";
+                while (job.state == 2) ;
+                job.Status = "ACTIVE";
+            }
             // if the job is stopped
             if (job.state == 0)
             {
                 job.Status = "STOP";
                 stop = true;
-            }
-            // if the job is on pause
-            else if (job.state == 2)
-            {
-                job.Status = "PAUSE";
-                while (job.state == 2) ;
-                job.Status = "ACTIVE";
             }
             return stop;
         }
