@@ -3,7 +3,9 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EasySaveConsole.ViewModel
@@ -44,6 +46,14 @@ namespace EasySaveConsole.ViewModel
             
             job.Status = "ACTIVE";
             Job.Update(job);
+            
+            if (!CheckBlockingApps())
+            {
+                Console.WriteLine("Blocking app detected");
+                job.Status = "ABORTED";
+                Job.Update(job);
+                return;
+            }
 
             LogFile.CreateFile();
             // Chose the type: d for differential, c for complete
@@ -176,5 +186,22 @@ namespace EasySaveConsole.ViewModel
             return FilePath;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>True if save can be started</returns>
+        private static bool CheckBlockingApps()
+        {
+            // get blocking app from settings
+            var settings = new Settings();
+            settings.ReadSettings();
+            var blockingApps = settings.BlockingApp;
+            
+            if (blockingApps.Count == 0)
+                return true;
+
+            var processes = Process.GetProcesses().ToList();
+            return processes.All(process => !blockingApps.Contains(process.ProcessName));
+        }
     }
 }
