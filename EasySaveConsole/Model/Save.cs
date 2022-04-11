@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace EasySaveConsole.Model
     public class Save
     {
         private Stopwatch watch = new Stopwatch();
-        public bool Cipher = false;
+        public List<String> Cipher;
 
         /// <summary>
         /// Copy files for a differential backup 
@@ -92,11 +93,17 @@ namespace EasySaveConsole.Model
         {
             string source = Path.Combine(infosSourceDir.FullName, infosSourceFile.Name);
             string dest = Path.Combine(infosDestDir.FullName, infosSourceFile.Name);
-            
-            if (!Cipher)
-                File.Copy(source, dest, true);
-            else
+
+            var fileExtension = infosSourceFile.Name.Split(".").Last();
+            Console.WriteLine(fileExtension);
+            foreach (string s in Cipher)
+            {
+                Console.WriteLine("a chiffrer " + s);
+            }
+            if (Cipher.Contains(fileExtension))
                 CryptoSoft.GetInstance().XorCypher(source, dest);
+            else
+                File.Copy(source, dest, true);
         }
     }
 }

@@ -110,7 +110,7 @@ namespace EasySaveUI.ViewModels
                         typeSave = "d";
 
 
-                    mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave, "TODO", cryptosoft);
+                    mvm.CreateSavingJob(saveName, myValueSource, myValueDest, typeSave);
                     Debug.WriteLine("false");
                     this.CloseAction();
                     updateContent();

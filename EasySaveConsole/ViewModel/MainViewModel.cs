@@ -39,8 +39,7 @@ namespace EasySaveConsole.ViewModel
 
         public void StartSavingJob(Job job)
         {
-            if (job.Cipher)
-                save.Cipher = job.Cipher;
+            save.Cipher = job.Cipher;
             
             job.Status = "ACTIVE";
             Job.Update(job);
@@ -90,7 +89,8 @@ namespace EasySaveConsole.ViewModel
         /// <param name="cipher"></param>
         /// <param name="status">optional</param>
         public void CreateSavingJob(string name, string source, string destination, string type,
-            string status = "TODO", bool cipher = false)
+            List<string>? cipher = null,
+            string status = "TODO")
         {
             job.Name = name;
             job.SourcePath = source;

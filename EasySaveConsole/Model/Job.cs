@@ -26,8 +26,8 @@ namespace EasySaveConsole.Model
         public string Type { get; set; } = "c"; //c for complete, d for diferential
         private bool isChecked = false;
         public bool IsChecked { get => isChecked ; set => SetField(ref isChecked, value,  nameof(IsChecked)); }
-        /// true if you want tu use cryptosoft
-        public bool Cipher { get; set; } = false;
+        /// extension for the use of cryptosoft
+        public List<string>? Cipher { get; set; }
 
         public static string jsonStateDirectory;
         public static string jsonStateFilepath;

@@ -29,7 +29,7 @@ namespace EasySaveUI.ViewModels
         public ObservableCollection<Job> Jobs { get; set; }
         public ICommand OnClickSettings { get; private set; }
 
-        public string CryptosoftPassword { private get; set; } = "";
+        public string CryptosoftPassword { private get; set; } = "azerty";
 
         public MainWindowViewModel()
         {
@@ -62,13 +62,14 @@ namespace EasySaveUI.ViewModels
             OnClickStart = ReactiveCommand.Create(async () =>
             {
                 var checkedJobs = Jobs.Where(job => job.IsChecked);
-                if (checkedJobs.Any(job => job.Cipher))
-                {
-                    var cryptosoftDialog = new CrptosoftDialog();
-                    if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-                        await cryptosoftDialog.ShowDialog(desktop.MainWindow);
-                    mvm.SetXorKey(CryptosoftPassword);
-                }
+                // if (checkedJobs.Any(job => job.Cipher))
+                // {
+                //     var cryptosoftDialog = new CrptosoftDialog();
+                //     if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                //         await cryptosoftDialog.ShowDialog(desktop.MainWindow);
+                //     mvm.SetXorKey(CryptosoftPassword);
+                // }
+                mvm.SetXorKey(CryptosoftPassword);
                 
                 foreach (var checkedJob in checkedJobs)
                 {
