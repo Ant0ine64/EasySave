@@ -41,7 +41,7 @@ namespace EasySaveConsole.Model
                 }
                 else
                 {
-                    Debug.WriteLine("file not prioriatiez");
+                    Debug.WriteLine("non-priority file");
                 }
             }
 
@@ -103,7 +103,7 @@ namespace EasySaveConsole.Model
                 }
                 else
                 {
-                    Debug.WriteLine("file not prioriatiez");
+                    Debug.WriteLine("non-priority file");
                 }
             }
 
