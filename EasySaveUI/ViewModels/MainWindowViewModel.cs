@@ -21,15 +21,16 @@ namespace EasySaveUI.ViewModels
         public ICommand OnClickCreated { get; private set; }
         public ICommand OnClickDelete { get; private set; }
         public ICommand OnClickStart { get; private set; }
+        public ICommand OnClickPause { get; private set; }
+        public ICommand OnClickStop { get; private set; }
         public ICommand OnClickSelectAll { get; private set; }
-        public ICommand OnClickSetPassword { get; private set; }
         private bool selectedAll = false;
         public ICommand OnClickLogs { get; private set; }
         public MainViewModel mvm = new MainViewModel();
         public ObservableCollection<Job> Jobs { get; set; }
         public ICommand OnClickSettings { get; private set; }
 
-        public string CryptosoftPassword { private get; set; } = "azerty";
+        public string CryptosoftPassword { private get; set; } = "";
 
         public MainWindowViewModel()
         {
@@ -62,23 +63,36 @@ namespace EasySaveUI.ViewModels
             OnClickStart = ReactiveCommand.Create(async () =>
             {
                 var checkedJobs = Jobs.Where(job => job.IsChecked);
-                // if (checkedJobs.Any(job => job.Cipher))
-                // {
-                //     var cryptosoftDialog = new CrptosoftDialog();
-                //     if (Avalonia.Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-                //         await cryptosoftDialog.ShowDialog(desktop.MainWindow);
-                //     mvm.SetXorKey(CryptosoftPassword);
-                // }
-                mvm.SetXorKey(CryptosoftPassword);
-                
-                foreach (var checkedJob in checkedJobs)
+                foreach (Job checkedJob in checkedJobs)
                 {
-                    Task.Run(() => mvm.StartSavingJob(checkedJob));
+                    if (checkedJob.state == 0)
+                    {
+                        checkedJob.state = 1;
+                        Task.Run(() => mvm.StartSavingJob(checkedJob));
+                    }
+                    else
+                        checkedJob.state = 1;
                 }
             });
 
-            OnClickSetPassword = OnClickStart;
-            
+            OnClickPause = ReactiveCommand.Create(() =>
+            {
+                var checkedJobs = Jobs.Where(job => job.IsChecked);
+                foreach (Job checkedJob in checkedJobs)
+                {
+                    if (checkedJob.state == 1) checkedJob.state = 2;
+                }
+            });
+
+            OnClickStop = ReactiveCommand.Create(() =>
+            {
+                var checkedJobs = Jobs.Where(job => job.IsChecked);
+                foreach (Job checkedJob in checkedJobs)
+                {
+                    if (checkedJob.state !=0) checkedJob.state = 0;
+                }
+            });
+
             OnClickSelectAll = ReactiveCommand.Create(() =>
             {
                 selectedAll = !selectedAll;
@@ -87,12 +101,14 @@ namespace EasySaveUI.ViewModels
                     job.IsChecked = selectedAll;
                 }
             });
+
             OnClickSettings = ReactiveCommand.Create(() =>
             {
                 Settings settingsPage = new Settings();
                 updateContent(settingsPage.Content, settingsPage.DataContext);
                 settingsPage.Close();
             });
+
             OnClickLogs = ReactiveCommand.Create(() =>
             {
                 LogsWindow logsWindow = new LogsWindow();

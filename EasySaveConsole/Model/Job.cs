@@ -28,6 +28,8 @@ namespace EasySaveConsole.Model
         public bool IsChecked { get => isChecked ; set => SetField(ref isChecked, value,  nameof(IsChecked)); }
         /// extension for the use of cryptosoft
         public List<string>? Cipher { get; set; }
+        /// use to check the state of job task : 0 = stop/end/to do , 1 = doing , 2 = on pause 
+        public volatile int state = 0;
 
         public static string jsonStateDirectory;
         public static string jsonStateFilepath;
