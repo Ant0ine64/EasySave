@@ -23,6 +23,17 @@ namespace EasySaveConsole.Model
                     nameof(BlockingApp));
         }
 
+        private List<string> prioritaryExtension = new List<string>();
+        public List<string> PrioritaryExtension
+        {
+            get =>
+                prioritaryExtension;
+            set =>
+                SetField(ref prioritaryExtension,
+                    value,
+                    nameof(PrioritaryExtension));
+        }
+
         public static string SettingsFile;
         
         public Settings() {}
@@ -77,6 +88,7 @@ namespace EasySaveConsole.Model
             Lang = settings.Lang;
             LogFormat = settings.LogFormat;
             BlockingApp = settings.BlockingApp;
+            PrioritaryExtension = settings.PrioritaryExtension;
         }
     }
 }

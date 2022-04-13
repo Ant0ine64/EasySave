@@ -23,6 +23,7 @@ namespace EasySaveConsole.ViewModel
         {
             // init settings 
             settings.ReadSettings();
+           
         }
 
         /// <summary>
